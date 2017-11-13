@@ -145,7 +145,7 @@
 </div>
 
   <div class="widget tag">
-  <h3 class="title">calendar</h3>
+   <!-- <h3 class="title">日历云</h3>  -->
   <div id="calendar"></div>
 </div>
 
@@ -175,6 +175,18 @@
 </div>
 </footer>
     <script src="/js/jquery-2.1.0.min.js"></script>
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:false, root:'calendar/'});
+    
+    });
+  </script>
+
 <script type="text/javascript">
 $(document).ready(function(){ 
   $('.navbar').click(function(){
@@ -288,17 +300,6 @@ $(document).ready(function(){
 
 
 
-<!-- add calendar widget -->
-
-  <script src="/js/calendar.js"></script>
-  <script src="/js/languages.js"></script>
-  <script type="text/javascript">
-    $(function() {
-    
-      $('#calendar').aCalendar('zh-CN',{single:false, root:'calendar/'});
-    
-    });
-  </script>
 
 
 

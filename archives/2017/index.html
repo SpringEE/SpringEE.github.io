@@ -115,6 +115,18 @@
 </div>
 </footer>
       <script src="/js/jquery-2.1.0.min.js"></script>
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:false, root:'calendar/'});
+    
+    });
+  </script>
+
 <script type="text/javascript">
 $(document).ready(function(){ 
   $('.navbar').click(function(){
@@ -166,17 +178,6 @@ $(document).ready(function(){
 
 
 
-<!-- add calendar widget -->
-
-  <script src="/js/calendar.js"></script>
-  <script src="/js/languages.js"></script>
-  <script type="text/javascript">
-    $(function() {
-    
-      $('#calendar').aCalendar('zh-CN',{single:false, root:'calendar/'});
-    
-    });
-  </script>
 
 
 

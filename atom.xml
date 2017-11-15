@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/SpringEE/SpringEE.github.io/"/>
-  <updated>2017-08-30T15:28:54.066Z</updated>
+  <updated>2017-11-15T08:40:51.690Z</updated>
   <id>https://github.com/SpringEE/SpringEE.github.io/</id>
   
   <author>
@@ -17,23 +17,17 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>myfirst_HEXO</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/08/30/myfirst-HEXO/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/08/30/myfirst-HEXO/</id>
-    <published>2017-08-30T15:23:31.000Z</published>
-    <updated>2017-08-30T15:28:54.066Z</updated>
+    <title>Hexo+GitHub+博客插件</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/15/HexoGitHub/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/15/HexoGitHub/</id>
+    <published>2017-11-15T02:20:31.000Z</published>
+    <updated>2017-11-15T08:40:51.690Z</updated>
     
-    <content type="html"><![CDATA[<p>#前言</p><p>使用gibhub</p><ol><li>全是静态文件，访问速度快；</li><li>免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台；</li><li>可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；</li></ol><a id="more"></a><ol><li>数据绝对安全，基于github的版本管理，想恢复到哪个历史版本都行；</li><li>博客内容可以轻松打包、转移、发布到其它平台；</li><li>等等；</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>   关于个人博客网站的搭建，从<a href="https://www.aliyun.com" target="_blank" rel="external">域名</a>的购买到绑定和注册<a href="https://github.com/hexojs/hexo/issues">GitHub</a>，好文章确实很多，在此就不再做单独的个人文章说明，只分享前辈们“<a href="http://blog.liuxianan.com/build-blog-website-by-hexo-github.html" target="_blank" rel="external">搭建Hexo</a>”的链接。文章重点是整合网络上比较零散的各类插件，以及插件具体的用法。另外，此处还会涉及到.md博客文件的Markdown语法，提供一站式新手教程。<br><a id="more"></a></p><h2 id="Hexo搭建个人博客"><a href="#Hexo搭建个人博客" class="headerlink" title="Hexo搭建个人博客"></a>Hexo搭建个人博客</h2><p><code>this is</code><br><img src="url/img/author.jpg" alt="pnotoOne"></p><h2 id="Hexo配置文件-config-yml说明"><a href="#Hexo配置文件-config-yml说明" class="headerlink" title="Hexo配置文件_config.yml说明"></a>Hexo配置文件_config.yml说明</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p><h2 id="Hexo实用插件"><a href="#Hexo实用插件" class="headerlink" title="Hexo实用插件"></a>Hexo实用插件</h2><h3 id="Hexo主体插件"><a href="#Hexo主体插件" class="headerlink" title="Hexo主体插件"></a>Hexo主体插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p><h3 id="Hexo日历插件"><a href="#Hexo日历插件" class="headerlink" title="Hexo日历插件"></a>Hexo日历插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p><h3 id="Hexo统计插件"><a href="#Hexo统计插件" class="headerlink" title="Hexo统计插件"></a>Hexo统计插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><h3 id="Hexo订阅插件"><a href="#Hexo订阅插件" class="headerlink" title="Hexo订阅插件"></a>Hexo订阅插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><h3 id="Hexo音乐插件"><a href="#Hexo音乐插件" class="headerlink" title="Hexo音乐插件"></a>Hexo音乐插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;#前言&lt;/p&gt;
-&lt;p&gt;使用gibhub&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;全是静态文件，访问速度快；&lt;/li&gt;
-&lt;li&gt;免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台；&lt;/li&gt;
-&lt;li&gt;可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；&lt;/li&gt;
-&lt;/ol&gt;
+      &lt;p&gt;   关于个人博客网站的搭建，从&lt;a href=&quot;https://www.aliyun.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;域名&lt;/a&gt;的购买到绑定和注册&lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;，好文章确实很多，在此就不再做单独的个人文章说明，只分享前辈们“&lt;a href=&quot;http://blog.liuxianan.com/build-blog-website-by-hexo-github.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;搭建Hexo&lt;/a&gt;”的链接。文章重点是整合网络上比较零散的各类插件，以及插件具体的用法。另外，此处还会涉及到.md博客文件的Markdown语法，提供一站式新手教程。&lt;br&gt;
     
     </summary>
     

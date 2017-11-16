@@ -1,0 +1,427 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Hexo写博客（一） | BiG哥|博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="BiG哥|博客">
+    
+    <meta name="description" content="Hexo个人博客网站搭建完成后，剩下的就是写博客！但是，写博客也并非写普通文档一样简单，Hexo的博客文件在hexo－＞source－＞_posts这个目录下，文件后缀名为.md，使用的是一套Markdown语法，所以，写博客之前，就必须要了解此语法。本文将从开始到结尾，以新手的角度来打造这篇博客。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
+    <meta name="twitter:title" content="Hexo写博客（一） | BiG哥|博客" />
+      
+    
+    
+    <link rel="alternate" href="/atom.xml" title="BiG哥|博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/myPhoto.png" alt="BiG哥|博客" title="BiG哥|博客"/></a>
+			</div>
+			
+			
+			<div id="textlogo">
+				
+				<h1 class="site-name"><a href="/" title="BiG哥|博客">BiG哥|博客 			
+				</a>
+				</h1>
+				<div style="text-align:right;position:absolute;right:10px;width:76%;top:20px">
+					<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=133998&auto=0&height=66"></iframe>
+				</div>
+				<div class="blog-motto">
+					<span id="busuanzi_container_site_pv">
+						<font color="#EEAEEE" face="楷体" size="2">访问:</font>
+						<font color="#FFA07A" size="1" face="宋体"><span id="busuanzi_value_site_pv"></span></font>	<font color="#66CDAA" face="楷体" size="2">次</font>
+						<font color="#ffffff" face="楷体" size="2">|</font>
+					</span>
+					<span id="busuanzi_container_site_pv">
+						<font color="#EEAEEE" face="楷体" size="2">您是第</font>
+						<font color="#FFA07A" size="1" face="宋体"><span id="busuanzi_value_site_uv"></span></font>	<font color="#66CDAA" face="楷体" size="2">位访客</font>
+					</span>	
+				</div>
+				
+				<h2 class="blog-motto"></h2>
+			</div>
+			
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			
+			
+			
+			<div id="footer" >
+	<!--
+	<div class="line"></div>
+	
+	<div class="social-font clearfix" >
+		
+		<a href="https://weibo.com/2654414631/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" title="weibo"></a>
+		
+		
+		<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/SpringEE" target="_blank" title="github"></a>
+		
+		
+		<a href="https://user.qzone.qq.com/892308342/infocenter" target="_blank" title="facebook"></a>
+		
+		
+        <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=i7Oyubi7s7i-ucv6_qXo5OY" target="_blank" title="linkedin"></a>
+        
+	</div>-->
+	<nav class="animated" id="mylink">
+				<ul>
+					
+						<li><a href="/">主页</a>
+						</li>
+					
+						<li><a href="/">目录</a>
+						</li>
+					
+						<li><a href="/archives">归档</a>
+						</li>
+					
+						<li><a href="/">工具</a>
+						</li>
+					
+						<li><a href="/">C&#39;tactMe</a>
+						</li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:github.com/SpringEE/SpringEE.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>		
+</div>
+				
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/11/16/HexoArticle/" title="Hexo写博客（一）" itemprop="url">Hexo写博客（一）</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2017-11-16T08:43:46.000Z" itemprop="datePublished">2017-11-16</time>
+    更新日期:<time datetime="2017-11-16T08:47:00.792Z" itemprop="dateModified">2017-11-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo写博客之准备工作："><span class="toc-number">1.</span> <span class="toc-text">Hexo写博客之准备工作：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo写博客之Markdown语法："><span class="toc-number">2.</span> <span class="toc-text">Hexo写博客之Markdown语法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标题语法"><span class="toc-number">2.1.</span> <span class="toc-text">标题语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表语法："><span class="toc-number">2.2.</span> <span class="toc-text">列表语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链接语法："><span class="toc-number">2.3.</span> <span class="toc-text">链接语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用语法："><span class="toc-number">2.4.</span> <span class="toc-text">引用语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体语法："><span class="toc-number">2.5.</span> <span class="toc-text">字体语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码语法："><span class="toc-number">2.6.</span> <span class="toc-text">代码语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格语法："><span class="toc-number">2.7.</span> <span class="toc-text">表格语法：</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>   Hexo个人博客网站搭建完成后，剩下的就是写博客！但是，写博客也并非写普通文档一样简单，Hexo的博客文件在<strong>hexo－＞source－＞_posts</strong>这个目录下，文件后缀名为.md，使用的是一套Markdown语法，所以，写博客之前，就必须要了解此语法。本文将从开始到结尾，以新手的角度来打造这篇博客。<br><a id="more"></a></p>
+<h2 id="Hexo写博客之准备工作："><a href="#Hexo写博客之准备工作：" class="headerlink" title="Hexo写博客之准备工作："></a>Hexo写博客之准备工作：</h2><ul>
+<li><p>注册<a href="http://www.tietuku.com/login" target="_blank" rel="external">图片服务器</a>，“贴图库”的图片服务器相当给力，图片上传之后会自动生成Markdown语法的代码，直接复制后放入文章指定位置即可。</p>
+<blockquote>
+<p>那么有人可能会问，<strong>为什么要使用图片服务器</strong>？  　　<br>　　将图片上传至github仓库之后，使用github仓库中的链接并不能达到预期的效果，直接使用百度图片的链接也达不到预期的效果，那么最好的方式就是注册一个图片服务器，有好友说“简书”也可以。当然方式很多，但我个人是推荐使用“贴图库”。建议图片在本地最好有备份，以免出现不可抗力因素导致图片服务器出现异常。贴图库使用效果图：<br>　　<img src="http://i2.bvimg.com/618561/2e83ebc8d723d660.png" alt="TieTuKu">　　<br>　　注册链接：<a href="http://www.tietuku.com/login" target="_blank" rel="external">http://www.tietuku.com/login</a></p>
+</blockquote>
+</li>
+<li><p>安装<a href="http://markdownpad.com/download.html" target="_blank" rel="external">MarkdownPad2</a>，MarkdownPad2是.md文件的编辑器，有很多语法快捷按钮，学习起来也很容易上手，另外还有预览效果图，如下：<br><img src="http://i2.bvimg.com/618561/e321424d63fc36be.png" alt="MarkdownPad2"></p>
+</li>
+</ul>
+<h2 id="Hexo写博客之Markdown语法："><a href="#Hexo写博客之Markdown语法：" class="headerlink" title="Hexo写博客之Markdown语法："></a>Hexo写博客之Markdown语法：</h2><p>关于“Markdown语法”的文章也很多，但讲解的内容有的非常详细但是特别难懂，一时间抓不到重点，废话太多，有的是写的简明，但写不出重点，不过本人的观点还是先分享链接再做个人分析解读。前辈们的链接有很多：</p>
+<ol>
+<li><p><a href="http://www.jianshu.com/p/f7305002a30f" target="_blank" rel="external">http://www.jianshu.com/p/f7305002a30f</a></p>
+</li>
+<li><p><a href="http://wowubuntu.com/markdown/#blockquote" target="_blank" rel="external">http://wowubuntu.com/markdown/#blockquote</a></p>
+</li>
+</ol>
+<p><strong>下面以新手的角度来解读常用的几个Markdown语法：</strong></p>
+<h3 id="标题语法"><a href="#标题语法" class="headerlink" title="标题语法"></a>标题语法</h3><blockquote>
+<p>标题的语法很简单，标题的层次感也比较鲜明，主要是看什么样的字体大小你觉得合适，就使用几级标题，Markdown中最常用的6个档次：<br><img src="http://i2.bvimg.com/618561/d28e86080ba124d2.png" alt="Titie"></p>
+</blockquote>
+<ul>
+<li>语法：<code>### 你好 或者 ### 你好 ###</code>  </li>
+<li>注意：有些“主题”可能有由于样式原因，使得标题的各档次的使用功能不能全备，像我这个主题最多只能使用3级，但是右侧预览字体的大小确实会根据标题的层次而发生变化，这就需要对主题的样式及配置文件进行设置了，但是一动可能就要改很多地方，所以暂时不建议有所修改，先将就着用吧。</li>
+<li>忌讳：一定要在文字和“#”之间加上空格，否则标题不生效。同时可以在标题前后各空一行，以免影响文章的排版。</li>
+</ul>
+<h3 id="列表语法："><a href="#列表语法：" class="headerlink" title="列表语法："></a>列表语法：</h3><blockquote>
+<p>列表语法也分为两种：有序和无序。不过规则都比较单一，有序是以阿拉伯数字“1”开始，自动递增；无序是以“-”开始，代表的是个实心圆圈“·”。这两种语法在排版中用到的较多，具体语法如下：<br>    <code>- 文本              1.文本</code><br>    <code>- 文本              2.文本</code><br>    <code>- 文本              3.文本</code><br>这种语法其实在Markdown编辑器里面都有快捷按钮，使用起来相当方便。</p>
+</blockquote>
+<ul>
+<li>实战案例：<br><img src="http://i4.bvimg.com/618561/e4475ed1688e1ff1.png" alt="List"></li>
+<li>忌讳：“-”、“1.”和“文本”之间要保留一个字符的空格。</li>
+</ul>
+<h3 id="链接语法："><a href="#链接语法：" class="headerlink" title="链接语法："></a>链接语法：</h3><blockquote>
+<p>链接的情况分两种，一种是图片链接，一种是文字链接。<br>1.文字链接：<strong>[文字]（网址）</strong>。点击文字，即可跳转括号内的链接地址。<br>2.图片链接：<strong>![文字]（图片地址）</strong>。在文章中显示静态图片内容。</p>
+</blockquote>
+<ul>
+<li>实战案例<br>  <code>文字链接：[图片服务器](http://www.tietuku.com/login)</code><br>  <code>图片链接：![List](http://i4.bvimg.com/618561/e4475ed1688e1ff1.png)</code></li>
+<li>注意：图片链接，一定要填写网址，由Markdown编辑器快捷生成的语法，可能有些用不了，但只要记住上面的使用格式，是绝对没问题的。图片网址，即为你图片服务器中上传图片所生成的网址，复制过来，直接就是可以用的。</li>
+</ul>
+<h3 id="引用语法："><a href="#引用语法：" class="headerlink" title="引用语法："></a>引用语法：</h3><blockquote>
+<p>这种语法，我个人理解为是一种排版语法，用来进行页面排版的。使用引用语法可以使页面变得更加有层次感，布局让人耳目一新。但是，这种语法的使用可能会夹杂着一些样式，需要将网页再度优化的可以去样式中进行修改，老方法，用F12去定位。我的“主题”配置文件已经改过很多次了，再此时不太想再此方面花功夫了，直接上图：<br><img src="http://i1.bvimg.com/618561/475de4d730e586ef.png" alt="Quote"></p>
+</blockquote>
+<ul>
+<li>语法：&gt;文字 或  &gt;&gt;文字（二级引用）</li>
+</ul>
+<h3 id="字体语法："><a href="#字体语法：" class="headerlink" title="字体语法："></a>字体语法：</h3><blockquote>
+<p>字体语法，一个是斜体，一个是粗体<br><code>斜体语法格式：*文字*</code><br><code>粗体语法格式：**文字**</code><br>效果：<em>效果</em>、<strong>效果</strong></p>
+</blockquote>
+<h3 id="代码语法："><a href="#代码语法：" class="headerlink" title="代码语法："></a>代码语法：</h3><blockquote>
+<p>代码语法也分为两种，一种是单行代码，一种是多行代码。但有一点值得提醒，不管是单行代码还是多行代码，各大类主题都为之设置了样式，都需要自己去样式文件中进行调整，才能达到指定的效果，不管是配色、字体、背景等等这些东西，都是有可能要修改的，想让页面美观，就要多下功夫，代码语法很简单，语法格式：<br><img src="http://i4.bvimg.com/618561/e284fc9c00ce98af.png" alt="Code"></p>
+</blockquote>
+<h3 id="表格语法："><a href="#表格语法：" class="headerlink" title="表格语法："></a>表格语法：</h3><blockquote>
+<p>此语法运用场景较为罕见，基本不怎么用，但是还是需要提一下，万一用到了呢，以免各位又到处寻找，干脆在此做个简单的普及。当然，都是从学者过来，好东西当然要借鉴，下面就是关于表格语法的一点介绍：<br><img src="http://i4.bvimg.com/618561/7fb59224dccd3bf5.png" alt="Table"></p>
+</blockquote>
+<hr>
+<p>总结：大部分语法，在MarkDown编辑器中都有快捷键，但有些快捷键和预览效果与实际效果存在着些许差异，建议还是使用localhost:4000本地端口进行调试查看文章效果，以免部署后出现排版问题，麻烦。当然，若出现疑问可参照本文标准格式修改你的文章内容即可，均为作者亲测。</p>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Hexo之文章样式</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/11/16/HexoArticle/" data-title="Hexo写博客（一） | BiG哥|博客" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/11/15/HexoGitHub/"  title="Hexo+GitHub+常用插件">
+ <strong>NEXT:</strong><br/> 
+ <span>Hexo+GitHub+常用插件
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo写博客之准备工作："><span class="toc-number">1.</span> <span class="toc-text">Hexo写博客之准备工作：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo写博客之Markdown语法："><span class="toc-number">2.</span> <span class="toc-text">Hexo写博客之Markdown语法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标题语法"><span class="toc-number">2.1.</span> <span class="toc-text">标题语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表语法："><span class="toc-number">2.2.</span> <span class="toc-text">列表语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链接语法："><span class="toc-number">2.3.</span> <span class="toc-text">链接语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用语法："><span class="toc-number">2.4.</span> <span class="toc-text">引用语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体语法："><span class="toc-number">2.5.</span> <span class="toc-text">字体语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码语法："><span class="toc-number">2.6.</span> <span class="toc-text">代码语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格语法："><span class="toc-number">2.7.</span> <span class="toc-text">表格语法：</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="widget tag">
+   <!-- <h3 class="title">日历云</h3>  -->
+  <div id="calendar"></div>
+</div>
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2654414631&verifier=d9a2eba8&dpc=1"></iframe>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/https://weibo.com/2654414631/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/https://github.com/SpringEE" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/https://user.qzone.qq.com/892308342/infocenter" target="_blank" title="facebook"></a>
+		
+		
+        <a href="https://www.linkedin.com/http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=i7Oyubi7s7i-ucv6_qXo5OY" target="_blank" title="linkedin"></a>
+        
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2017 
+		
+		<a href="https://github.com/SpringEE/SpringEE.github.io" target="_blank" title="BiG哥|博客">BiG哥|博客</a>
+		
+		</p>
+</div> 
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:false, root:'calendar/'});
+    
+    });
+  </script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  </body>
+</html>

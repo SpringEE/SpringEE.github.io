@@ -1,0 +1,426 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Hexo写博客（二） | BiG哥|博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="BiG哥|博客">
+    
+    <meta name="description" content="Hexo的Markdown语法学习完之后，下面将主要介绍关系到文章布局的文件信息，至于具体怎么修改，文件位置在哪里，这里也只能给大家提供参考，毕竟不同的主题，文件夹的布局方式是不一样的，但是大体的布局相似度还是很高的。上篇文章由于篇幅太长，关于MarkDown的一些注意事项和界面说明在此先做一下补充说明。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
+    <meta name="twitter:title" content="Hexo写博客（二） | BiG哥|博客" />
+      
+    
+    
+    <link rel="alternate" href="/atom.xml" title="BiG哥|博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/myPhoto.png" alt="BiG哥|博客" title="BiG哥|博客"/></a>
+			</div>
+			
+			
+			<div id="textlogo">
+				
+				<h1 class="site-name"><a href="/" title="BiG哥|博客">BiG哥|博客 			
+				</a>
+				</h1>
+				<div style="text-align:right;position:absolute;right:10px;width:76%;top:20px">
+					<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=133998&auto=0&height=66"></iframe>
+				</div>
+				<div class="blog-motto">
+					<span id="busuanzi_container_site_pv">
+						<font color="#EEAEEE" face="楷体" size="2">访问:</font>
+						<font color="#FFA07A" size="1" face="宋体"><span id="busuanzi_value_site_pv"></span></font>	<font color="#66CDAA" face="楷体" size="2">次</font>
+						<font color="#ffffff" face="楷体" size="2">|</font>
+					</span>
+					<span id="busuanzi_container_site_pv">
+						<font color="#EEAEEE" face="楷体" size="2">您是第</font>
+						<font color="#FFA07A" size="1" face="宋体"><span id="busuanzi_value_site_uv"></span></font>	<font color="#66CDAA" face="楷体" size="2">位访客</font>
+					</span>	
+				</div>
+				
+				<h2 class="blog-motto"></h2>
+			</div>
+			
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			
+			
+			
+			<div id="footer" >
+	<!--
+	<div class="line"></div>
+	
+	<div class="social-font clearfix" >
+		
+		<a href="https://weibo.com/2654414631/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" title="weibo"></a>
+		
+		
+		<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/SpringEE" target="_blank" title="github"></a>
+		
+		
+		<a href="https://user.qzone.qq.com/892308342/infocenter" target="_blank" title="facebook"></a>
+		
+		
+        <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=i7Oyubi7s7i-ucv6_qXo5OY" target="_blank" title="linkedin"></a>
+        
+	</div>-->
+	<nav class="animated" id="mylink">
+				<ul>
+					
+						<li><a href="/">主页</a>
+						</li>
+					
+						<li><a href="/">目录</a>
+						</li>
+					
+						<li><a href="/archives">归档</a>
+						</li>
+					
+						<li><a href="/">工具</a>
+						</li>
+					
+						<li><a href="/">C&#39;tactMe</a>
+						</li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:github.com/SpringEE/SpringEE.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>		
+</div>
+				
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/11/16/HexoArticleStyle/" title="Hexo写博客（二）" itemprop="url">Hexo写博客（二）</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2017-11-16T12:02:00.000Z" itemprop="datePublished">2017-11-16</time>
+    更新日期:<time datetime="2017-11-16T12:02:02.317Z" itemprop="dateModified">2017-11-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MarkDown语法补充："><span class="toc-number">1.</span> <span class="toc-text">MarkDown语法补充：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MarkDownPad（-md文档编辑器）界面简介："><span class="toc-number">2.</span> <span class="toc-text">MarkDownPad（.md文档编辑器）界面简介：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客样式优化："><span class="toc-number">3.</span> <span class="toc-text">博客样式优化：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件目录说明"><span class="toc-number">3.1.</span> <span class="toc-text">文件目录说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网页内容定位"><span class="toc-number">3.2.</span> <span class="toc-text">网页内容定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尝试修改样式"><span class="toc-number">3.3.</span> <span class="toc-text">尝试修改样式</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>   Hexo的Markdown语法学习完之后，下面将主要介绍关系到文章布局的文件信息，至于具体怎么修改，文件位置在哪里，这里也只能给大家提供参考，毕竟不同的主题，文件夹的布局方式是不一样的，但是大体的布局相似度还是很高的。上篇文章由于篇幅太长，关于MarkDown的一些注意事项和界面说明在此先做一下补充说明。<br><a id="more"></a></p>
+<hr>
+<h2 id="MarkDown语法补充："><a href="#MarkDown语法补充：" class="headerlink" title="MarkDown语法补充："></a>MarkDown语法补充：</h2><ul>
+<li><p>代码语法中，可以写中文汉字，不一定全是代码英文；</p>
+</li>
+<li><p>关于开头空两个字符，这种语法MarkDown中没有，是有article样式控制的；</p>
+</li>
+<li><p>关于语法影响布局的问题，可以在此语法前后各加一段空行，因为有的语法使用时必须要前后空一行的；</p>
+</li>
+<li><p>语法嵌套，有很多都是不行的，想用也用不了，没办法实现，只能另想布局。</p>
+</li>
+<li><p>换行的实现：换行实现方式，按两下“空格”，然后再按一下“回撤”就可以了。</p>
+</li>
+</ul>
+<hr>
+<h2 id="MarkDownPad（-md文档编辑器）界面简介："><a href="#MarkDownPad（-md文档编辑器）界面简介：" class="headerlink" title="MarkDownPad（.md文档编辑器）界面简介："></a>MarkDownPad（.md文档编辑器）界面简介：</h2><ul>
+<li><p>界面展示</p>
+<blockquote>
+<p><img src="http://i4.bvimg.com/618561/4f51c1804f6cef98.png" alt="MDdesktop"></p>
+</blockquote>
+</li>
+<li><p>界面内容及工具都比较简单，标示完各工具图标所代表的含义，相信对初学者的你们一定有很大帮助。但是有一点还是需要提醒一下各位，MarkdownPad编辑器使用工具快捷语法，不一定都好使，当然，容易出状况的也只是个别。下面只提一下Markdown中的链接这一块：</p>
+<blockquote>
+<p><img src="http://i4.bvimg.com/618561/3a04c831d8aedfd4.png" alt="LinkError01"></p>
+</blockquote>
+</li>
+<li><p>但是上面这串代码的显示效果并非是所想要的，这就是这款编辑器自身所还存在的一些遗漏问题，不过没关系，请看下面的解决方案：</p>
+<blockquote>
+<p><img src="http://i4.bvimg.com/618561/8dcda83570de19f4.png" alt="LinkError02"></p>
+</blockquote>
+</li>
+<li><p>虽然按照以上代码可以实现比较好的代码，但是点击文字依然会报错，所以还需要手动修改才能达到预期的目的，只需要修改为MarkDown标准语法格式即可，看图中“最终”字样所指向的代码。</p>
+</li>
+</ul>
+<hr>
+<h2 id="博客样式优化："><a href="#博客样式优化：" class="headerlink" title="博客样式优化："></a>博客样式优化：</h2><h3 id="文件目录说明"><a href="#文件目录说明" class="headerlink" title="文件目录说明"></a>文件目录说明</h3><blockquote>
+<p>在整个样式调整和设置过程中，主要用到的文件代码格式分别为.styl和.ejs两种格式的文件，各主题的文件取名也是“一目了然”，相信找到对应的文件夹，就可以找到你所想要的文件，下面就是修改代码的工作了。所以，了解这些文件所在的目录，非常重要：</p>
+</blockquote>
+<ul>
+<li>博客文件的目录：<br>  <code>hexo\source\_posts</code></li>
+<li>页面图片目录（更换头像和标题小图标会用到）：<br>  <code>hexo\public\img</code></li>
+<li>.ejs文件目录（.ejs类似html代码，一般都能看懂）：<br>  <code>hexo\themes\pacman（主题名）\layout</code></li>
+<li>.styl文件目录（样式布局调整用到）：<br>  <code>hexo\themes\pacman\source\css</code><br><img src="http://i4.bvimg.com/618561/73ed9a69336db0ca.png" alt="Markdown"></li>
+</ul>
+<h3 id="网页内容定位"><a href="#网页内容定位" class="headerlink" title="网页内容定位"></a>网页内容定位</h3><blockquote>
+<p>考虑到新手较多，下面还是讲一下页面内容的具体定位方式，只要定位到了文件的具体位置，那么就可以根据自身的Java基础进行尝试性调整，不仅可以“增删改”，而且还能修改样式、颜色和布局。具体定位请参照下图：</p>
+</blockquote>
+<p><img src="http://i1.bvimg.com/618561/49ea15ea185c0ddb.png" alt="ArtilceAtc"></p>
+<h3 id="尝试修改样式"><a href="#尝试修改样式" class="headerlink" title="尝试修改样式"></a>尝试修改样式</h3><blockquote>
+<p>通过修改与选中内容相关的样式，来确定自己所找到的是否为所期望的，这里标题的颜色直接定位在了h6这个样式位置，在article文件中依次根据.article-content h6，找到与h6相关的样式，如图：</p>
+</blockquote>
+<p><img src="http://i4.bvimg.com/618561/39820fcf9bfa7288.png" alt="ArticleStyl"></p>
+<ul>
+<li>修改文章对应的颜色值，将“color-heading”改为“#ffffff”，保存后刷新localhost:4000，会发现文字颜色变化了，那么，你就找对了，然后改成你想要的样式即可。至于“增删改”，同样，找对应的文件和位置，对内容进行调整即可。相信，都很容易上手的，只要有耐心去定位你要修改的内容文件位置，各种样式颜色，随便你怎么玩都可以。</li>
+<li><strong>说明</strong>：像这种color-heading这种属性的设置，都是在全局中已经设置好的，至于具体位置和路径，可以参照以下路径，只不过再改动就是改全局的了，所有与之相关的（用到color-heading属性的都会变更）。改全局和局部都是可以的。文件路径：<br><code>hexo\themes\pacman\source\css\_base</code></li>
+</ul>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Hexo写博客（三）</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/11/16/HexoArticleStyle/" data-title="Hexo写博客（二） | BiG哥|博客" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/11/16/HexoArticle/"  title="Hexo写博客（一）">
+ <strong>NEXT:</strong><br/> 
+ <span>Hexo写博客（一）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MarkDown语法补充："><span class="toc-number">1.</span> <span class="toc-text">MarkDown语法补充：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MarkDownPad（-md文档编辑器）界面简介："><span class="toc-number">2.</span> <span class="toc-text">MarkDownPad（.md文档编辑器）界面简介：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客样式优化："><span class="toc-number">3.</span> <span class="toc-text">博客样式优化：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件目录说明"><span class="toc-number">3.1.</span> <span class="toc-text">文件目录说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网页内容定位"><span class="toc-number">3.2.</span> <span class="toc-text">网页内容定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尝试修改样式"><span class="toc-number">3.3.</span> <span class="toc-text">尝试修改样式</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="widget tag">
+   <!-- <h3 class="title">日历云</h3>  -->
+  <div id="calendar"></div>
+</div>
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2654414631&verifier=d9a2eba8&dpc=1"></iframe>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/https://weibo.com/2654414631/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/https://github.com/SpringEE" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/https://user.qzone.qq.com/892308342/infocenter" target="_blank" title="facebook"></a>
+		
+		
+        <a href="https://www.linkedin.com/http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=i7Oyubi7s7i-ucv6_qXo5OY" target="_blank" title="linkedin"></a>
+        
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2017 
+		
+		<a href="https://github.com/SpringEE/SpringEE.github.io" target="_blank" title="BiG哥|博客">BiG哥|博客</a>
+		
+		</p>
+</div> 
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:false, root:'calendar/'});
+    
+    });
+  </script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  </body>
+</html>

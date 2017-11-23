@@ -1714,6 +1714,12 @@ section.comment {
   -ms-transition: color 0.25s;
   transition: color 0.25s;
 }
+.table font:hover {
+  background: #ffdab9;
+}
+.table font:active {
+  background: #eea2ad;
+}
 footer {
   margin-top: 1em;
   background: #1f1f1f;

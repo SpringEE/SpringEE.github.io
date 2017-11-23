@@ -1714,6 +1714,10 @@ section.comment {
   -ms-transition: color 0.25s;
   transition: color 0.25s;
 }
+.table {
+  background: #fffff0;
+  border-left: 1px;
+}
 .table font:hover {
   background: #ffdab9;
 }

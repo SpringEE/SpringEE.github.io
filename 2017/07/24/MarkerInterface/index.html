@@ -137,7 +137,7 @@
     </p>
   <p class="article-time">
     <time datetime="2017-07-24T04:31:40.000Z" itemprop="datePublished">2017-07-24</time>
-    更新日期:<time datetime="2017-11-25T05:20:52.688Z" itemprop="dateModified">2017-11-25</time>
+    更新日期:<time datetime="2017-11-25T05:23:00.576Z" itemprop="dateModified">2017-11-25</time>
     
   </p>
 </header>
@@ -156,9 +156,13 @@
 <li>实现clone的类首先需要继承Cloneable接口；</li>
 <li>在类中重写Object类中的clone()方法；</li>
 <li>在clone方法中调用super.clone()。无论clone类的继承结构是什么，super.clone()都会直接或间接调用java.lang.Object类中的clone()方法；</li>
-<li>把潜复制的引用指向原型对象新的克隆体。<br>使用案例：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-7257f1c534ab36ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02-01.png"><br>浅clone和clone：</li>
+<li>把潜复制的引用指向原型对象新的克隆体。<br>使用案例：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-7257f1c534ab36ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02-01.png"><br><strong>浅复制和深复制：</strong><blockquote>
+<ul>
 <li>浅复制：在JAVA中，浅复制是指当对象的字段值被复制时,字段引用的对象不会被复制.例如,如果一个对象有一个指向字符串的字段,并且我们对该对象做了一个浅复制,那麽两个对象将引用同一个字符串.和浅复制对应的有深复制.</li>
 <li>深复制：是将指向内容复制到给当前对象新分配的缓冲区中的一种复制方式，相对于浅复制。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-702d17b279d10445.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02-02.png"></li>
+</ul>
+</blockquote>
+</li>
 </ul>
 <p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   

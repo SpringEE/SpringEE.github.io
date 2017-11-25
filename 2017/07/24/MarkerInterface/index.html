@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>方法“重写”和“重载” | BiG哥|博客</title>
+    <title>标识接口 | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="Java中，继承和多态都是面向对象程序设计的特点。使用继承可以在一个父类的基础上再创建一个子类，这个子类不但拥有父类已有的属性和方法，还可以创建属于自己的属性和方法。由于子类和父类之间的关系，从而引出了方法重写和方法重载的问题。方法重写及方法重载在继承和多态性方面的应用中会存在很多问题，这些概念很容易混淆，掌握重写和重载的区别对学会使用多态的方式编写程序、提高程序的可维护性奠定了基础。">
+    <meta name="description" content="“标识接口”是没有任何方法和属性的接口。标识接口不对实现它的类有任何语义上的要求，它仅仅表明实现它的类属于一个特定的类型。标接口在Java语言中有一些很著名的应用，比如java.io.Serializable、java.rmi.Remote和java.lang.Cloneable等接口便是标识接口。一个类实现了标识接口，那么这个类就被贴上了一个标签，相当于是归到了某个类别中。下面只讲两个标识接口Serializable和Cloneable。">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="方法“重写”和“重载” | BiG哥|博客" />
+    <meta name="twitter:title" content="标识接口 | BiG哥|博客" />
       
     
     
@@ -129,15 +129,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/07/23/FunctionChange/" title="方法“重写”和“重载”" itemprop="url">方法“重写”和“重载”</a>
+      <a href="/2017/07/24/MarkerInterface/" title="标识接口" itemprop="url">标识接口</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-07-23T11:08:20.000Z" itemprop="datePublished">2017-07-23</time>
-    更新日期:<time datetime="2017-11-24T06:00:46.466Z" itemprop="dateModified">2017-11-24</time>
+    <time datetime="2017-07-24T04:31:40.000Z" itemprop="datePublished">2017-07-24</time>
+    更新日期:<time datetime="2017-11-25T04:58:12.100Z" itemprop="dateModified">2017-11-25</time>
     
   </p>
 </header>
@@ -146,28 +146,19 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法重写-0veriding"><span class="toc-number">1.</span> <span class="toc-text">方法重写(0veriding)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#“重写”概念"><span class="toc-number">1.1.</span> <span class="toc-text">“重写”概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“重写”案例"><span class="toc-number">1.2.</span> <span class="toc-text">“重写”案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“重写”要素"><span class="toc-number">1.3.</span> <span class="toc-text">“重写”要素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法重载-0veriding"><span class="toc-number">2.</span> <span class="toc-text">方法重载(0veriding)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#“重载”概念"><span class="toc-number">2.1.</span> <span class="toc-text">“重载”概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“重载”案例"><span class="toc-number">2.2.</span> <span class="toc-text">“重载”案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“重载”要素"><span class="toc-number">2.3.</span> <span class="toc-text">“重载”要素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法“重写”与“重载”的区别"><span class="toc-number">3.</span> <span class="toc-text">方法“重写”与“重载”的区别</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Serializable序列化"><span class="toc-number">1.</span> <span class="toc-text">Serializable序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloneable标识接口"><span class="toc-number">2.</span> <span class="toc-text">Cloneable标识接口</span></a></li></ol>
 		</div>
 		
-		<p>   <a href="https://baike.baidu.com/item/java/85979?fr=aladdin&amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;fromid=4148931" target="_blank" rel="external">Java</a>中，继承和多态都是面向对象程序设计的特点。使用继承可以在一个父类的基础上再创建一个子类，这个子类不但拥有父类已有的属性和方法，还可以创建属于自己的属性和方法。由于子类和父类之间的关系，从而引出了方法重写和方法重载的问题。方法重写及方法重载在继承和多态性方面的应用中会存在很多问题，这些概念很容易混淆，掌握重写和重载的区别对学会使用多态的方式编写程序、提高程序的可维护性奠定了基础。</p>
-<a id="more"></a>
-<h2 id="方法重写-0veriding"><a href="#方法重写-0veriding" class="headerlink" title="方法重写(0veriding)"></a>方法重写(0veriding)</h2><h3 id="“重写”概念"><a href="#“重写”概念" class="headerlink" title="“重写”概念"></a>“重写”概念</h3><p>在Java程序中，类的继承关系可以产生一个子类，子类继承父类，它具备了父类所有的特征，继承了父类所有的方法和变量。子类可以定义新的特征，当子类需要修改父类的一些方法进行扩展，增大功能，程序设计者常常把这样的一种操作方法称为重写，也叫称为覆写或覆盖。<br><strong>抽取理解：</strong>一个类M继承另一个类N，N中有一个方法A，这时你在M写了一个方法B，方法B的名字、返回值以及参数都和A一样，此时B重写了A。</p>
-<h3 id="“重写”案例"><a href="#“重写”案例" class="headerlink" title="“重写”案例"></a>“重写”案例</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-1f879b08f8b96794.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p>
-<h3 id="“重写”要素"><a href="#“重写”要素" class="headerlink" title="“重写”要素"></a>“重写”要素</h3><ul>
-<li>函数名与形参列表必须一直；</li>
-<li>子类的权限修饰符必须&gt;=父类的权限修饰符；</li>
-<li>子类的返回值类型&lt;=父类的返回值类型；</li>
-<li>子类抛出的异常类型&lt;=父类抛出的异常类型。</li>
+		<p>   “标识接口”是没有任何方法和属性的接口。标识接口不对实现它的类有任何语义上的要求，它仅仅表明实现它的类属于一个特定的类型。标接口在Java语言中有一些很著名的应用，比如java.io.Serializable、java.rmi.Remote和java.lang.Cloneable等接口便是标识接口。一个类实现了标识接口，那么这个类就被贴上了一个标签，相当于是归到了某个类别中。下面只讲两个标识接口Serializable和Cloneable。<br><a id="more"></a></p>
+<h2 id="Serializable序列化"><a href="#Serializable序列化" class="headerlink" title="Serializable序列化"></a>Serializable序列化</h2><p>序列化 (Serialization)将对象的状态信息转换为可以存储或传输的形式的过程。在序列化期间，对象将其当前状态写入到临时或持久性存储区。以后，可以通过从存储区中读取或反序列化对象的状态，重新创建该对象。序列化使其他代码可以查看或修改那些不序列化便无法访问的对象实例数据。即，将对象以一连串字节描述的过程。序列化可以将对象的状态写在流里进行网络传输，或者保存到文件、数据库等系统中，并在需要时把该流读取出来重新构造一个相同的对象。如果一个类能被序列化，那么它的子类也能够被序列化。Public Class A implements Serializable{}。使用案例：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-d01a32154ea95748.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p>
+<h2 id="Cloneable标识接口"><a href="#Cloneable标识接口" class="headerlink" title="Cloneable标识接口"></a>Cloneable标识接口</h2><p>Cloneable接口是一个空接口，仅用于标记对象，Cloneable接口里面是没有clone()方法，clone()方法是Object类里面的方法！如果对象implement Cloneable接口的话，需要覆盖clone方法（因为Object类的clone方法是protected，需要覆盖为public）。使用Cloneable接口的步骤：</p>
+<ul>
+<li>实现clone的类首先需要继承Cloneable接口；</li>
+<li>在类中重写Object类中的clone()方法；</li>
+<li>在clone方法中调用super.clone()。无论clone类的继承结构是什么，super.clone()都会直接或间接调用java.lang.Object类中的clone()方法；</li>
+<li>把潜复制的引用指向原型对象新的克隆体。<br>使用案例：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-df1e4ebea0852353.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></li>
 </ul>
-<h2 id="方法重载-0veriding"><a href="#方法重载-0veriding" class="headerlink" title="方法重载(0veriding)"></a>方法重载(0veriding)</h2><h3 id="“重载”概念"><a href="#“重载”概念" class="headerlink" title="“重载”概念"></a>“重载”概念</h3><p>所谓方法重载是指在一个类中，多个方法的方法名相同，但是参数列表不同。参数列表不同指的是参数个数、参数类型或者参数的顺序不同。方法的重载在实际应用中也会经常用到。不仅是一般的方法，构造方法也可以重载。<br><strong>抽取理解：</strong>一个类中有一个方法A，你又在这个类中创建了一个方法B，方法B的名字和A一样，返回值类型也一样，但是参数的类型或个数不同，此时B重载了A。</p>
-<h3 id="“重载”案例"><a href="#“重载”案例" class="headerlink" title="“重载”案例"></a>“重载”案例</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-a2124716538ae794.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p>
-<h3 id="“重载”要素"><a href="#“重载”要素" class="headerlink" title="“重载”要素"></a>“重载”要素</h3><ul>
-<li>函数名一致；</li>
-<li>形参列表不一致，形参个数或数据类型不一致；</li>
-<li>与函数返回值类型及有无返回值无关；</li>
-</ul>
-<h2 id="方法“重写”与“重载”的区别"><a href="#方法“重写”与“重载”的区别" class="headerlink" title="方法“重写”与“重载”的区别"></a>方法“重写”与“重载”的区别</h2><p>在面向对象程序设计的思想中，类的继承和多态性主要就是体现在子类重写父类的方法。而构造方法的重载作为方法重载的一个典型特例，可以通过重载构造方法来表达对象的多种初始化行为。灵活的运用方法重写与方法重载，不仅能减少编码的工作量，也能大大提高程序的可维护性及可扩展性。以下是两者的差别：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-0e26bfbf58cdc7cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p>
-<p>More info: <a href="http://www.javait.club/2017/07/22/EndLoop/" target="_blank" rel="external">return、break及continue</a></p>
+<p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -177,7 +168,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/07/23/FunctionChange/" data-title="方法“重写”和“重载” | BiG哥|博客" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/07/24/MarkerInterface/" data-title="标识接口 | BiG哥|博客" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -187,18 +178,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/07/24/MarkerInterface/" title="标识接口">
+ <a href="/2017/11/15/HexoGitHub/" title="Hexo+GitHub+常用插件">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  标识接口</span>
+  Hexo+GitHub+常用插件</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/07/22/EndLoop/"  title="continue/break/return">
+<a href="/2017/07/23/FunctionChange/"  title="方法“重写”和“重载”">
  <strong>NEXT:</strong><br/> 
- <span>continue/break/return
+ <span>方法“重写”和“重载”
 </span>
 </a>
 </div>
@@ -211,7 +202,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法重写-0veriding"><span class="toc-number">1.</span> <span class="toc-text">方法重写(0veriding)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#“重写”概念"><span class="toc-number">1.1.</span> <span class="toc-text">“重写”概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“重写”案例"><span class="toc-number">1.2.</span> <span class="toc-text">“重写”案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“重写”要素"><span class="toc-number">1.3.</span> <span class="toc-text">“重写”要素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法重载-0veriding"><span class="toc-number">2.</span> <span class="toc-text">方法重载(0veriding)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#“重载”概念"><span class="toc-number">2.1.</span> <span class="toc-text">“重载”概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“重载”案例"><span class="toc-number">2.2.</span> <span class="toc-text">“重载”案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“重载”要素"><span class="toc-number">2.3.</span> <span class="toc-text">“重载”要素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法“重写”与“重载”的区别"><span class="toc-number">3.</span> <span class="toc-text">方法“重写”与“重载”的区别</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Serializable序列化"><span class="toc-number">1.</span> <span class="toc-text">Serializable序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloneable标识接口"><span class="toc-number">2.</span> <span class="toc-text">Cloneable标识接口</span></a></li></ol>
   </div>
 
 <div id="asidepart">

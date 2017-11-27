@@ -161,6 +161,24 @@
   </entry>
   
   <entry>
+    <title>SpringMVC常用注解</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/07/21/SpringMvcAnotation/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/07/21/SpringMvcAnotation/</id>
+    <published>2017-07-21T08:09:10.000Z</published>
+    <updated>2017-11-27T10:19:26.607Z</updated>
+    
+    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/spring%20MVC/5627187?fr=aladdin" target="_blank" rel="external">SpringMVC</a>属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建 Web 应用程序的全功能MVC模块。使用Spring可插入的MVC架构，从而在使用Spring进行WEB开发时，可以选择使用Spring的SpringMVC框架或集成其他MVC开发框架，如Struts1，Struts2等。本章主要讲开发中，常用注解。<br><a id="more"></a></p><h2 id="SpringMVC常用注解"><a href="#SpringMVC常用注解" class="headerlink" title="SpringMVC常用注解"></a>SpringMVC常用注解</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h3><p>@Controller 用于标记在一个类上，使用它标记的类就是一个SpringMVC Controller 对象。基于注解的Controller可以支持同时处理多个请求动作，并且无需实现任何接口。<br>使用案例：<br><code>@Controller</code><br><code>public class MyController{}</code></p><h3 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h3><p>@RequestMapping指定指示Spring用哪一个类或方法来处理请求动作，该注解可以用在类或方法上。<br>常用属性：</p><ul><li>value属性：将URL请求路径映射到方法上。<blockquote><p><code>@RequestMapping（value=&quot;/hello&quot;）</code><br><code>public String helloSpring(){};</code></p></blockquote></li><li>method属性：标示该方法只能处理哪些HTTP请求，没写该属性，默认都支持。<blockquote><p><code>@RequestMapping（value=&quot;/hello&quot;,method=RequestMethod.POST）</code><br><code>public String helloSpring(){};</code></p></blockquote></li><li>consumes（produces）属性：指定请求（或返回）的数据类型。<blockquote><p><code>@RequestMapping（value=&quot;/hello&quot;,method=RequestMethod.POST，consumes=&quot;application/json&quot;）</code><br><code>public String helloSpring(){};</code></p></blockquote></li></ul><h3 id="RequestParam"><a href="#RequestParam" class="headerlink" title="@RequestParam"></a>@RequestParam</h3><p>@RequestParam用于将制定的请求参数赋值给方法中的形参。<br>案例：</p><blockquote><p><code>请求路径:http://www.javait/club?name=kack&amp;password=123456</code><br><code>参数绑定:public String helloSpring(@RequestParam(value=&quot;password&quot;) String pwd){......}</code></p></blockquote><h3 id="CookieValue"><a href="#CookieValue" class="headerlink" title="@CookieValue"></a>@CookieValue</h3><p>@CookieValue用于将请求的Cookie数据映射到功能方法的参数上。</p><blockquote><p><code>@CookieValue（value=&quot;JESSIONID&quot;）String pwd</code></p></blockquote><h3 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a>@PathVariable</h3><p>@PathVariable获取请求URL中的动态参数<br>案例：</p><blockquote><p><code>请求路径:http://www.javait/club/hello/1</code><br><code>@RequestMapping（value=&quot;/hello/{userId}&quot;,method=RequestMethod.POST）</code><br><code>参数绑定:public String helloSpring(@PathVariable Integer userId){......}</code></p></blockquote><h3 id="RequestBody"><a href="#RequestBody" class="headerlink" title="@RequestBody"></a>@RequestBody</h3><p>@RequestBody接受JSON格式的数据，并将其转换为对应的数据类型。<br>案例：</p><blockquote><p><code>请求data:JSON.stringify({&quot;id&quot;:10,&quot;name&quot;:&quot;lisi&quot;})</code><br><code>参数绑定:public String helloSpring(@RequestBody User user){....}</code></p></blockquote><h3 id="ResponseBody"><a href="#ResponseBody" class="headerlink" title="@ResponseBody"></a>@ResponseBody</h3><p>@RequestBody将数据转成json格式返回客户端<br>案例：</p><blockquote><p><code>加载方法上:@ResponseBody</code><br><code>加载方法返回值处:public @ResponseBody User helloSpring(){.....return user;}</code></p></blockquote><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/spring%20MVC/5627187?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SpringMVC&lt;/a&gt;属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建 Web 应用程序的全功能MVC模块。使用Spring可插入的MVC架构，从而在使用Spring进行WEB开发时，可以选择使用Spring的SpringMVC框架或集成其他MVC开发框架，如Struts1，Struts2等。本章主要讲开发中，常用注解。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Java之排序方法</title>
     <link href="https://github.com/SpringEE/SpringEE.github.io/2017/07/21/SortOrder/"/>
     <id>https://github.com/SpringEE/SpringEE.github.io/2017/07/21/SortOrder/</id>

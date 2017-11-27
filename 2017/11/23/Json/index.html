@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hexo写博客（三） | BiG哥|博客</title>
+    <title>Json | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="写博客前的准备工作确实很耗费时间，除了搭建整个Hexo博客环境外，还需要了解Markdowm语法以及通过F12调试功能去定位修改主题配置文件，这些工作弄到熟练，对于新手来说至少需要两到3天，所以不要慌，慢慢接受，等熬到今天写博客这一步你就基本胜利了。">
+    <meta name="description" content="JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。Json数据是跨平台的，在网络数据传输流程中，json是以文本，即字符串的形式传递的，各种语言对字符串的处理比较统一。而在JS是对象的形式。">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="Hexo写博客（三） | BiG哥|博客" />
+    <meta name="twitter:title" content="Json | BiG哥|博客" />
       
     
     
@@ -129,15 +129,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/11/17/HexoWriteArticle/" title="Hexo写博客（三）" itemprop="url">Hexo写博客（三）</a>
+      <a href="/2017/11/23/Json/" title="Json" itemprop="url">Json</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-11-17T02:20:31.000Z" itemprop="datePublished">2017-11-17</time>
-    更新日期:<time datetime="2017-11-24T05:18:17.427Z" itemprop="dateModified">2017-11-24</time>
+    <time datetime="2017-11-23T08:09:10.000Z" itemprop="datePublished">2017-11-23</time>
+    更新日期:<time datetime="2017-11-27T08:55:07.649Z" itemprop="dateModified">2017-11-27</time>
     
   </p>
 </header>
@@ -146,89 +146,19 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo写文章"><span class="toc-number">1.</span> <span class="toc-text">Hexo写文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一步：新建文章"><span class="toc-number">1.1.</span> <span class="toc-text">第一步：新建文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二步：书写正文"><span class="toc-number">1.2.</span> <span class="toc-text">第二步：书写正文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三步：本地预览"><span class="toc-number">1.3.</span> <span class="toc-text">第三步：本地预览</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo之新建页面"><span class="toc-number">2.</span> <span class="toc-text">Hexo之新建页面</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Json的三种数据格式"><span class="toc-number">1.</span> <span class="toc-text">Json的三种数据格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象格式-name-value-name-value"><span class="toc-number">1.1.</span> <span class="toc-text">对象格式{name:value,name:value}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组格式-元素，元素，元素"><span class="toc-number">1.2.</span> <span class="toc-text">数组格式[元素，元素，元素]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合格式（嵌套）"><span class="toc-number">1.3.</span> <span class="toc-text">组合格式（嵌套）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Json需要的jar"><span class="toc-number">2.</span> <span class="toc-text">Json需要的jar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Json常用的两种方法"><span class="toc-number">3.</span> <span class="toc-text">Json常用的两种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON-stringify"><span class="toc-number">3.1.</span> <span class="toc-text">JSON.stringify()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON-parse"><span class="toc-number">3.2.</span> <span class="toc-text">JSON.parse()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Json数据校验"><span class="toc-number">4.</span> <span class="toc-text">Json数据校验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON数据校验"><span class="toc-number">4.1.</span> <span class="toc-text">JSON数据校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Json数据格式化"><span class="toc-number">4.2.</span> <span class="toc-text">Json数据格式化</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>   写博客前的准备工作确实很耗费时间，除了搭建整个Hexo博客环境外，还需要了解Markdowm语法以及通过F12调试功能去定位修改主题配置文件，这些工作弄到熟练，对于新手来说至少需要两到3天，所以不要慌，慢慢接受，等熬到今天写博客这一步你就基本胜利了。<br><a id="more"></a></p>
-<h2 id="Hexo写文章"><a href="#Hexo写文章" class="headerlink" title="Hexo写文章"></a>Hexo写文章</h2><h3 id="第一步：新建文章"><a href="#第一步：新建文章" class="headerlink" title="第一步：新建文章"></a>第一步：新建文章</h3><blockquote>
-<p>新建文章的方式有以下三种：</p>
-</blockquote>
-<ul>
-<li><p><strong>方式一</strong>：直接在”hexo\source_posts”此目录下新建.md文件。有些电脑新手可能不知道怎么弄文件扩展名这一块，而且windows系统是默认是隐藏了文件扩展名的，那么可以通过以下方式打开此扩展名显示按钮：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-8b0fde4e8a4fc60e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p>
-</li>
-<li><p><strong>方式二</strong>：在GitBash控制台输入命令：hexo new “文件名”</p>
-</li>
-<li><p><strong>方式三</strong>：使用MarkdownPad编辑器，在编辑器内点击新建即可。文章编写完成后记得放在”hexo\source_posts”目录下。</p>
-</li>
-</ul>
-<h3 id="第二步：书写正文"><a href="#第二步：书写正文" class="headerlink" title="第二步：书写正文"></a>第二步：书写正文</h3><blockquote>
-<p>正文内容需要记住以下几点：</p>
-</blockquote>
-<ul>
-<li><p>第一：文章Title和Date要记得修改，这两方面对今后的文章归档有很大帮助；</p>
-</li>
-<li><p>第二：文章撰写过程一定要参照右侧预览窗口，虽然有些功能不能预览，但是整体的参考性还是有的，至少可以看到预想的布局。</p>
-</li>
-<li><p>第三：由于各主题风格不一样，有的文章在文章最后没有上一页或者下一页等按钮，我的建议是先预留此板块，当某个章节或者模块完成后，再进行添加。因为涉及到前后页跳转的问题，还是很容易出现先后顺序错乱的问题。</p>
-</li>
-<li><p>第四：写文章还是要注重整体的布局，好的布局让人才有看下去的欲望，才能更好的吸引读者。所以，文章除了有内容，一定也要考虑布局和排版。</p>
-</li>
-</ul>
-<h3 id="第三步：本地预览"><a href="#第三步：本地预览" class="headerlink" title="第三步：本地预览"></a>第三步：本地预览</h3><blockquote>
-<p>在GitBash控制台输入命令：hexo g（生成页面）</p>
-</blockquote>
-<ul>
-<li><code>Administrator@Lenovo-PC MINGW64 /d/persional_website/hexo</code></li>
-<li><code>$ hexo d</code></li>
-</ul>
-<blockquote>
-<p>在GitBash控制台输入命令：hexo s（开启本地服务）</p>
-</blockquote>
-<ul>
-<li><code>Administrator@Lenovo-PC MINGW64 /d/persional_website/hexo</code></li>
-<li><code>$ hexo s</code></li>
-</ul>
-<blockquote>
-<p>输入网址：localhost:4000查看预览效果。</p>
-</blockquote>
-<ul>
-<li><strong>注意:</strong>在本地服务的情况下，使用预览效果，在动态修改.md文件的情况，只要点击保存，刷新网页<br>后，修改内容即会同步到网页上来</li>
-</ul>
-<blockquote>
-<p>部署到Github仓库：</p>
-</blockquote>
-<ul>
-<li><code>Administrator@Lenovo-PC MINGW64 /d/persional_website/hexo</code></li>
-<li><code>$ hexo d</code></li>
-</ul>
-<h2 id="Hexo之新建页面"><a href="#Hexo之新建页面" class="headerlink" title="Hexo之新建页面"></a>Hexo之新建页面</h2><p>新建页面的方式实质是用来设置以下选项的内容的，当然有些选项的内容在主题中已经有了固定的格式，如果你不想要，其实也是可以更换的。那么，下面我们就来介绍一下，如何进行更换。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-38849ebea9ccf0ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p>
-<blockquote>
-<p>控制台输入命令：</p>
-</blockquote>
-<ul>
-<li><code>hexo new page &quot;文件名&quot;</code></li>
-</ul>
-<blockquote>
-<p>找到文件：</p>
-</blockquote>
-<ul>
-<li><code>...hexo\source\..此路径下可找到以新建文件名命名的文件夹</code></li>
-</ul>
-<blockquote>
-<p>修改主题配置_config.yml文件：</p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/9194313-c4f83e24a865c243.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p>
-<ul>
-<li><code>/文件名，即可完成设置工作</code></li>
-</ul>
-<blockquote>
-<p>修改页面：</p>
-</blockquote>
-<ul>
-<li><code>...hexo\source\新建文件名，在这个目录下修改里面的index.md文件</code><br>完成以上几步，页面部分就已经介绍完成。希望以上内容对大家能有所帮助！</li>
-</ul>
-<hr>
-<p>到此，关于Hexo搭建个人博客的内容已全部结束，后续也将不断进行完善！欢迎有志之士一同进行探讨和研究，如果你有充足的时间，前期可以在页面整体布局上多花点功夫，确实可以通过Hexo作出自己心目中所想要的网站。世上无难事，只怕有心人！</p>
+		<p>   <a href="https://baike.baidu.com/item/JSON/2462549?fr=aladdin" target="_blank" rel="external">JSON</a>(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。Json数据是跨平台的，在网络数据传输流程中，json是以文本，即字符串的形式传递的，各种语言对字符串的处理比较统一。而在JS是对象的形式。<br><a id="more"></a></p>
+<h2 id="Json的三种数据格式"><a href="#Json的三种数据格式" class="headerlink" title="Json的三种数据格式"></a>Json的三种数据格式</h2><h3 id="对象格式-name-value-name-value"><a href="#对象格式-name-value-name-value" class="headerlink" title="对象格式{name:value,name:value}"></a>对象格式{name:value,name:value}</h3><p><code>案例：var pp={&quot;id&quot;:10,&quot;name&quot;:&quot;lisi&quot;,.......}</code><br><strong>注意：</strong>在json数据格式中,name类型是字符串，value类型是Object。</p>
+<h3 id="数组格式-元素，元素，元素"><a href="#数组格式-元素，元素，元素" class="headerlink" title="数组格式[元素，元素，元素]"></a>数组格式[元素，元素，元素]</h3><p><code>案例：var pp=[{&quot;name&quot;:&quot;Michael&quot;,&quot;age&quot;:24}，{&quot;name&quot;:&quot;Tom&quot;,&quot;age&quot;:25}]</code><br><strong>注意：</strong>取值方式，通过pp[0].name取值，值为Michael。</p>
+<h3 id="组合格式（嵌套）"><a href="#组合格式（嵌套）" class="headerlink" title="组合格式（嵌套）"></a>组合格式（嵌套）</h3><p><code>案例：{&quot;name&quot;:&quot;Michael&quot;, &quot;birthday&quot;:{&quot;month&quot;:8,&quot;day&quot;:26}}</code></p>
+<h2 id="Json需要的jar"><a href="#Json需要的jar" class="headerlink" title="Json需要的jar"></a>Json需要的jar</h2><p>在java中使用json需要引入以下几个jar包，否则会报错：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-7099c078f623034e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p>
+<h2 id="Json常用的两种方法"><a href="#Json常用的两种方法" class="headerlink" title="Json常用的两种方法"></a>Json常用的两种方法</h2><h3 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify()"></a>JSON.stringify()</h3><p>说明：JSON.stringify()将JSON对象转为JSON字符串（序列化）</p>
+<h3 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse()"></a>JSON.parse()</h3><p>说明：JSON.parse()将JSON字符串转为JSON对象（反序列化）<br><strong>注意：</strong>springmvc中提供对请求参数的封装，如果请求数据为json格式，需要封装在javabean之中，那么这个javaBean需要实现Serializable接口，具备序列化的特点。</p>
+<h2 id="Json数据校验"><a href="#Json数据校验" class="headerlink" title="Json数据校验"></a>Json数据校验</h2><p>众所周知，如果Json数据有几百行或者几万行代码组成，那么就会是一长串的“字符串”，很难找到或定位自己所需要的数据，同时也不能确定，此Json数据不存在语法错误，所以就需要对Json数据进行校验和格式化。</p>
+<h3 id="JSON数据校验"><a href="#JSON数据校验" class="headerlink" title="JSON数据校验"></a>JSON数据校验</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-06ea57911748a742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br>工具网址：<a href="https://www.bejson.com/" target="_blank" rel="external">https://www.bejson.com/</a></p>
+<h3 id="Json数据格式化"><a href="#Json数据格式化" class="headerlink" title="Json数据格式化"></a>Json数据格式化</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-3c8ab3330a5b6657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br>工具地址：<a href="https://www.bejson.com/jsonviewernew/" target="_blank" rel="external">https://www.bejson.com/jsonviewernew/</a></p>
 <p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   
 	</div>
@@ -239,7 +169,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/11/17/HexoWriteArticle/" data-title="Hexo写博客（三） | BiG哥|博客" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/11/23/Json/" data-title="Json | BiG哥|博客" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -248,19 +178,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/11/23/Json/" title="Json">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Json</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/11/16/HexoArticleStyle/"  title="Hexo写博客（二）">
+<a href="/2017/11/17/HexoWriteArticle/"  title="Hexo写博客（三）">
  <strong>NEXT:</strong><br/> 
- <span>Hexo写博客（二）
+ <span>Hexo写博客（三）
 </span>
 </a>
 </div>
@@ -273,7 +195,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo写文章"><span class="toc-number">1.</span> <span class="toc-text">Hexo写文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一步：新建文章"><span class="toc-number">1.1.</span> <span class="toc-text">第一步：新建文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二步：书写正文"><span class="toc-number">1.2.</span> <span class="toc-text">第二步：书写正文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三步：本地预览"><span class="toc-number">1.3.</span> <span class="toc-text">第三步：本地预览</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo之新建页面"><span class="toc-number">2.</span> <span class="toc-text">Hexo之新建页面</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Json的三种数据格式"><span class="toc-number">1.</span> <span class="toc-text">Json的三种数据格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象格式-name-value-name-value"><span class="toc-number">1.1.</span> <span class="toc-text">对象格式{name:value,name:value}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组格式-元素，元素，元素"><span class="toc-number">1.2.</span> <span class="toc-text">数组格式[元素，元素，元素]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合格式（嵌套）"><span class="toc-number">1.3.</span> <span class="toc-text">组合格式（嵌套）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Json需要的jar"><span class="toc-number">2.</span> <span class="toc-text">Json需要的jar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Json常用的两种方法"><span class="toc-number">3.</span> <span class="toc-text">Json常用的两种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON-stringify"><span class="toc-number">3.1.</span> <span class="toc-text">JSON.stringify()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON-parse"><span class="toc-number">3.2.</span> <span class="toc-text">JSON.parse()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Json数据校验"><span class="toc-number">4.</span> <span class="toc-text">Json数据校验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON数据校验"><span class="toc-number">4.1.</span> <span class="toc-text">JSON数据校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Json数据格式化"><span class="toc-number">4.2.</span> <span class="toc-text">Json数据格式化</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

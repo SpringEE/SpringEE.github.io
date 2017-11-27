@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/SpringEE/SpringEE.github.io/"/>
-  <updated>2017-11-24T05:18:17.427Z</updated>
+  <updated>2017-11-27T08:55:07.649Z</updated>
   <id>https://github.com/SpringEE/SpringEE.github.io/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Json</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/23/Json/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/23/Json/</id>
+    <published>2017-11-23T08:09:10.000Z</published>
+    <updated>2017-11-27T08:55:07.649Z</updated>
+    
+    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/JSON/2462549?fr=aladdin" target="_blank" rel="external">JSON</a>(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。Json数据是跨平台的，在网络数据传输流程中，json是以文本，即字符串的形式传递的，各种语言对字符串的处理比较统一。而在JS是对象的形式。<br><a id="more"></a></p><h2 id="Json的三种数据格式"><a href="#Json的三种数据格式" class="headerlink" title="Json的三种数据格式"></a>Json的三种数据格式</h2><h3 id="对象格式-name-value-name-value"><a href="#对象格式-name-value-name-value" class="headerlink" title="对象格式{name:value,name:value}"></a>对象格式{name:value,name:value}</h3><p><code>案例：var pp={&quot;id&quot;:10,&quot;name&quot;:&quot;lisi&quot;,.......}</code><br><strong>注意：</strong>在json数据格式中,name类型是字符串，value类型是Object。</p><h3 id="数组格式-元素，元素，元素"><a href="#数组格式-元素，元素，元素" class="headerlink" title="数组格式[元素，元素，元素]"></a>数组格式[元素，元素，元素]</h3><p><code>案例：var pp=[{&quot;name&quot;:&quot;Michael&quot;,&quot;age&quot;:24}，{&quot;name&quot;:&quot;Tom&quot;,&quot;age&quot;:25}]</code><br><strong>注意：</strong>取值方式，通过pp[0].name取值，值为Michael。</p><h3 id="组合格式（嵌套）"><a href="#组合格式（嵌套）" class="headerlink" title="组合格式（嵌套）"></a>组合格式（嵌套）</h3><p><code>案例：{&quot;name&quot;:&quot;Michael&quot;, &quot;birthday&quot;:{&quot;month&quot;:8,&quot;day&quot;:26}}</code></p><h2 id="Json需要的jar"><a href="#Json需要的jar" class="headerlink" title="Json需要的jar"></a>Json需要的jar</h2><p>在java中使用json需要引入以下几个jar包，否则会报错：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-7099c078f623034e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p><h2 id="Json常用的两种方法"><a href="#Json常用的两种方法" class="headerlink" title="Json常用的两种方法"></a>Json常用的两种方法</h2><h3 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify()"></a>JSON.stringify()</h3><p>说明：JSON.stringify()将JSON对象转为JSON字符串（序列化）</p><h3 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse()"></a>JSON.parse()</h3><p>说明：JSON.parse()将JSON字符串转为JSON对象（反序列化）<br><strong>注意：</strong>springmvc中提供对请求参数的封装，如果请求数据为json格式，需要封装在javabean之中，那么这个javaBean需要实现Serializable接口，具备序列化的特点。</p><h2 id="Json数据校验"><a href="#Json数据校验" class="headerlink" title="Json数据校验"></a>Json数据校验</h2><p>众所周知，如果Json数据有几百行或者几万行代码组成，那么就会是一长串的“字符串”，很难找到或定位自己所需要的数据，同时也不能确定，此Json数据不存在语法错误，所以就需要对Json数据进行校验和格式化。</p><h3 id="JSON数据校验"><a href="#JSON数据校验" class="headerlink" title="JSON数据校验"></a>JSON数据校验</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-06ea57911748a742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br>工具网址：<a href="https://www.bejson.com/" target="_blank" rel="external">https://www.bejson.com/</a></p><h3 id="Json数据格式化"><a href="#Json数据格式化" class="headerlink" title="Json数据格式化"></a>Json数据格式化</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-3c8ab3330a5b6657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br>工具地址：<a href="https://www.bejson.com/jsonviewernew/" target="_blank" rel="external">https://www.bejson.com/jsonviewernew/</a></p><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/JSON/2462549?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JSON&lt;/a&gt;(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。Json数据是跨平台的，在网络数据传输流程中，json是以文本，即字符串的形式传递的，各种语言对字符串的处理比较统一。而在JS是对象的形式。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hexo写博客（三）</title>
@@ -82,24 +100,6 @@
     <summary type="html">
     
       &lt;p&gt;   关于个人博客网站的搭建，从&lt;a href=&quot;https://www.aliyun.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;域名&lt;/a&gt;的购买到绑定和注册&lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;，好文章确实很多，在此就不再做单独的个人文章说明，只分享前辈们“&lt;a href=&quot;http://blog.liuxianan.com/build-blog-website-by-hexo-github.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;搭建Hexo&lt;/a&gt;”的链接。本文的重点将落在各类Hexo插件的整合上，Hexo插件甚多，本文只介绍常见的几种。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Json</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/07/27/Json/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/07/27/Json/</id>
-    <published>2017-07-27T08:09:10.000Z</published>
-    <updated>2017-11-27T08:43:44.679Z</updated>
-    
-    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/JSON/2462549?fr=aladdin" target="_blank" rel="external">JSON</a>(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。Json数据是跨平台的，在网络数据传输流程中，json是以文本，即字符串的形式传递的，各种语言对字符串的处理比较统一。而在JS是对象的形式。<br><a id="more"></a></p><h2 id="Json的三种数据格式"><a href="#Json的三种数据格式" class="headerlink" title="Json的三种数据格式"></a>Json的三种数据格式</h2><h3 id="对象格式-name-value-name-value"><a href="#对象格式-name-value-name-value" class="headerlink" title="对象格式{name:value,name:value}"></a>对象格式{name:value,name:value}</h3><p><code>案例：var pp={&quot;id&quot;:10,&quot;name&quot;:&quot;lisi&quot;,.......}</code><br><strong>注意：</strong>在json数据格式中,name类型是字符串，value类型是Object。</p><h3 id="数组格式-元素，元素，元素"><a href="#数组格式-元素，元素，元素" class="headerlink" title="数组格式[元素，元素，元素]"></a>数组格式[元素，元素，元素]</h3><p><code>案例：var pp=[{&quot;name&quot;:&quot;Michael&quot;,&quot;age&quot;:24}，{&quot;name&quot;:&quot;Tom&quot;,&quot;age&quot;:25}]</code><br><strong>注意：</strong>取值方式，通过pp[0].name取值，值为Michael。</p><h3 id="组合格式（嵌套）"><a href="#组合格式（嵌套）" class="headerlink" title="组合格式（嵌套）"></a>组合格式（嵌套）</h3><p><code>案例：{&quot;name&quot;:&quot;Michael&quot;, &quot;birthday&quot;:{&quot;month&quot;:8,&quot;day&quot;:26}}</code></p><h2 id="Json需要的jar"><a href="#Json需要的jar" class="headerlink" title="Json需要的jar"></a>Json需要的jar</h2><p>在java中使用json需要引入以下几个jar包，否则会报错：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-7099c078f623034e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p><h2 id="Json常用的两种方法"><a href="#Json常用的两种方法" class="headerlink" title="Json常用的两种方法"></a>Json常用的两种方法</h2><h3 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify()"></a>JSON.stringify()</h3><p>说明：JSON.stringify()将JSON对象转为JSON字符串（序列化）</p><h3 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse()"></a>JSON.parse()</h3><p>说明：JSON.parse()将JSON字符串转为JSON对象（反序列化）<br><strong>注意：</strong>springmvc中提供对请求参数的封装，如果请求数据为json格式，需要封装在javabean之中，那么这个javaBean需要实现Serializable接口，具备序列化的特点。</p><h2 id="Json数据校验"><a href="#Json数据校验" class="headerlink" title="Json数据校验"></a>Json数据校验</h2><p>众所周知，如果Json数据有几百行或者几万行代码组成，那么就会是一长串的“字符串”，很难找到或定位自己所需要的数据，同时也不能确定，此Json数据不存在语法错误，所以就需要对Json数据进行校验和格式化。</p><h3 id="JSON数据校验"><a href="#JSON数据校验" class="headerlink" title="JSON数据校验"></a>JSON数据校验</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-06ea57911748a742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br>工具网址：<a href="https://www.bejson.com/" target="_blank" rel="external">https://www.bejson.com/</a></p><h3 id="Json数据格式化"><a href="#Json数据格式化" class="headerlink" title="Json数据格式化"></a>Json数据格式化</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-3c8ab3330a5b6657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br>工具地址：<a href="https://www.bejson.com/jsonviewernew/" target="_blank" rel="external">https://www.bejson.com/jsonviewernew/</a></p><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/JSON/2462549?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JSON&lt;/a&gt;(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。Json数据是跨平台的，在网络数据传输流程中，json是以文本，即字符串的形式传递的，各种语言对字符串的处理比较统一。而在JS是对象的形式。&lt;br&gt;
     
     </summary>
     

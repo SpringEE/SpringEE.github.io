@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/SpringEE/SpringEE.github.io/"/>
-  <updated>2017-11-27T09:26:52.496Z</updated>
+  <updated>2017-11-28T15:52:22.102Z</updated>
   <id>https://github.com/SpringEE/SpringEE.github.io/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多线程（一）</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/28/Thread/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/28/Thread/</id>
+    <published>2017-11-28T15:52:20.000Z</published>
+    <updated>2017-11-28T15:52:22.102Z</updated>
+    
+    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin" target="_blank" rel="external">多线程</a>（英语：multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理（Chip-level multithreading）或同时多线程（Simultaneous multithreading）处理器。[1]  在一个程序中，这些独立运行的程序片段叫作“线程”（Thread），利用它编程的概念就叫作“多线程处理（Multithreading）”。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程（台湾译作“执行绪”），进而提升整体处理性能。<br><a id="more"></a></p><h2 id="线程的创建方式"><a href="#线程的创建方式" class="headerlink" title="线程的创建方式"></a>线程的创建方式</h2><h3 id="继承Thread类"><a href="#继承Thread类" class="headerlink" title="继承Thread类"></a>继承Thread类</h3><p><code>语法：public class A extends Thread{}</code></p><h3 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现Runnable接口</h3><p><code>语法：public class A implements Runnable{}</code></p><h3 id="开启线程"><a href="#开启线程" class="headerlink" title="开启线程"></a>开启线程</h3><ul><li><p>情形一：继承Thread类</p><blockquote><p><code>A a=new A();a.start();</code><br><code>说明：开启线程a，并等待执行a对象中的run()方法</code> </p></blockquote></li><li><p>情形二：实现Runnable接口</p><blockquote><p><code>A a=new A();Thread t=new Thread(a);t.start()</code><br><code>说明：开启线程t，并等待执行a对象中的run()方法</code> </p></blockquote></li></ul><h2 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h2><h3 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h3><blockquote><p>在java中，每一个对象有且仅有一个同步锁。这也意味着，同步锁是依赖于对象而存在。<br>当我们调用某对象的synchronized方法时，就获取了该对象的同步锁。例如，synchronized(obj)就获取了“obj这个对象”的同步锁。<br>不同线程对同步锁的访问是互斥的。也就是说，某时间点，对象的同步锁只能被一个线程获取到！通过同步锁，我们就能在多线程中，实现对“对象/方法”的互斥访问。 例如，现在有两个线程A和线程B，它们都会访问“对象obj的同步锁”。假设，在某一时刻，线程A获取到“obj的同步锁”并在执行一些操作；而此时，线程B也企图获取“obj的同步锁” —— 线程B会获取失败，它必须等待，直到线程A释放了“该对象的同步锁”之后线程B才能获取到“obj的同步锁”从而才可以运行。</p><h3 id="基本原则："><a href="#基本原则：" class="headerlink" title="基本原则："></a>基本原则：</h3><ul><li>当一个线程访问“某对象”的“synchronized方法”或者“synchronized代码块”时，其他线程对“该对象”的该“synchronized方法”或者“synchronized代码块”的访问将被阻塞。</li><li>当一个线程访问“某对象”的“synchronized方法”或者“synchronized代码块”时，其他线程仍然可以访问“该对象”的非同步代码块。</li><li>当一个线程访问“某对象”的“synchronized方法”或者“synchronized代码块”时，其他线程对“该对象”的其他的“synchronized方法”或者“synchronized代码块”的访问将被阻塞。<h2 id="start-和-run-的区别说明"><a href="#start-和-run-的区别说明" class="headerlink" title="start() 和 run()的区别说明"></a>start() 和 run()的区别说明</h2></li><li><strong>start() :</strong> 它的作用是启动一个新线程，新线程会执行相应的run()方法。start()不能被重复调用。</li><li><strong>run():</strong> run()就和普通的成员方法一样，可以被重复调用。单独调用run()的话，会在当前线程中执行run()，而并不会启动新线程！</li></ul></blockquote><h2 id="wait-notify-notifyAll-等方法介绍"><a href="#wait-notify-notifyAll-等方法介绍" class="headerlink" title="wait(), notify(), notifyAll()等方法介绍"></a>wait(), notify(), notifyAll()等方法介绍</h2><p>wait()的作用是让当前线程进入等待状态，同时，wait()也会让当前线程释放它所持有的锁。而notify()和notifyAll()的作用，则是唤醒当前对象上的等待线程；notify()是唤醒单个线程，而notifyAll()是唤醒所有的线程。</p><ul><li>wait()：让当前线程处于“等待(阻塞)状态”，“直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法”，当前线程被唤醒(进入“就绪状态”)。</li><li>notify()：唤醒在此对象监视器上等待的单个线程。即，唤醒具有同一个此对象锁且正处于等待中的“一个”线程。</li><li>notifyAll()：唤醒在此对象监视器上等待的所有线程。即，唤醒具有同一个此对象锁且正处于等待中的“所有”线程。</li></ul><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多线程&lt;/a&gt;（英语：multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理（Chip-level multithreading）或同时多线程（Simultaneous multithreading）处理器。[1]  在一个程序中，这些独立运行的程序片段叫作“线程”（Thread），利用它编程的概念就叫作“多线程处理（Multithreading）”。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程（台湾译作“执行绪”），进而提升整体处理性能。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Json对象</title>
@@ -28,24 +46,6 @@
     <summary type="html">
     
       &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/JSON/2462549?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JSON&lt;/a&gt;(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。Json数据是跨平台的，在网络数据传输流程中，json是以文本，即字符串的形式传递的，各种语言对字符串的处理比较统一。而在JS是对象的形式。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>多线程（一）</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/20/Thread/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/20/Thread/</id>
-    <published>2017-11-20T13:26:46.000Z</published>
-    <updated>2017-11-28T15:49:53.530Z</updated>
-    
-    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin" target="_blank" rel="external">多线程</a>（英语：multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理（Chip-level multithreading）或同时多线程（Simultaneous multithreading）处理器。[1]  在一个程序中，这些独立运行的程序片段叫作“线程”（Thread），利用它编程的概念就叫作“多线程处理（Multithreading）”。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程（台湾译作“执行绪”），进而提升整体处理性能。<br><a id="more"></a></p><h2 id="线程的创建方式"><a href="#线程的创建方式" class="headerlink" title="线程的创建方式"></a>线程的创建方式</h2><h3 id="继承Thread类"><a href="#继承Thread类" class="headerlink" title="继承Thread类"></a>继承Thread类</h3><p><code>语法：public class A extends Thread{}</code></p><h3 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现Runnable接口</h3><p><code>语法：public class A implements Runnable{}</code></p><h3 id="开启线程"><a href="#开启线程" class="headerlink" title="开启线程"></a>开启线程</h3><ul><li><p>情形一：继承Thread类</p><blockquote><p><code>A a=new A();a.start();</code><br><code>说明：开启线程a，并等待执行a对象中的run()方法</code> </p></blockquote></li><li><p>情形二：实现Runnable接口</p><blockquote><p><code>A a=new A();Thread t=new Thread(a);t.start()</code><br><code>说明：开启线程t，并等待执行a对象中的run()方法</code> </p></blockquote></li></ul><h2 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h2><h3 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h3><blockquote><p>在java中，每一个对象有且仅有一个同步锁。这也意味着，同步锁是依赖于对象而存在。<br>当我们调用某对象的synchronized方法时，就获取了该对象的同步锁。例如，synchronized(obj)就获取了“obj这个对象”的同步锁。<br>不同线程对同步锁的访问是互斥的。也就是说，某时间点，对象的同步锁只能被一个线程获取到！通过同步锁，我们就能在多线程中，实现对“对象/方法”的互斥访问。 例如，现在有两个线程A和线程B，它们都会访问“对象obj的同步锁”。假设，在某一时刻，线程A获取到“obj的同步锁”并在执行一些操作；而此时，线程B也企图获取“obj的同步锁” —— 线程B会获取失败，它必须等待，直到线程A释放了“该对象的同步锁”之后线程B才能获取到“obj的同步锁”从而才可以运行。</p><h3 id="基本原则："><a href="#基本原则：" class="headerlink" title="基本原则："></a>基本原则：</h3><ul><li>当一个线程访问“某对象”的“synchronized方法”或者“synchronized代码块”时，其他线程对“该对象”的该“synchronized方法”或者“synchronized代码块”的访问将被阻塞。</li><li>当一个线程访问“某对象”的“synchronized方法”或者“synchronized代码块”时，其他线程仍然可以访问“该对象”的非同步代码块。</li><li>当一个线程访问“某对象”的“synchronized方法”或者“synchronized代码块”时，其他线程对“该对象”的其他的“synchronized方法”或者“synchronized代码块”的访问将被阻塞。<h2 id="start-和-run-的区别说明"><a href="#start-和-run-的区别说明" class="headerlink" title="start() 和 run()的区别说明"></a>start() 和 run()的区别说明</h2></li><li><strong>start() :</strong> 它的作用是启动一个新线程，新线程会执行相应的run()方法。start()不能被重复调用。</li><li><strong>run():</strong> run()就和普通的成员方法一样，可以被重复调用。单独调用run()的话，会在当前线程中执行run()，而并不会启动新线程！</li></ul></blockquote><h2 id="wait-notify-notifyAll-等方法介绍"><a href="#wait-notify-notifyAll-等方法介绍" class="headerlink" title="wait(), notify(), notifyAll()等方法介绍"></a>wait(), notify(), notifyAll()等方法介绍</h2><p>wait()的作用是让当前线程进入等待状态，同时，wait()也会让当前线程释放它所持有的锁。而notify()和notifyAll()的作用，则是唤醒当前对象上的等待线程；notify()是唤醒单个线程，而notifyAll()是唤醒所有的线程。</p><ul><li>wait()：让当前线程处于“等待(阻塞)状态”，“直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法”，当前线程被唤醒(进入“就绪状态”)。</li><li>notify()：唤醒在此对象监视器上等待的单个线程。即，唤醒具有同一个此对象锁且正处于等待中的“一个”线程。</li><li>notifyAll()：唤醒在此对象监视器上等待的所有线程。即，唤醒具有同一个此对象锁且正处于等待中的“所有”线程。</li></ul><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多线程&lt;/a&gt;（英语：multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理（Chip-level multithreading）或同时多线程（Simultaneous multithreading）处理器。[1]  在一个程序中，这些独立运行的程序片段叫作“线程”（Thread），利用它编程的概念就叫作“多线程处理（Multithreading）”。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程（台湾译作“执行绪”），进而提升整体处理性能。&lt;br&gt;
     
     </summary>
     

@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>标识接口 | BiG哥|博客</title>
+    <title>多线程（基础） | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="“标识接口”是没有任何方法和属性的接口。标识接口不对实现它的类有任何语义上的要求，它仅仅表明实现它的类属于一个特定的类型。标接口在Java语言中有一些很著名的应用，比如java.io.Serializable、java.rmi.Remote和java.lang.Cloneable等接口便是标识接口。一个类实现了标识接口，那么这个类就被贴上了一个标签，相当于是归到了某个类别中。下面只讲两个标识接口Serializable和Cloneable。">
+    <meta name="description" content="多线程（英语：multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理（Chip-level multithreading）或同时多线程（Simultaneous multithreading）处理器。[1]  在一个程序中，这些独立运行的程序片段叫作“线程”（Thread），利用它编程的概念就叫作“多线程处理（Multithreading）”。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程（台湾译作“执行绪”），进而提升整体处理性能。">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="标识接口 | BiG哥|博客" />
+    <meta name="twitter:title" content="多线程（基础） | BiG哥|博客" />
       
     
     
@@ -129,15 +129,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/07/24/MarkerInterface/" title="标识接口" itemprop="url">标识接口</a>
+      <a href="/2017/07/23/ThreadNote/" title="多线程（基础）" itemprop="url">多线程（基础）</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-07-24T04:31:40.000Z" itemprop="datePublished">2017-07-24</time>
-    更新日期:<time datetime="2017-11-25T05:24:52.561Z" itemprop="dateModified">2017-11-25</time>
+    <time datetime="2017-07-23T15:52:20.000Z" itemprop="datePublished">2017-07-23</time>
+    更新日期:<time datetime="2017-11-29T11:03:25.847Z" itemprop="dateModified">2017-11-29</time>
     
   </p>
 </header>
@@ -146,20 +146,25 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Serializable序列化"><span class="toc-number">1.</span> <span class="toc-text">Serializable序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloneable克隆"><span class="toc-number">2.</span> <span class="toc-text">Cloneable克隆</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#yield-、sleep-与-wait-的比较："><span class="toc-number">1.</span> <span class="toc-text">yield()、sleep()与 wait()的比较：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield-与-wait-的比较："><span class="toc-number">2.</span> <span class="toc-text">yield() 与 wait()的比较：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sleep-与-wait-的比较："><span class="toc-number">3.</span> <span class="toc-text">sleep() 与 wait()的比较：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join-线程加入"><span class="toc-number">4.</span> <span class="toc-text">join()线程加入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#守护线程（Daemon）"><span class="toc-number">5.</span> <span class="toc-text">守护线程（Daemon）</span></a></li></ol>
 		</div>
 		
-		<p>   “标识接口”是没有任何方法和属性的接口。标识接口不对实现它的类有任何语义上的要求，它仅仅表明实现它的类属于一个特定的类型。标接口在Java语言中有一些很著名的应用，比如java.io.Serializable、java.rmi.Remote和java.lang.Cloneable等接口便是标识接口。一个类实现了标识接口，那么这个类就被贴上了一个标签，相当于是归到了某个类别中。下面只讲两个标识接口Serializable和Cloneable。<br><a id="more"></a></p>
-<h2 id="Serializable序列化"><a href="#Serializable序列化" class="headerlink" title="Serializable序列化"></a>Serializable序列化</h2><p>序列化 (Serialization)将对象的状态信息转换为可以存储或传输的形式的过程。在序列化期间，对象将其当前状态写入到临时或持久性存储区。以后，可以通过从存储区中读取或反序列化对象的状态，重新创建该对象。序列化使其他代码可以查看或修改那些不序列化便无法访问的对象实例数据。即，将对象以一连串字节描述的过程。序列化可以将对象的状态写在流里进行网络传输，或者保存到文件、数据库等系统中，并在需要时把该流读取出来重新构造一个相同的对象。如果一个类能被序列化，那么它的子类也能够被序列化。Public Class A implements Serializable{}。使用案例：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-d01a32154ea95748.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p>
-<h2 id="Cloneable克隆"><a href="#Cloneable克隆" class="headerlink" title="Cloneable克隆"></a>Cloneable克隆</h2><p>Cloneable接口是一个空接口，仅用于标记对象，Cloneable接口里面是没有clone()方法，clone()方法是Object类里面的方法！如果对象implement Cloneable接口的话，需要覆盖clone方法（因为Object类的clone方法是protected，需要覆盖为public）。使用Cloneable接口的步骤：</p>
-<ul>
-<li>实现clone的类首先需要继承Cloneable接口；</li>
-<li>在类中重写Object类中的clone()方法；</li>
-<li>在clone方法中调用super.clone()。无论clone类的继承结构是什么，super.clone()都会直接或间接调用java.lang.Object类中的clone()方法；</li>
-<li>把潜复制的引用指向原型对象新的克隆体。<br>使用案例：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-7257f1c534ab36ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02-01.png"><br><strong>浅复制和深复制：</strong></li>
-<li>浅复制：在JAVA中，浅复制是指当对象的字段值被复制时,字段引用的对象不会被复制.例如,如果一个对象有一个指向字符串的字段,并且我们对该对象做了一个浅复制,那麽两个对象将引用同一个字符串.和浅复制对应的有深复制.</li>
-<li>深复制：是将指向内容复制到给当前对象新分配的缓冲区中的一种复制方式，相对于浅复制。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-702d17b279d10445.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02-02.png"></li>
+		<p>   <a href="https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin" target="_blank" rel="external">多线程</a>（英语：multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理（Chip-level multithreading）或同时多线程（Simultaneous multithreading）处理器。[1]  在一个程序中，这些独立运行的程序片段叫作“线程”（Thread），利用它编程的概念就叫作“多线程处理（Multithreading）”。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程（台湾译作“执行绪”），进而提升整体处理性能。<br><a id="more"></a></p>
+<h3 id="yield-、sleep-与-wait-的比较："><a href="#yield-、sleep-与-wait-的比较：" class="headerlink" title="yield()、sleep()与 wait()的比较："></a>yield()、sleep()与 wait()的比较：</h3><ul>
+<li>yield()的作用是“线程让步”。它能让当前线程由“运行状态”进入到“就绪状态”，从而让其它具有相同优先级的等待线程获取执行权；但是，并不能保证在当前线程调用yield()之后，其它具有相同优先级的线程就一定能获得执行权；也有可能是当前线程又进入到“运行状态”继续运行！</li>
+<li>wait()的作用是让当前线程由“运行状态”进入“等待(阻塞)状态”的同时，也会释放同步锁。</li>
+<li>sleep() 的作用是让当前线程休眠，即当前线程会从“运行状态”进入到“休眠(阻塞)状态”。sleep()会指定休眠时间，线程休眠的时间会大于/等于该休眠时间；在线程重新被唤醒时，它会由“阻塞状态”变成“就绪状态”，从而等待cpu的调度执行。</li>
 </ul>
+<h3 id="yield-与-wait-的比较："><a href="#yield-与-wait-的比较：" class="headerlink" title="yield() 与 wait()的比较："></a>yield() 与 wait()的比较：</h3><blockquote>
+<p>1） wait()是让线程由“运行状态”进入到“等待(阻塞)状态”，而不yield()是让线程由“运行状态”进入到“就绪状态”。<br>2）wait()是会线程释放它所持有对象的同步锁，而yield()方法不会释放锁。</p>
+</blockquote>
+<h3 id="sleep-与-wait-的比较："><a href="#sleep-与-wait-的比较：" class="headerlink" title="sleep() 与 wait()的比较："></a>sleep() 与 wait()的比较：</h3><blockquote>
+<p>wait()的作用是让当前线程由“运行状态”进入“等待(阻塞)状态”的同时，也会释放同步锁。而sleep()的作用是也是让当前线程由“运行状态”进入到“休眠(阻塞)状态”。但是，wait()会释放对象的同步锁，而sleep()则不会释放锁。</p>
+</blockquote>
+<h3 id="join-线程加入"><a href="#join-线程加入" class="headerlink" title="join()线程加入"></a>join()线程加入</h3><p>join() 的作用：让“主线程”等待“子线程”结束之后才能继续运行。这句话可能有点晦涩，我们还是通过例子去理解：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-d3e6591bd542a314.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"><br>在Father主线程中，通过new Son()新建“子线程s”。接着通过s.start()启动“子线程s”，并且调用s.join()。在调用s.join()之后，Father主线程会一直等待，直到“子线程s”运行完毕；在“子线程s”运行完毕之后，Father主线程才能接着运行。 这也就是我们所说的“join()的作用，是让主线程会等待子线程结束之后才能继续运行”！</p>
+<h3 id="守护线程（Daemon）"><a href="#守护线程（Daemon）" class="headerlink" title="守护线程（Daemon）"></a>守护线程（Daemon）</h3><blockquote>
+<p>t2是守护线程。在“主线程main”和“子线程t1”(它们都是用户线程)执行完毕，只剩t2这个守护线程的时候，JVM自动退出。如果一个现成中只剩下守护线程，那么守护线程会自动退出。</p>
+</blockquote>
 <p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   
 	</div>
@@ -170,7 +175,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/07/24/MarkerInterface/" data-title="标识接口 | BiG哥|博客" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/07/23/ThreadNote/" data-title="多线程（基础） | BiG哥|博客" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -180,18 +185,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/11/15/HexoGitHub/" title="Hexo+GitHub+常用插件">
+ <a href="/2017/07/24/MarkerInterface/" title="标识接口">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Hexo+GitHub+常用插件</span>
+  标识接口</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/07/23/ThreadNote/"  title="多线程（基础）">
+<a href="/2017/07/23/FunctionChange/"  title="方法“重写”和“重载”">
  <strong>NEXT:</strong><br/> 
- <span>多线程（基础）
+ <span>方法“重写”和“重载”
 </span>
 </a>
 </div>
@@ -204,7 +209,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Serializable序列化"><span class="toc-number">1.</span> <span class="toc-text">Serializable序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloneable克隆"><span class="toc-number">2.</span> <span class="toc-text">Cloneable克隆</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#yield-、sleep-与-wait-的比较："><span class="toc-number">1.</span> <span class="toc-text">yield()、sleep()与 wait()的比较：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield-与-wait-的比较："><span class="toc-number">2.</span> <span class="toc-text">yield() 与 wait()的比较：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sleep-与-wait-的比较："><span class="toc-number">3.</span> <span class="toc-text">sleep() 与 wait()的比较：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join-线程加入"><span class="toc-number">4.</span> <span class="toc-text">join()线程加入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#守护线程（Daemon）"><span class="toc-number">5.</span> <span class="toc-text">守护线程（Daemon）</span></a></li></ol>
   </div>
 
 <div id="asidepart">

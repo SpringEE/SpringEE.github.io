@@ -137,7 +137,7 @@
     </p>
   <p class="article-time">
     <time datetime="2017-11-18T15:52:20.000Z" itemprop="datePublished">2017-11-18</time>
-    更新日期:<time datetime="2017-11-29T14:58:01.464Z" itemprop="dateModified">2017-11-29</time>
+    更新日期:<time datetime="2017-11-29T15:01:44.446Z" itemprop="dateModified">2017-11-29</time>
     
   </p>
 </header>
@@ -151,12 +151,14 @@
 		
 		<p>   <a href="https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin" target="_blank" rel="external">ReentrantLock</a>是一个可重入的互斥锁，又被称为“独占锁”。顾名思义，ReentrantLock锁在同一个时间点只能被一个线程锁持有；而可重入的意思是，ReentrantLock锁，可以被单个线程多次获取。ReentrantLock分为“公平锁”和“非公平锁”。它们的区别体现在获取锁的机制上是否公平。“锁”是为了保护竞争资源，防止多个线程同时操作线程而出错，ReentrantLock在同一个时间点只能被一个线程获取(当某线程获取到“锁”时，其它线程就必须等待)；ReentraantLock是通过一个FIFO的等待队列来管理获取该锁所有线程的。在“公平锁”的机制下，线程依次排队获取锁；而“非公平锁”在锁是可获取状态时，不管自己是不是在队列的开头都会获取锁。<br><a id="more"></a></p>
 <h2 id="ReentrantLock互斥锁"><a href="#ReentrantLock互斥锁" class="headerlink" title="ReentrantLock互斥锁"></a>ReentrantLock互斥锁</h2><h3 id="常规使用方式"><a href="#常规使用方式" class="headerlink" title="常规使用方式"></a>常规使用方式</h3><p><code>创建锁对象：Lock lock = new ReentrantLock();</code><br><code>锁代码：lock.lock();.......锁的内容；.......lock.unlock();</code></p>
-<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><p><code>尝试获取锁：boolean locked = lock.tryLock();//根据locked值去判定执行什么样的代码</code><br><code>尝试超时：boolean locked=lock.tryLock(5, TimeUnit.SECONDS);//尝试获取lock锁对象5秒</code><br><code>可打断：lock.lockInterruptibly(),线程在请求lock并被阻塞时(t1占用了lock锁对象，t2请求被阻塞)，如果此时t2被t3线程interrupt（t2.interrupt()），则“此t2线程会被唤醒并被要求处理InterruptedException”。</code><br><strong>通俗理解：</strong></p>
-<ul>
-<li><code>lock(), 拿不到lock就不罢休，不然线程就一直block。 比较无赖的做法。不能被打断</code></li>
-<li><code>tryLock()，马上返回，拿到lock就返回true，不然返回false。 比较潇洒的做法。</code></li>
-<li><code>带时间限制的tryLock()，拿不到lock，就等一段时间，超时返回false。比较聪明的做法。</code></li>
-<li><code>lock.lockInterruptibly()请求锁，请求不到也会一直请求，但是可以被其他线程打断，打断后处理InterruptedException异常，即执行catch和finally代码块</code></li>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ul>
+<li>尝试获取锁：boolean locked = lock.tryLock();//根据locked值去判定执行什么样的代码</li>
+<li>尝试超时：boolean locked=lock.tryLock(5, TimeUnit.SECONDS);//尝试获取lock锁对象5秒</li>
+<li>可打断：lock.lockInterruptibly(),线程在请求lock并被阻塞时(t1占用了lock锁对象，t2请求被阻塞)，如果此时t2被t3线程interrupt（t2.interrupt()），则“此t2线程会被唤醒并被要求处理InterruptedException”。<br><strong>通俗理解：</strong></li>
+<li>lock(), 拿不到lock就不罢休，不然线程就一直block。 比较无赖的做法。不能被打断</li>
+<li>tryLock()，马上返回，拿到lock就返回true，不然返回false。 比较潇洒的做法。</li>
+<li>带时间限制的tryLock()，拿不到lock，就等一段时间，超时返回false。比较聪明的做法。</li>
+<li>lock.lockInterruptibly()请求锁，请求不到也会一直请求，但是可以被其他线程打断，打断后处理InterruptedException异常，即执行catch和finally代码块</li>
 </ul>
 <h3 id="ReentrantLock和synchronized区别"><a href="#ReentrantLock和synchronized区别" class="headerlink" title="ReentrantLock和synchronized区别"></a>ReentrantLock和synchronized区别</h3><p>（1）synchronized的锁是自动释放的，而ReentrantLock得lock需要手动释放（lock.unlock()）；<br>（2）使用synchronized锁定的话如果遇到异常，jvm会自动释放锁，但是lock必须手动释放锁，因此经常在finally中进行锁的释放；<br>（3）ReentrantLock更具灵活性：</p>
 <ul>

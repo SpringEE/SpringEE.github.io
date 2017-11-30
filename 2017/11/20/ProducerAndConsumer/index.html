@@ -4,18 +4,20 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>BiG哥|博客</title>
+    <title>生产者和消费者案例剖析 | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="Alfred的个人博客">
+    <meta name="description" content="多线程中的生产者和消费者案例，非常具有研究性，也值得考究。这就好比理科生解高数一样，越推理越有激情，而无法自拔。下面介绍一下比较易懂的一个生产者和消费者案例：写一个固定容量同步容器，拥有put和get方法，能够支持3个生产者线程以及10个消费者线程的阻塞调用。
+生产者和消费者案例内容分析：
+需要一个">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="BiG哥|博客" />
+    <meta name="twitter:title" content="生产者和消费者案例剖析 | BiG哥|博客" />
       
     
     
@@ -124,155 +126,96 @@
 
     </header>
     <div id="container">
-      <div id="main">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/07/24/MarkerInterface/" title="标识接口" itemprop="url">
-  
-    <h1 itemprop="name">标识接口</h1>
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-       <p itemprop="description" >“标识接口”是没有任何方法和属性的接口。标识接口不对实现它的类有任何语义上的要求，它仅仅表明实现它的类属于一个特定的类型。标接口在Java语言中有一些很著名的应用，比如java.io.Serializable、java.rmi.Remote和java.lang.Cloneable</p>
-      
+      <a href="/2017/11/20/ProducerAndConsumer/" title="生产者和消费者案例剖析" itemprop="url">生产者和消费者案例剖析</a>
+  </h1>
+  <p class="article-author">By
     
-    <time datetime="2017-07-24T04:31:40.000Z" itemprop="datePublished">2017-07-24</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
+      <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2017-11-20T11:03:35.000Z" itemprop="datePublished">2017-11-20</time>
+    更新日期:<time datetime="2017-11-30T09:05:21.222Z" itemprop="dateModified">2017-11-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者和消费者"><span class="toc-number">1.</span> <span class="toc-text">生产者和消费者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#案例内容分析："><span class="toc-number">1.1.</span> <span class="toc-text">案例内容分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#细节解读"><span class="toc-number">1.2.</span> <span class="toc-text">细节解读</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>多线程中的生产者和消费者案例，非常具有研究性，也值得考究。这就好比理科生解高数一样，越推理越有激情，而无法自拔。下面介绍一下比较易懂的一个生产者和消费者案例：写一个固定容量同步容器，拥有put和get方法，能够支持3个生产者线程以及10个消费者线程的阻塞调用。</p>
+<h2 id="生产者和消费者"><a href="#生产者和消费者" class="headerlink" title="生产者和消费者"></a>生产者和消费者</h2><h3 id="案例内容分析："><a href="#案例内容分析：" class="headerlink" title="案例内容分析："></a>案例内容分析：</h3><ul>
+<li><p>需要一个同步容器，可以往里添加元素，也可以往外拿元素；<br><strong>解读1：</strong>需要一个容器，我们只对其进行添加和删除操作，从所学知识list和Map中，我们选择了LinckedList,因为LinckedList底层采用是双链表结构，而链表的结构相对ArraryList就是增删效率高，ArraryList由于底层使用的是数组，可以通过角标进行查询，所以选择了LinckedList。而且LinckedList在删除时会返回锁删除的元素值。<br><strong>解读2：</strong>容器是同步的，所以在增删的过程中，是不能被打扰的，即在增的时候，别人不能删和增。所以，这两个方法都应该上锁，且锁对象是这个容器。所有，我们到这里，大致可以模拟出这个容器的框架了：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-6117d277dba7378b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p>
+</li>
+<li><p>能够支持3个生产者线程以及10个消费者线程的阻塞调用<br><strong>解读：</strong>创建三个线程，去调用生产方法（put方法）；创建10个线程，去掉用消费方法（get方法）。用上for循环即可。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-6efb66c08d53fd73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p>
+</li>
+</ul>
+<h3 id="细节解读"><a href="#细节解读" class="headerlink" title="细节解读"></a>细节解读</h3><p><code>1）for(int i=0;i&lt;10;i++){new Thread(new Runnable(){...}）.start（）}</code></p>
+<blockquote>
+<p>创建了十个线程用来执行new Runnable()实例的run方法，因为循环了10次，所以每个new Runnable()实例是不一样的。10个线程执行run()方法在不考虑run()里面的代码情况下，是互不影响的，因为有每个线程对应一个新的new Runnable()实例。所以，可能线程1在执行run方法的时候，线程2也在执行run方法。</p>
+</blockquote>
+<p><code>2）sync.put(manTou);</code></p>
+<blockquote>
+<p>不管是生产者还是消费者，线程的run（）方法里，都需要的是同一个锁对象，这时候问题就来了，13个线程开始出现了关联。即使两个线程同时执行了run()但是没有锁，也无法继续往下。线程1执行完了，释放了锁，线程2才能获得锁执行run()方法里面的代码。</p>
+</blockquote>
+<p><code>3)...run() {for(...){sync.put(manTou);}}</code>        `</p>
+<blockquote>
+<p>run()内面的for是可以抽象理解为是能够被其他线程“打断”的，这里的打断只得是该线程循环一次后，执行完了一次sync.put(manTou);}，释放了锁，这时锁被第二个线程拿到了，那么再进行第二次循环时，该线程只能等到另外的线程释放锁了再执行。</p>
+</blockquote>
+<p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   
-    <a href="/2017/07/23/ThreadNote/" title="多线程（基础）" itemprop="url">
-  
-    <h1 itemprop="name">多线程（基础）</h1>
-    
-     
-       <p itemprop="description" >多线程（英语：multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理（Chip-level mult</p>
-      
-    
-    <time datetime="2017-07-23T15:52:20.000Z" itemprop="datePublished">2017-07-23</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/07/23/FunctionChange/" title="方法“重写”和“重载”" itemprop="url">
-  
-    <h1 itemprop="name">方法“重写”和“重载”</h1>
-    
-     
-       <p itemprop="description" >Java中，继承和多态都是面向对象程序设计的特点。使用继承可以在一个父类的基础上再创建一个子类，这个子类不但拥有父类已有的属性和方法，还可以创建属于自己的属性和方法。由于子类和父类之间的关系，从而引出了方法重写和方法重载的问题。方法重写及方法重载在继承和多态性方面的应用中会存在很</p>
-      
-    
-    <time datetime="2017-07-23T11:08:20.000Z" itemprop="datePublished">2017-07-23</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/07/22/EndLoop/" title="continue/break/return" itemprop="url">
-  
-    <h1 itemprop="name">continue/break/return</h1>
-    
-     
-       <p itemprop="description" >Java中，这三个关键字都具备着特殊的含义，都拥有着能结束或停止循环的作用，下面对这三个关键字的作用范围以及使用方式做明确讲解，总的来说范围大小是return&amp;gt;break&amp;gt;continue。这三者的考量在某些笔试题目中也经常出现，所以需要引起重视，下面开始对三者进行讲</p>
-      
-    
-    <time datetime="2017-07-22T10:55:47.000Z" itemprop="datePublished">2017-07-22</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/07/21/SpringMvcAnotation/" title="SpringMVC常用注解" itemprop="url">
-  
-    <h1 itemprop="name">SpringMVC常用注解</h1>
-    
-     
-       <p itemprop="description" >SpringMVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建 Web 应用程序的全功能MVC模块。使用Spring可插入的MVC架构，从而在使用Spring进行WEB开发时，可以选择使用Spring的S</p>
-      
-    
-    <time datetime="2017-07-21T08:09:10.000Z" itemprop="datePublished">2017-07-21</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/07/21/SortOrder/" title="Java之排序方法" itemprop="url">
-  
-    <h1 itemprop="name">Java之排序方法</h1>
-    
-     
-       <p itemprop="description" >Java中常用的最基本的几种排序方式代码还是要记住的，代码内容都不是很多，但是代码所表达的意义都非常经典，也是各大考官或笔试常见问题点，所以有必要做个了结。关于简单的流程控制语句if/else if/switch/while/do while/for等等，这类基本的循环语句在此就</p>
-      
-    
-    <time datetime="2017-07-21T07:41:02.000Z" itemprop="datePublished">2017-07-21</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/07/20/DesignPatterns/" title="Java之设计模式" itemprop="url">
-  
-    <h1 itemprop="name">Java之设计模式</h1>
-    
-     
-       <p itemprop="description" >Java中的设计模式有很多种，初级接触的到的有以下几种：单例模式、工厂模式、适配器模式和装饰模式等。下面主要对以上四种模式进行简单讲解：</p>
-      
-    
-    <time datetime="2017-07-20T11:28:36.000Z" itemprop="datePublished">2017-07-20</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/07/20/JavaDay02/" title="Java基本语法" itemprop="url">
-  
-    <h1 itemprop="name">Java基本语法</h1>
-    
-     
-       <p itemprop="description" >Java语法和C++语法相同之处很多，所以学习一门语言再跳另一门，还是会有很大帮助的。本章主要介绍java的基本语法和数据类型，章节重点主要是数据类型和运算符的掌握。面试和笔试的主要考察点一个是运算符的优先级别表，一个是基本数据类型的强转两个方面，所以请读者面试前重点做准备。</p>
-      
-    
-    <time datetime="2017-07-20T08:04:36.000Z" itemprop="datePublished">2017-07-20</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/07/19/JavaDay01/" title="Java简介" itemprop="url">
-  
-    <h1 itemprop="name">Java简介</h1>
-    
-     
-       <p itemprop="description" >Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程.</p>
-      
-    
-    <time datetime="2017-07-19T11:28:36.000Z" itemprop="datePublished">2017-07-19</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/06/21/Servlet/" title="Servlet" itemprop="url">
-  
-    <h1 itemprop="name">Servlet</h1>
-    
-     
-       <p itemprop="description" >Servlet是Java Servlet的简称，称为小服务程序或服务连接器，用Java编写的服务器端程序，主要功能在于交互式地浏览和修改数据，生成动态Web内容。下面主要研究Servlet的“单实例，多线程”问题，从最底层了解Servlet。</p>
-      
-    
-    <time datetime="2017-06-21T08:06:06.000Z" itemprop="datePublished">2017-06-21</time>
-  </a>
-</section>
+	</div>
+		<footer class="article-footer clearfix">
 
 
-  <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-  </nav>
+
+
+<div class="article-share" id="share">
+
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/11/20/ProducerAndConsumer/" data-title="生产者和消费者案例剖析 | BiG哥|博客" data-tsina="" class="share clearfix">
+  </div>
 
 </div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/11/23/Json/" title="Json对象">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Json对象</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/11/19/Daemon/"  title="守护线程（Daemon）">
+ <strong>NEXT:</strong><br/> 
+ <span>守护线程（Daemon）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者和消费者"><span class="toc-number">1.</span> <span class="toc-text">生产者和消费者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#案例内容分析："><span class="toc-number">1.1.</span> <span class="toc-text">案例内容分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#细节解读"><span class="toc-number">1.2.</span> <span class="toc-text">细节解读</span></a></li></ol></li></ol>
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -415,6 +358,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -434,6 +379,66 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
 
 
 
@@ -447,4 +452,4 @@ $(document).ready(function(){
 
 
   </body>
- </html>
+</html>

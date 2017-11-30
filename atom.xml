@@ -71,6 +71,28 @@
   </entry>
   
   <entry>
+    <title>生产者和消费者案例剖析</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/20/ProducerAndConsumer/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/20/ProducerAndConsumer/</id>
+    <published>2017-11-20T11:03:35.000Z</published>
+    <updated>2017-11-30T09:05:21.222Z</updated>
+    
+    <content type="html"><![CDATA[<p>多线程中的生产者和消费者案例，非常具有研究性，也值得考究。这就好比理科生解高数一样，越推理越有激情，而无法自拔。下面介绍一下比较易懂的一个生产者和消费者案例：写一个固定容量同步容器，拥有put和get方法，能够支持3个生产者线程以及10个消费者线程的阻塞调用。</p><h2 id="生产者和消费者"><a href="#生产者和消费者" class="headerlink" title="生产者和消费者"></a>生产者和消费者</h2><h3 id="案例内容分析："><a href="#案例内容分析：" class="headerlink" title="案例内容分析："></a>案例内容分析：</h3><ul><li><p>需要一个同步容器，可以往里添加元素，也可以往外拿元素；<br><strong>解读1：</strong>需要一个容器，我们只对其进行添加和删除操作，从所学知识list和Map中，我们选择了LinckedList,因为LinckedList底层采用是双链表结构，而链表的结构相对ArraryList就是增删效率高，ArraryList由于底层使用的是数组，可以通过角标进行查询，所以选择了LinckedList。而且LinckedList在删除时会返回锁删除的元素值。<br><strong>解读2：</strong>容器是同步的，所以在增删的过程中，是不能被打扰的，即在增的时候，别人不能删和增。所以，这两个方法都应该上锁，且锁对象是这个容器。所有，我们到这里，大致可以模拟出这个容器的框架了：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-6117d277dba7378b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p></li><li><p>能够支持3个生产者线程以及10个消费者线程的阻塞调用<br><strong>解读：</strong>创建三个线程，去调用生产方法（put方法）；创建10个线程，去掉用消费方法（get方法）。用上for循环即可。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-6efb66c08d53fd73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p></li></ul><h3 id="细节解读"><a href="#细节解读" class="headerlink" title="细节解读"></a>细节解读</h3><p><code>1）for(int i=0;i&lt;10;i++){new Thread(new Runnable(){...}）.start（）}</code></p><blockquote><p>创建了十个线程用来执行new Runnable()实例的run方法，因为循环了10次，所以每个new Runnable()实例是不一样的。10个线程执行run()方法在不考虑run()里面的代码情况下，是互不影响的，因为有每个线程对应一个新的new Runnable()实例。所以，可能线程1在执行run方法的时候，线程2也在执行run方法。</p></blockquote><p><code>2）sync.put(manTou);</code></p><blockquote><p>不管是生产者还是消费者，线程的run（）方法里，都需要的是同一个锁对象，这时候问题就来了，13个线程开始出现了关联。即使两个线程同时执行了run()但是没有锁，也无法继续往下。线程1执行完了，释放了锁，线程2才能获得锁执行run()方法里面的代码。</p></blockquote><p><code>3)...run() {for(...){sync.put(manTou);}}</code>        `</p><blockquote><p>run()内面的for是可以抽象理解为是能够被其他线程“打断”的，这里的打断只得是该线程循环一次后，执行完了一次sync.put(manTou);}，释放了锁，这时锁被第二个线程拿到了，那么再进行第二次循环时，该线程只能等到另外的线程释放锁了再执行。</p></blockquote><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;多线程中的生产者和消费者案例，非常具有研究性，也值得考究。这就好比理科生解高数一样，越推理越有激情，而无法自拔。下面介绍一下比较易懂的一个生产者和消费者案例：写一个固定容量同步容器，拥有put和get方法，能够支持3个生产者线程以及10个消费者线程的阻塞调用。&lt;/p&gt;
+&lt;h
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>守护线程（Daemon）</title>
     <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/19/Daemon/"/>
     <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/19/Daemon/</id>
@@ -355,24 +377,6 @@
     <summary type="html">
     
       &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/servlet/477555?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Servlet&lt;/a&gt;是Java Servlet的简称，称为小服务程序或服务连接器，用Java编写的服务器端程序，主要功能在于交互式地浏览和修改数据，生成动态Web内容。下面主要研究Servlet的“单实例，多线程”问题，从最底层了解Servlet。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>CSS</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/06/20/JavaWebDay02/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/06/20/JavaWebDay02/</id>
-    <published>2017-06-20T08:06:06.000Z</published>
-    <updated>2017-11-20T08:44:18.622Z</updated>
-    
-    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/CSS/5457?fr=aladdin" target="_blank" rel="external">CSS</a>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现<a href="https://baike.baidu.com/item/HTML" target="_blank" rel="external">HTML</a>（标准通用标记语言的一个应用）或<a href="https://baike.baidu.com/item/%E5%8F%AF%E6%89%A9%E5%B1%95%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80/2885849?fromtitle=xml&amp;fromid=86251" target="_blank" rel="external">XML</a>（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。<br><a id="more"></a></p><h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><ul><li><p>元素选择器：html标签名{css属性}</p><blockquote><p><code>案例：a{color:red;text-decoration:none}给a标签设置样式</code></p></blockquote></li><li><p>id选择器：#id值{css属性}</p><blockquote><p><code>案例：#div{color:red;text-decoration:none}给id值为div的标签设置样式</code></p></blockquote></li><li><p>class选择器：.class值{css属性}</p><blockquote><p><code>案例：.style{color:red;text-decoration:none}给class值为style的标签设置样式</code></p></blockquote></li></ul><h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><p>语法：html标签名[属性名=’属性值’]{css属性}</p><blockquote><p><code>案例：input[type=&#39;text&#39;]{color:red;text-decoration:none}给input标签中type=&quot;text&quot;的元素设置样式</code></p></blockquote><h3 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h3><blockquote><p>案例：<br><code>a:link{css属性}---设置a标签静止状态属性</code><br><code>a:hover{css属性}---设置a标签悬浮状态属性</code><br><code>a:active{css属性}---设置a标签触发状态属性</code><br><code>a:visited{css属性}---设置a标签完成状态属性</code></p></blockquote><h3 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h3><blockquote><p><code>案例：#div1 .style span{color:red}。从上往下，从外往内，从大往小</code></p></blockquote><h2 id="CSS属性"><a href="#CSS属性" class="headerlink" title="CSS属性"></a>CSS属性</h2><h3 id="文字属性"><a href="#文字属性" class="headerlink" title="文字属性"></a>文字属性</h3><blockquote><p><code>font-size:文字大小</code><br><code>font-family：文字类型</code></p></blockquote><h3 id="文本属性"><a href="#文本属性" class="headerlink" title="文本属性"></a>文本属性</h3><blockquote><p><code>color:颜色</code><br><code>text-decoration：下划线</code><br><code>text-align：对齐方式</code></p></blockquote><h3 id="背景属性"><a href="#背景属性" class="headerlink" title="背景属性"></a>背景属性</h3><blockquote><p><code>background-color:背景颜色</code><br><code>background-image:背景图片</code></p></blockquote><h3 id="尺寸属性"><a href="#尺寸属性" class="headerlink" title="尺寸属性"></a>尺寸属性</h3><blockquote><p><code>width：宽度；height:高度</code></p></blockquote><h3 id="显示属性"><a href="#显示属性" class="headerlink" title="显示属性"></a>显示属性</h3><blockquote><p><code>diaplay:none,隐藏;block,块级显示;inline,行级显示</code></p></blockquote><h3 id="浮动属性"><a href="#浮动属性" class="headerlink" title="浮动属性"></a>浮动属性</h3><blockquote><p><code>float：left，左浮；rigth，右浮</code></p></blockquote><h2 id="CSS文件引入"><a href="#CSS文件引入" class="headerlink" title="CSS文件引入"></a>CSS文件引入</h2><ul><li><p>内部嵌套</p><blockquote><p><code>&lt;div style=&quot;color:red;text-align:left&quot;&gt;&lt;/div&gt;</code></p></blockquote></li><li><p>内部样式</p><blockquote><p>在head标签中使用style标签进行css引入<br><code>案例：&lt;style type=&quot;text/css&quot;&gt;样式代码&lt;/style&gt;</code></p></blockquote></li><li><p>外部样式</p><blockquote><p>在head标签中使用link标签进行css文件引入<br><code>案例：&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;文件路径&quot;&gt;&lt;/link&gt;</code></p></blockquote></li></ul><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/CSS/5457?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSS&lt;/a&gt;层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现&lt;a href=&quot;https://baike.baidu.com/item/HTML&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HTML&lt;/a&gt;（标准通用标记语言的一个应用）或&lt;a href=&quot;https://baike.baidu.com/item/%E5%8F%AF%E6%89%A9%E5%B1%95%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80/2885849?fromtitle=xml&amp;amp;fromid=86251&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;XML&lt;/a&gt;（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。&lt;br&gt;
     
     </summary>
     

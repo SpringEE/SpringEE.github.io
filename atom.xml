@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/SpringEE/SpringEE.github.io/"/>
-  <updated>2017-12-02T10:21:57.416Z</updated>
+  <updated>2017-12-02T10:24:19.166Z</updated>
   <id>https://github.com/SpringEE/SpringEE.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>线程“Task”的创建</title>
+    <title>“返回值”线程</title>
     <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/30/CreateTask/"/>
     <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/30/CreateTask/</id>
     <published>2017-11-30T09:43:11.000Z</published>
-    <updated>2017-12-02T10:21:57.416Z</updated>
+    <updated>2017-12-02T10:24:19.166Z</updated>
     
     <content type="html"><![CDATA[<p>   线程任务有以下几种情况，一种是可以是实现了Runnable接口，重写了run方法的<strong>“无返回值”</strong>的任务；一种是可以使实现了Callable接口，可以<strong>“有返回值”</strong>的任务。下面主要针对有返回值的这种情况做案例说明。<br><a id="more"></a></p><h2 id="Callable接口"><a href="#Callable接口" class="headerlink" title="Callable接口"></a>Callable<v>接口</v></h2><p>该接口声明了一个名称为call()的方法，同时这个方法可以有返回值V，也可以抛出异常。使用Callable+Future获取执行结果，案例抽取：<br>（1）编写Callable实现类<br><code>1:public class CallableDemo implements Callable&lt;Integer&gt;</code><br><code>2:...public Integer call() throws Exception ...</code><br>（2）编写测试类CallableTest<br><code>3:public class CallableTest</code><br><code>4:ExecutorService es = Executors.newSingleThreadExecutor();  //创建线程池</code><br><code>5:CallableDemo calTask=new CallableDemo();//创建Callable对象任务</code><br><code>6:Future&lt;Integer&gt; future =es.submit(calTask);//提交任务并获取执行结果</code><br><code>7:future.get()//输出返回来的值</code><br>注意：excute方法不能执行Callable任务，submit支持Callable任务和Runnable任务。</p><h2 id="Future接口"><a href="#Future接口" class="headerlink" title="Future接口"></a>Future<v>接口</v></h2><p>Future<v>接口是用来获取异步计算结果的，说白了就是对具体的Runnable或者Callable对象任务执行的结果进行获取(get()),取消(cancel()),判断是否完成等操作。<br><code>V get() ：获取异步执行的结果，如果没有结果可用，此方法会阻塞直到异步计算完成。</code></v></p><h2 id="FutureTask类"><a href="#FutureTask类" class="headerlink" title="FutureTask类"></a>FutureTask类</h2><p>使用Callable+FutureTask获取执行结果，案例抽取：<br><code>1:public class CallableDemo implements Callable&lt;Integer&gt;</code><br><code>2:...public Integer call() throws Exception ...</code><br>（2）编写测试类CallableTest<br><code>3:public class CallableTest</code><br><code>4:ExecutorService es = Executors.newSingleThreadExecutor();  //创建线程池</code><br><code>5:CallableDemo T=new CallableDemo();//创建Callable对象任务</code><br><code>6:FutureTask&lt;Integer&gt; futureTask=new FutureTask&lt;&gt;(T);//创建FutureTask</code><br><code>7:FutureTask&lt;Integer&gt; futureTask=new FutureTask&lt;&gt;(T);//提交任务并获取执行结果</code><br><code>8:future.get()//输出返回来的值</code><br>注意：线程池用完后，一定要关闭，es.shutdown();  </p><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
     

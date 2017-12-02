@@ -71,6 +71,24 @@
   </entry>
   
   <entry>
+    <title>CountDownLatch浅析</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/22/CountDownLatch/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/22/CountDownLatch/</id>
+    <published>2017-11-22T15:52:20.000Z</published>
+    <updated>2017-12-02T05:50:45.366Z</updated>
+    
+    <content type="html"><![CDATA[<p>   一个案例，轻松掌握CountDownLatch（门闩）用法。CountDownLatch是一个同步辅助类，是通过“共享锁”实现的。在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。下面只需通过下面这个案例，就可以基本了解CountDownLatch的用途和用法了。<br><a id="more"></a></p><h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p><img src="http://upload-images.jianshu.io/upload_images/9194313-ca5391daa2300c55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"><br>案例中使用到了CountDownLatch的三个常用方法，从案例中抽取CountDownLatch的三个常用方法进行解读。</p><h3 id="new-CountDownLatch-int-count"><a href="#new-CountDownLatch-int-count" class="headerlink" title="new CountDownLatch(int count)"></a>new CountDownLatch(int count)</h3><p><code>CountDownLatch menShuan = new CountDownLatch(5);</code><br>创建一个门闩，并初始化门闩计数器的数字为5,在CountDownLatch中，计数器是不可以被重置的，计数器的作用就是当count减到0时，唤醒使用menShuan.await（）正在等待中的线程。</p><h3 id="countDown"><a href="#countDown" class="headerlink" title="countDown()"></a>countDown()</h3><p><code>menShuan.countDown()：调用一次countDown()，门闩计数器减1</code><br>递减锁存器的计数，如果计数到达零，则释放所有等待的线程。</p><h3 id="await"><a href="#await" class="headerlink" title="await()"></a>await()</h3><p><code>menShuan.await()：主线程等待门闩计数器减至0时，获取共享锁</code><br>使当前线程在锁存器倒计数至零之前一直等待，除非线程被中断或超出了指定的等待时间。</p><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   一个案例，轻松掌握CountDownLatch（门闩）用法。CountDownLatch是一个同步辅助类，是通过“共享锁”实现的。在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。下面只需通过下面这个案例，就可以基本了解CountDownLatch的用途和用法了。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>生产者和消费者</title>
     <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/20/ProducerAndConsumer/"/>
     <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/20/ProducerAndConsumer/</id>
@@ -359,24 +377,6 @@
     <summary type="html">
     
       &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/java/85979?fr=aladdin&amp;amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;amp;fromid=4148931&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java&lt;/a&gt;是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程.&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Servlet</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/06/21/Servlet/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/06/21/Servlet/</id>
-    <published>2017-06-21T08:06:06.000Z</published>
-    <updated>2017-11-26T10:53:30.156Z</updated>
-    
-    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/servlet/477555?fr=aladdin" target="_blank" rel="external">Servlet</a>是Java Servlet的简称，称为小服务程序或服务连接器，用Java编写的服务器端程序，主要功能在于交互式地浏览和修改数据，生成动态Web内容。下面主要研究Servlet的“单实例，多线程”问题，从最底层了解Servlet。<br><a id="more"></a></p><h2 id="Servlet生命周期"><a href="#Servlet生命周期" class="headerlink" title="Servlet生命周期"></a>Servlet生命周期</h2><p>Servlet的生命周期主要分为四个阶段：<strong>实例化、初始化、服务和销毁</strong>，分别对应四个函数，其中“实例化”和“初始化”是在客户端第一次请求到来时执行的，且“实例化”和“初始化”只进行一次，“实例化”后的Servlet在web服务器中只维护一份，当再次请求Servlet时，不会再“实例化”和“初始化”，多次请求只会重复执行在servlet的service()服务方法。</p><ul><li><strong>Servlet单实例：</strong>Servlet实例只会在web服务器中维护一份，第一次Servlet请求到来时创建；</li><li><strong>Servlet多线程：</strong>多次请求Servlet时，Servlet容器会针对每次请求，通过调度线程(Dispatchaer Thread) 调度它管理下线程池中等待执行的线程（Worker Thread）给请求者，并重新创建request和response对象，线程执行Servlet的service方法后，请求结束，放回线程池，等待被再次调用，这样有效的避免了request和response域线程安全的问题。</li></ul><h2 id="Servlet知识点"><a href="#Servlet知识点" class="headerlink" title="Servlet知识点"></a>Servlet知识点</h2><h3 id="Servlet的创建"><a href="#Servlet的创建" class="headerlink" title="Servlet的创建"></a>Servlet的创建</h3><p>（1）手动编写类继承HttpServlet，重写doGet或doPost方法<br><code>案例：public class DemoServlet extends HttpServlet{}</code><br>（2）eclipse或myeclipse右键创建</p><h3 id="获取当前Servlet配置信息"><a href="#获取当前Servlet配置信息" class="headerlink" title="获取当前Servlet配置信息"></a>获取当前Servlet配置信息</h3><p><code>获取配置信息对象：this.getServletConfig()</code><br><code>获取配置初始化参数：this.getServletConfig().getInitParameter(&quot;encoding&quot;)</code></p><h3 id="获取全局ServletContext对象"><a href="#获取全局ServletContext对象" class="headerlink" title="获取全局ServletContext对象"></a>获取全局ServletContext对象</h3><p><code>获取全局应用对象(单实例)：this.getServletContext()</code><br><code>获取全局配置信息：this.getServletContext().getInitParameter(&quot;encoding&quot;)</code><br><code>获取应用中文件的绝对路径：this.getServletContext().getRealPath(&quot;应用中文件路径&quot;)</code><br><code>请求转发：this.getServletContext().getRequestDispatcher(&quot;path&quot;).forward(request,response)</code></p><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/servlet/477555?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Servlet&lt;/a&gt;是Java Servlet的简称，称为小服务程序或服务连接器，用Java编写的服务器端程序，主要功能在于交互式地浏览和修改数据，生成动态Web内容。下面主要研究Servlet的“单实例，多线程”问题，从最底层了解Servlet。&lt;br&gt;
     
     </summary>
     

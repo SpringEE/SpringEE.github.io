@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>BiG哥|博客</title>
+    <title>线程“Task”的创建 | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="Alfred的个人博客">
+    <meta name="description" content="线程任务有以下几种情况，一种是可以是实现了Runnable接口，重写了run方法的“无返回值”的任务；一种是可以使实现了Callable接口，可以“有返回值”的任务。下面主要针对有返回值的这种情况做案例说明。">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="BiG哥|博客" />
+    <meta name="twitter:title" content="线程“Task”的创建 | BiG哥|博客" />
       
     
     
@@ -124,161 +124,73 @@
 
     </header>
     <div id="container">
-      <div id="main">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/30/CreateTask/" title="线程“Task”的创建" itemprop="url">
-  
-    <h1 itemprop="name">线程“Task”的创建</h1>
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-       <p itemprop="description" >线程任务有以下几种情况，一种是可以是实现了Runnable接口，重写了run方法的“无返回值”的任务；一种是可以使实现了Callable接口，可以“有返回值”的任务。下面主要针对有返回值的这种情况做案例说明。</p>
-      
+      <a href="/2017/11/30/CreateTask/" title="线程“Task”的创建" itemprop="url">线程“Task”的创建</a>
+  </h1>
+  <p class="article-author">By
     
+      <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
+    </p>
+  <p class="article-time">
     <time datetime="2017-11-30T09:43:11.000Z" itemprop="datePublished">2017-11-30</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/29/ThreadPool/" title="浅谈常用“线程池”" itemprop="url">
-  
-    <h1 itemprop="name">浅谈常用“线程池”</h1>
+    更新日期:<time datetime="2017-12-02T10:21:57.416Z" itemprop="dateModified">2017-12-02</time>
     
-     
-       <p itemprop="description" >线程池是一种多线程处理形式，处理过程中将任务添加到队列，然后在创建线程后自动启动这些任务。线程池线程都是后台线程。每个线程都使用默认的堆栈大小，以默认的优先级运行，并处于多线程单元中。如果某个线程在托管代码中空闲（如正在等待某个事件）,则线程池将插入另一个辅助线程来使所有处理器保</p>
-      
-    
-    <time datetime="2017-11-29T08:12:35.000Z" itemprop="datePublished">2017-11-29</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Callable接口"><span class="toc-number">1.</span> <span class="toc-text">Callable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Future接口"><span class="toc-number">2.</span> <span class="toc-text">Future接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FutureTask类"><span class="toc-number">3.</span> <span class="toc-text">FutureTask类</span></a></li></ol>
+		</div>
+		
+		<p>   线程任务有以下几种情况，一种是可以是实现了Runnable接口，重写了run方法的<strong>“无返回值”</strong>的任务；一种是可以使实现了Callable接口，可以<strong>“有返回值”</strong>的任务。下面主要针对有返回值的这种情况做案例说明。<br><a id="more"></a></p>
+<h2 id="Callable接口"><a href="#Callable接口" class="headerlink" title="Callable接口"></a>Callable<v>接口</v></h2><p>该接口声明了一个名称为call()的方法，同时这个方法可以有返回值V，也可以抛出异常。使用Callable+Future获取执行结果，案例抽取：<br>（1）编写Callable实现类<br><code>1:public class CallableDemo implements Callable&lt;Integer&gt;</code><br><code>2:...public Integer call() throws Exception ...</code><br>（2）编写测试类CallableTest<br><code>3:public class CallableTest</code><br><code>4:ExecutorService es = Executors.newSingleThreadExecutor();  //创建线程池</code><br><code>5:CallableDemo calTask=new CallableDemo();//创建Callable对象任务</code><br><code>6:Future&lt;Integer&gt; future =es.submit(calTask);//提交任务并获取执行结果</code><br><code>7:future.get()//输出返回来的值</code><br>注意：excute方法不能执行Callable任务，submit支持Callable任务和Runnable任务。</p>
+<h2 id="Future接口"><a href="#Future接口" class="headerlink" title="Future接口"></a>Future<v>接口</v></h2><p>Future<v>接口是用来获取异步计算结果的，说白了就是对具体的Runnable或者Callable对象任务执行的结果进行获取(get()),取消(cancel()),判断是否完成等操作。<br><code>V get() ：获取异步执行的结果，如果没有结果可用，此方法会阻塞直到异步计算完成。</code></v></p>
+<h2 id="FutureTask类"><a href="#FutureTask类" class="headerlink" title="FutureTask类"></a>FutureTask类</h2><p>使用Callable+FutureTask获取执行结果，案例抽取：<br><code>1:public class CallableDemo implements Callable&lt;Integer&gt;</code><br><code>2:...public Integer call() throws Exception ...</code><br>（2）编写测试类CallableTest<br><code>3:public class CallableTest</code><br><code>4:ExecutorService es = Executors.newSingleThreadExecutor();  //创建线程池</code><br><code>5:CallableDemo T=new CallableDemo();//创建Callable对象任务</code><br><code>6:FutureTask&lt;Integer&gt; futureTask=new FutureTask&lt;&gt;(T);//创建FutureTask</code><br><code>7:FutureTask&lt;Integer&gt; futureTask=new FutureTask&lt;&gt;(T);//提交任务并获取执行结果</code><br><code>8:future.get()//输出返回来的值</code><br>注意：线程池用完后，一定要关闭，es.shutdown();  </p>
+<p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   
-    <a href="/2017/11/27/ConcurrencyClass/" title="并发集合类" itemprop="url">
-  
-    <h1 itemprop="name">并发集合类</h1>
-    
-     
-       <p itemprop="description" >本文主要针对并发的集合类进行一个简单的内容讲解，让读者能够一目了然，如果需要具体了解底层的原理，可以参看网上一些比较好的解读文章，从底层了解这些支持并发的集合类。在之前学习的集合类中，Vector和HashTable都是线程安全的，下面就开始支持并发的集合类。</p>
-      
-    
-    <time datetime="2017-11-27T15:52:20.000Z" itemprop="datePublished">2017-11-27</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/22/CountDownLatch/" title="CountDownLatch浅析" itemprop="url">
-  
-    <h1 itemprop="name">CountDownLatch浅析</h1>
-    
-     
-       <p itemprop="description" >一个案例，轻松掌握CountDownLatch（门闩）用法。CountDownLatch是一个同步辅助类，是通过“共享锁”实现的。在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。下面只需通过下面这个案例，就可以基本了解CountDownLatch的用途和用法</p>
-      
-    
-    <time datetime="2017-11-22T15:52:20.000Z" itemprop="datePublished">2017-11-22</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/20/ProducerAndConsumer/" title="生产者和消费者" itemprop="url">
-  
-    <h1 itemprop="name">生产者和消费者</h1>
-    
-     
-           <p itemprop="description" >多线程中的生产者和消费者案例，非常具有研究性，也值得考究。这就好比理科生解高数一样，越推理越有激情，而无法自拔。下面介绍一下比较易懂的一个生产者和消费者案例：写一个固定容量同步容器，拥有put和get方法，能够支持3个生产者线程以及10个消费者线程的阻塞调用。
-生产者和消费者案例</p>
-        
-    
-    <time datetime="2017-11-20T11:03:35.000Z" itemprop="datePublished">2017-11-20</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/19/Daemon/" title="守护线程（Daemon）" itemprop="url">
-  
-    <h1 itemprop="name">守护线程（Daemon）</h1>
-    
-     
-           <p itemprop="description" >守护线程(又称后台线程，英文：Daemon)
-是指在程序运行的时候，在后台提供一种通用服务的线程，并且这种线程并不属于程序中不可或缺的部分。因此，当所有非后台线程执行结束后，程序也将终止。同时会杀死所有后台线程，反过来，只要有任何非后台线程还在运行，程序就不会终止。
+	</div>
+		<footer class="article-footer clearfix">
 
 
 
-如果是</p>
-        
-    
-    <time datetime="2017-11-19T11:03:35.000Z" itemprop="datePublished">2017-11-19</time>
-  </a>
-</section>
 
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/18/volatile_synchronized/" title="volatile和synchronized" itemprop="url">
-  
-    <h1 itemprop="name">volatile和synchronized</h1>
-    
-     
-       <p itemprop="description" >多线程中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。</p>
-      
-    
-    <time datetime="2017-11-18T15:52:20.000Z" itemprop="datePublished">2017-11-18</time>
-  </a>
-</section>
+<div class="article-share" id="share">
 
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/18/ReentrantLock/" title="ReentrantLock" itemprop="url">
-  
-    <h1 itemprop="name">ReentrantLock</h1>
-    
-     
-       <p itemprop="description" >ReentrantLock是一个可重入的互斥锁，又被称为“独占锁”。顾名思义，ReentrantLock锁在同一个时间点只能被一个线程锁持有；而可重入的意思是，ReentrantLock锁，可以被单个线程多次获取。ReentrantLock分为“公平锁”和“非公平锁”。它们的区别</p>
-      
-    
-    <time datetime="2017-11-18T15:52:20.000Z" itemprop="datePublished">2017-11-18</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/17/Thread/" title="创建线程的两种方式" itemprop="url">
-  
-    <h1 itemprop="name">创建线程的两种方式</h1>
-    
-     
-       <p itemprop="description" >多线程（英语：multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理（Chip-level mult</p>
-      
-    
-    <time datetime="2017-11-17T15:52:20.000Z" itemprop="datePublished">2017-11-17</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/17/HexoWriteArticle/" title="Hexo写博客（三）" itemprop="url">
-  
-    <h1 itemprop="name">Hexo写博客（三）</h1>
-    
-     
-       <p itemprop="description" >写博客前的准备工作确实很耗费时间，除了搭建整个Hexo博客环境外，还需要了解Markdowm语法以及通过F12调试功能去定位修改主题配置文件，这些工作弄到熟练，对于新手来说至少需要两到3天，所以不要慌，慢慢接受，等熬到今天写博客这一步你就基本胜利了。</p>
-      
-    
-    <time datetime="2017-11-17T02:20:31.000Z" itemprop="datePublished">2017-11-17</time>
-  </a>
-</section>
-
-
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-  </nav>
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/11/30/CreateTask/" data-title="线程“Task”的创建 | BiG哥|博客" data-tsina="" class="share clearfix">
+  </div>
 
 </div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/11/29/ThreadPool/"  title="浅谈常用“线程池”">
+ <strong>NEXT:</strong><br/> 
+ <span>浅谈常用“线程池”
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Callable接口"><span class="toc-number">1.</span> <span class="toc-text">Callable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Future接口"><span class="toc-number">2.</span> <span class="toc-text">Future接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FutureTask类"><span class="toc-number">3.</span> <span class="toc-text">FutureTask类</span></a></li></ol>
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -423,6 +335,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -442,6 +356,66 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
 
 
 
@@ -455,4 +429,4 @@ $(document).ready(function(){
 
 
   </body>
- </html>
+</html>

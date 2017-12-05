@@ -137,7 +137,7 @@
     </p>
   <p class="article-time">
     <time datetime="2017-12-03T11:45:27.000Z" itemprop="datePublished">2017-12-03</time>
-    更新日期:<time datetime="2017-12-05T13:24:56.954Z" itemprop="dateModified">2017-12-05</time>
+    更新日期:<time datetime="2017-12-05T14:44:16.387Z" itemprop="dateModified">2017-12-05</time>
     
   </p>
 </header>
@@ -146,7 +146,7 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot特点"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot环境配置"><span class="toc-number">2.</span> <span class="toc-text">SrpingBoot环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot开发项目"><span class="toc-number">3.</span> <span class="toc-text">SrpingBoot开发项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件application-yml解读"><span class="toc-number">3.1.</span> <span class="toc-text">配置文件application.yml解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用注解"><span class="toc-number">3.2.</span> <span class="toc-text">常用注解</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot特点"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot环境配置"><span class="toc-number">2.</span> <span class="toc-text">SrpingBoot环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot开发项目"><span class="toc-number">3.</span> <span class="toc-text">SrpingBoot开发项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件application-yml解读"><span class="toc-number">3.1.</span> <span class="toc-text">配置文件application.yml解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot中使用JPA"><span class="toc-number">3.2.</span> <span class="toc-text">SpringBoot中使用JPA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用注解"><span class="toc-number">3.3.</span> <span class="toc-text">常用注解</span></a></li></ol></li></ol>
 		</div>
 		
 		<p>  <a href="https://baike.baidu.com/item/Spring%20Boot/20249767?fr=aladdin" target="_blank" rel="external">Spring Boot</a>是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。<br><a id="more"></a></p>
@@ -171,7 +171,7 @@
 <li><p>关于jpa的配置<strong>ddl-auto:</strong>可选值有很多，下面只对经常使用的两个做简单介绍:<br>(1)create：每次启动服务，都重新建表，原表数据全部删除；<br>(2)update：第一次启动，同样会创建表结构，如果表中有数据，数据保留；<br>(3)show-sql:设置为true。</p>
 </li>
 </ul>
-<p>###　SpringBoot中使用JPA<br>Spring Data JPA 框架，主要针对的就是 Spring 唯一没有简化到的业务逻辑代码，至此，开发者连仅剩的实现持久层业务逻辑的工作都省了，唯一要做的，就只是声明持久层的接口，其他都交给 Spring Data JPA 来帮你完成！可以简单理解为，JPA就是用来简化dao层的，JPA对增删改查操作的方法都进行了封装，开发者只需继承JpaRespository接口便可调用内置的一些方法。<br><code>public interface MyRepository extends JpaRepository&lt;Girl,Integer&gt;</code><br>说明：<strong>JpaRepository<girl,integer></girl,integer></strong>，默认通过主键操作Girl类所映射的表，当然也可以自定义方法对其进行操作。<br>（1）使用JPA配置JavaBean映射表的字段：<br> 新建javabean,类上加注解@Entity，将数据库表的字段与javabean进行映射，注意，必须在类中声明一个无参的构造函数，否者系统会报错，如果有主键，在逐渐属性上通过注解进行定义，@Id和@GeneratedValue<br>（2）<strong>“常用方法”</strong></p>
+<h3 id="SpringBoot中使用JPA"><a href="#SpringBoot中使用JPA" class="headerlink" title="SpringBoot中使用JPA"></a>SpringBoot中使用JPA</h3><p>Spring Data JPA 框架，主要针对的就是 Spring 唯一没有简化到的业务逻辑代码，至此，开发者连仅剩的实现持久层业务逻辑的工作都省了，唯一要做的，就只是声明持久层的接口，其他都交给 Spring Data JPA 来帮你完成！可以简单理解为，JPA就是用来简化dao层的，JPA对增删改查操作的方法都进行了封装，开发者只需继承JpaRespository接口便可调用内置的一些方法。<br><code>public interface MyRepository extends JpaRepository&lt;Girl,Integer&gt;</code><br>说明：<strong>JpaRepository<girl,integer></girl,integer></strong>，默认通过主键操作Girl类所映射的表，当然也可以自定义方法对其进行操作。<br>（1）使用JPA配置JavaBean映射表的字段：<br> 新建javabean,类上加注解@Entity，将数据库表的字段与javabean进行映射，注意，必须在类中声明一个无参的构造函数，否者系统会报错，如果有主键，在逐渐属性上通过注解进行定义，@Id和@GeneratedValue<br>（2）<strong>“常用方法”</strong></p>
 <ul>
 <li>查所有，findAll()返回List集合。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-c369fec2d21b23d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br><code>添加：girlRepository.save(girl)</code><br><code>查一个：girlRepository.findOne(id)</code><br><code>更新：girlRepository.save(girl)</code><br><code>删除：girlRepository.delete(Integer age)</code></li>
 <li>自定查询方法：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-0c1bbe8ec6093d83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br><img src="http://upload-images.jianshu.io/upload_images/9194313-c7efbda75074bdca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></li>
@@ -218,7 +218,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot特点"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot环境配置"><span class="toc-number">2.</span> <span class="toc-text">SrpingBoot环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot开发项目"><span class="toc-number">3.</span> <span class="toc-text">SrpingBoot开发项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件application-yml解读"><span class="toc-number">3.1.</span> <span class="toc-text">配置文件application.yml解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用注解"><span class="toc-number">3.2.</span> <span class="toc-text">常用注解</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot特点"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot环境配置"><span class="toc-number">2.</span> <span class="toc-text">SrpingBoot环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot开发项目"><span class="toc-number">3.</span> <span class="toc-text">SrpingBoot开发项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件application-yml解读"><span class="toc-number">3.1.</span> <span class="toc-text">配置文件application.yml解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot中使用JPA"><span class="toc-number">3.2.</span> <span class="toc-text">SpringBoot中使用JPA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用注解"><span class="toc-number">3.3.</span> <span class="toc-text">常用注解</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

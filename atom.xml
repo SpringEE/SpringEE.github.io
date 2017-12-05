@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/SpringEE/SpringEE.github.io/"/>
-  <updated>2017-12-02T10:24:19.166Z</updated>
+  <updated>2017-12-05T13:24:56.954Z</updated>
   <id>https://github.com/SpringEE/SpringEE.github.io/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot初级</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/12/03/SpringBoot/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/12/03/SpringBoot/</id>
+    <published>2017-12-03T11:45:27.000Z</published>
+    <updated>2017-12-05T13:24:56.954Z</updated>
+    
+    <content type="html"><![CDATA[<p>  <a href="https://baike.baidu.com/item/Spring%20Boot/20249767?fr=aladdin" target="_blank" rel="external">Spring Boot</a>是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。<br><a id="more"></a></p><h2 id="SpringBoot特点"><a href="#SpringBoot特点" class="headerlink" title="SpringBoot特点"></a>SpringBoot特点</h2><ul><li>创建独立的Spring应用程序</li><li>嵌入的Tomcat，无需部署WAR文件</li><li>简化Maven配置</li><li>自动配置Spring</li><li>提供生产就绪型功能，如指标，健康检查和外部配置</li><li>绝对没有代码生成和对XML没有要求配置</li></ul><h2 id="SrpingBoot环境配置"><a href="#SrpingBoot环境配置" class="headerlink" title="SrpingBoot环境配置"></a>SrpingBoot环境配置</h2><p>关于SpringBoot环境配置的文章很多，再此就不再做讲解，可以参看以下文章链接：<br><code>https://www.cnblogs.com/woshimrf/p/5602051.html</code></p><h2 id="SrpingBoot开发项目"><a href="#SrpingBoot开发项目" class="headerlink" title="SrpingBoot开发项目"></a>SrpingBoot开发项目</h2><h3 id="配置文件application-yml解读"><a href="#配置文件application-yml解读" class="headerlink" title="配置文件application.yml解读"></a>配置文件application.yml解读</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-4fe581f75d76b320.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p><ul><li><strong>分环境配置：</strong>如果项目的配置环境需要分“开发环境”和“生产环境”两种，那么就要分别进行配置。在application.yml所在目录下，新建开发环境（application-dev.yml）和生产环境（application-prod.yml）两种配置文件，然后在application.yml进行引用。如下：<br><code>active:dev---表示启用dev开发者模式下的配置文件</code></li></ul><ul><li><p><strong>@Value注解：</strong>用来获取配置文件中指定属性名的值，并将属性赋予到变量中来。<br><code>案例：@Value（&quot;${name}&quot;）private String name;</code></p></li><li><p><strong>配置映射JavaBean：</strong>将配置文件中属性封装到JavaBean属性中,使用@ConfigurationProperties进行配置。<br><code>@ConfigurationProperties(prefix=&quot;girl&quot;)加载类上，自动对齐属性进行映射</code><br><em>注意：</em>此处映射完成，只是将配置文件girl开头的属性映射到了JavaBean，如果通过@Autowired使用此JavaBean需进行@Component注解声明。</p></li><li><p>关于jpa的配置<strong>ddl-auto:</strong>可选值有很多，下面只对经常使用的两个做简单介绍:<br>(1)create：每次启动服务，都重新建表，原表数据全部删除；<br>(2)update：第一次启动，同样会创建表结构，如果表中有数据，数据保留；<br>(3)show-sql:设置为true。</p></li></ul><p>###　SpringBoot中使用JPA<br>Spring Data JPA 框架，主要针对的就是 Spring 唯一没有简化到的业务逻辑代码，至此，开发者连仅剩的实现持久层业务逻辑的工作都省了，唯一要做的，就只是声明持久层的接口，其他都交给 Spring Data JPA 来帮你完成！可以简单理解为，JPA就是用来简化dao层的，JPA对增删改查操作的方法都进行了封装，开发者只需继承JpaRespository接口便可调用内置的一些方法。<br><code>public interface MyRepository extends JpaRepository&lt;Girl,Integer&gt;</code><br>说明：<strong>JpaRepository<girl,integer></girl,integer></strong>，默认通过主键操作Girl类所映射的表，当然也可以自定义方法对其进行操作。<br>（1）使用JPA配置JavaBean映射表的字段：<br> 新建javabean,类上加注解@Entity，将数据库表的字段与javabean进行映射，注意，必须在类中声明一个无参的构造函数，否者系统会报错，如果有主键，在逐渐属性上通过注解进行定义，@Id和@GeneratedValue<br>（2）<strong>“常用方法”</strong></p><ul><li>查所有，findAll()返回List集合。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-c369fec2d21b23d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br><code>添加：girlRepository.save(girl)</code><br><code>查一个：girlRepository.findOne(id)</code><br><code>更新：girlRepository.save(girl)</code><br><code>删除：girlRepository.delete(Integer age)</code></li><li>自定查询方法：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-0c1bbe8ec6093d83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br><img src="http://upload-images.jianshu.io/upload_images/9194313-c7efbda75074bdca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></li></ul><h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h3><ul><li>@RequestMapping请求路径映射<br><code>映射多个：@RequestMapping（value={&quot;/hello&quot;,&quot;/hi&quot;}）</code></li><li>@PathVariable（）路径参数映射(配合使用)<br><code>@RequestMapping(value=&quot;/say/{id}&quot;)</code><br><code>@PathVariable（“id”） Integer id</code></li><li>@RequestParam（）路径参数映射<br><code>@RequestParam（value=“id”,required=false,defaultValue=&quot;0&quot;）Integer id</code></li><li>@Get/@PostMapping:Get/post请求+RequestMapping</li></ul><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  &lt;a href=&quot;https://baike.baidu.com/item/Spring%20Boot/20249767?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Spring Boot&lt;/a&gt;是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>“返回值”线程</title>
@@ -258,6 +276,24 @@
   </entry>
   
   <entry>
+    <title>SpringBoot开发RestfullAPI</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/10/13/SpringBdevRestful/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/10/13/SpringBdevRestful/</id>
+    <published>2017-10-13T14:18:51.000Z</published>
+    <updated>2017-12-05T14:19:06.719Z</updated>
+    
+    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/RESTful/4406165?fr=aladdin" target="_blank" rel="external">Restfull</a>一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。RESTful的关键是定义可表示流程元素/资源的对象。在REST中，每一个对象都是通过URL来表示的，对象用户负责将状态信息打包进每一条消息内，以便对象的处理总是无状态的。<br><a id="more"></a><br>待续………………..</p><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/RESTful/4406165?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Restfull&lt;/a&gt;一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。RESTful的关键是定义可表示流程元素/资源的对象。在REST中，每一个对象都是通过URL来表示的，对象用户负责将状态信息打包进每一条消息内，以便对象的处理总是无状态的。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>标识接口</title>
     <link href="https://github.com/SpringEE/SpringEE.github.io/2017/07/24/MarkerInterface/"/>
     <id>https://github.com/SpringEE/SpringEE.github.io/2017/07/24/MarkerInterface/</id>
@@ -341,42 +377,6 @@
     <summary type="html">
     
       &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/spring%20MVC/5627187?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SpringMVC&lt;/a&gt;属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建 Web 应用程序的全功能MVC模块。使用Spring可插入的MVC架构，从而在使用Spring进行WEB开发时，可以选择使用Spring的SpringMVC框架或集成其他MVC开发框架，如Struts1，Struts2等。本章主要讲开发中，常用注解。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java之排序方法</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/07/21/SortOrder/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/07/21/SortOrder/</id>
-    <published>2017-07-21T07:41:02.000Z</published>
-    <updated>2017-11-24T05:56:35.304Z</updated>
-    
-    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/java/85979?fr=aladdin&amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;fromid=4148931" target="_blank" rel="external">Java</a>中常用的最基本的几种排序方式代码还是要记住的，代码内容都不是很多，但是代码所表达的意义都非常经典，也是各大考官或笔试常见问题点，所以有必要做个了结。关于简单的流程控制语句if/else if/switch/while/do while/for等等，这类基本的循环语句在此就不做讲解了。<br><a id="more"></a></p><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理是每一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，直到全部待排序的数据元素排完。 选择排序是不稳定的排序方法（比如序列[5， 5， 3]第一次就将第一个[5]与[3]交换，导致第一个5挪动到第二个5后面）。算法实现：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-2deadfe43364fffd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p><h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>冒泡排序（Bubble Sort），是一种计算机科学领域的较简单的排序算法。<br>它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。</p><blockquote><p><strong>算法原理：</strong><br><img src="http://upload-images.jianshu.io/upload_images/9194313-0e0933035d47bc73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p><p><strong>算法实现：</strong><br><img src="http://upload-images.jianshu.io/upload_images/9194313-75e49e0b57a06247.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p></blockquote><p>More info: <a href="http://www.javait.club/2017/07/20/DesignPatterns/" target="_blank" rel="external">Java之设计模式</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/java/85979?fr=aladdin&amp;amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;amp;fromid=4148931&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java&lt;/a&gt;中常用的最基本的几种排序方式代码还是要记住的，代码内容都不是很多，但是代码所表达的意义都非常经典，也是各大考官或笔试常见问题点，所以有必要做个了结。关于简单的流程控制语句if/else if/switch/while/do while/for等等，这类基本的循环语句在此就不做讲解了。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java之设计模式</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/07/20/DesignPatterns/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/07/20/DesignPatterns/</id>
-    <published>2017-07-20T11:28:36.000Z</published>
-    <updated>2017-11-24T05:29:44.616Z</updated>
-    
-    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/java/85979?fr=aladdin&amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;fromid=4148931" target="_blank" rel="external">Java</a>中的设计模式有很多种，初级接触的到的有以下几种：单例模式、工厂模式、适配器模式和装饰模式等。下面主要对以上四种模式进行简单讲解：</p><a id="more"></a><h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><p>作用：保证在整个程序的声明周期中，一个类在内存中只有一个对象。单例模式分为两种：饿汉式单例和懒汉式单例。</p><blockquote><h3 id="饿汉式单例"><a href="#饿汉式单例" class="headerlink" title="饿汉式单例"></a>饿汉式单例</h3><p>解读：在类加载时，不管用不用到这个类的对象，程序在加载该类时都会为之创建一个对象。标准模型：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-92200e0d6276f5d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p><h3 id="懒汉式单例"><a href="#懒汉式单例" class="headerlink" title="懒汉式单例"></a>懒汉式单例</h3><p>解读：在类加载时，先声明类的静态成员，并赋予空值。在程序运行过程中，创建此类的对象前先判断此类的对象是否为空，如果为空就New,否者就不创建新的对象。标准模型：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-8d820f35fb39a96e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p></blockquote><p>注意事项：（1）构造方法和成员变量都是private，只有一个public方法；（2）成员和方法都是static类型，在内存中只维护一份。</p><h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>作用：专门负责实例化有大量公共接口的类，以替代new操作。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-81fa7feb77250313.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>作用：把一个类的接口转换成客户端所期望的另一种接口，从而使原本因为接口不匹配而无法一起工作的两个类能够一起工作。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-73ed414772751403.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="04.png"><br>简单说明：我们都知道，实现一个接口就需要实现接口里面的所有方法，否则只实现部分方法那就不叫“实现”了。那么如果想达到实现接口中部分方法的目的，就需要用到这种适配器模式。具体操作：抽象类实现接口中所有方法，目标类继承此抽象类，重写部分所需方法。</p><h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>作用：动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更加有弹性的替代方案。关于装饰者模式的解读，有篇文章确实写的非常不错，看了很多文章，就这篇还可以，很简明。装饰者模式，有点类似于aop编程。<br>装饰者模式博客链接：<a href="http://www.cnblogs.com/chenssy/archive/2013/05/23/3094138.html" target="_blank" rel="external">http://www.cnblogs.com/chenssy/archive/2013/05/23/3094138.html</a></p><p>More info: <a href="http://www.javait.club/2017/07/23/FunctionChange/" target="_blank" rel="external">方法“重载”和“重写”</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/java/85979?fr=aladdin&amp;amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;amp;fromid=4148931&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java&lt;/a&gt;中的设计模式有很多种，初级接触的到的有以下几种：单例模式、工厂模式、适配器模式和装饰模式等。下面主要对以上四种模式进行简单讲解：&lt;/p&gt;
     
     </summary>
     

@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>SpringBoot初级 | BiG哥|博客</title>
+    <title>Mybais三剑客 | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。">
+    <meta name="description" content="最近一直在学习新技术，寻找比较好的开发资源。无意间发现了下面这三个东西，再开发中，不得不说，确实非常实用，确实无可挑剔。另外，推荐更多开发者可以从eclipse转往idea开发了，idea的智能提示和各方面的插件和性能，都能大幅度提高开发的效率。下面主要介绍下mybatis三剑客：mybatis-generator(逆向工程生成dao,xml,pojo)/mybatis-plugin插件(在Mapper接口方法上和Mapper.xml对应sql语句处切换)/mybatis-pagehelper(分页插件)">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="SpringBoot初级 | BiG哥|博客" />
+    <meta name="twitter:title" content="Mybais三剑客 | BiG哥|博客" />
       
     
     
@@ -129,15 +129,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/12/03/SpringBoot/" title="SpringBoot初级" itemprop="url">SpringBoot初级</a>
+      <a href="/2017/12/04/MybatisThreeTools/" title="Mybais三剑客" itemprop="url">Mybais三剑客</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-12-03T11:45:27.000Z" itemprop="datePublished">2017-12-03</time>
-    更新日期:<time datetime="2017-12-05T14:44:16.387Z" itemprop="dateModified">2017-12-05</time>
+    <time datetime="2017-12-04T07:23:28.000Z" itemprop="datePublished">2017-12-04</time>
+    更新日期:<time datetime="2017-12-14T08:12:27.409Z" itemprop="dateModified">2017-12-14</time>
     
   </p>
 </header>
@@ -146,42 +146,16 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot特点"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot环境配置"><span class="toc-number">2.</span> <span class="toc-text">SrpingBoot环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot开发项目"><span class="toc-number">3.</span> <span class="toc-text">SrpingBoot开发项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件application-yml解读"><span class="toc-number">3.1.</span> <span class="toc-text">配置文件application.yml解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot中使用JPA"><span class="toc-number">3.2.</span> <span class="toc-text">SpringBoot中使用JPA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用注解"><span class="toc-number">3.3.</span> <span class="toc-text">常用注解</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis-generator"><span class="toc-number">1.</span> <span class="toc-text">mybatis-generator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis-generator使用的准备工作"><span class="toc-number">1.1.</span> <span class="toc-text">mybatis-generator使用的准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis-generator生成逆向工程"><span class="toc-number">1.2.</span> <span class="toc-text">mybatis-generator生成逆向工程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis-plugin插件"><span class="toc-number">2.</span> <span class="toc-text">mybatis-plugin插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis-pagehelper-分页插件"><span class="toc-number">3.</span> <span class="toc-text">mybatis-pagehelper(分页插件)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加jar"><span class="toc-number">3.1.</span> <span class="toc-text">添加jar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置bean"><span class="toc-number">3.2.</span> <span class="toc-text">配置bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用分页"><span class="toc-number">3.3.</span> <span class="toc-text">使用分页</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>  <a href="https://baike.baidu.com/item/Spring%20Boot/20249767?fr=aladdin" target="_blank" rel="external">Spring Boot</a>是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。<br><a id="more"></a></p>
-<h2 id="SpringBoot特点"><a href="#SpringBoot特点" class="headerlink" title="SpringBoot特点"></a>SpringBoot特点</h2><ul>
-<li>创建独立的Spring应用程序</li>
-<li>嵌入的Tomcat，无需部署WAR文件</li>
-<li>简化Maven配置</li>
-<li>自动配置Spring</li>
-<li>提供生产就绪型功能，如指标，健康检查和外部配置</li>
-<li>绝对没有代码生成和对XML没有要求配置</li>
-</ul>
-<h2 id="SrpingBoot环境配置"><a href="#SrpingBoot环境配置" class="headerlink" title="SrpingBoot环境配置"></a>SrpingBoot环境配置</h2><p>关于SpringBoot环境配置的文章很多，再此就不再做讲解，可以参看以下文章链接：<br><code>https://www.cnblogs.com/woshimrf/p/5602051.html</code></p>
-<h2 id="SrpingBoot开发项目"><a href="#SrpingBoot开发项目" class="headerlink" title="SrpingBoot开发项目"></a>SrpingBoot开发项目</h2><h3 id="配置文件application-yml解读"><a href="#配置文件application-yml解读" class="headerlink" title="配置文件application.yml解读"></a>配置文件application.yml解读</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-4fe581f75d76b320.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p>
-<ul>
-<li><strong>分环境配置：</strong>如果项目的配置环境需要分“开发环境”和“生产环境”两种，那么就要分别进行配置。在application.yml所在目录下，新建开发环境（application-dev.yml）和生产环境（application-prod.yml）两种配置文件，然后在application.yml进行引用。如下：<br><code>active:dev---表示启用dev开发者模式下的配置文件</code></li>
-</ul>
-<ul>
-<li><p><strong>@Value注解：</strong>用来获取配置文件中指定属性名的值，并将属性赋予到变量中来。<br><code>案例：@Value（&quot;${name}&quot;）private String name;</code></p>
-</li>
-<li><p><strong>配置映射JavaBean：</strong>将配置文件中属性封装到JavaBean属性中,使用@ConfigurationProperties进行配置。<br><code>@ConfigurationProperties(prefix=&quot;girl&quot;)加载类上，自动对齐属性进行映射</code><br><em>注意：</em>此处映射完成，只是将配置文件girl开头的属性映射到了JavaBean，如果通过@Autowired使用此JavaBean需进行@Component注解声明。</p>
-</li>
-<li><p>关于jpa的配置<strong>ddl-auto:</strong>可选值有很多，下面只对经常使用的两个做简单介绍:<br>(1)create：每次启动服务，都重新建表，原表数据全部删除；<br>(2)update：第一次启动，同样会创建表结构，如果表中有数据，数据保留；<br>(3)show-sql:设置为true。</p>
-</li>
-</ul>
-<h3 id="SpringBoot中使用JPA"><a href="#SpringBoot中使用JPA" class="headerlink" title="SpringBoot中使用JPA"></a>SpringBoot中使用JPA</h3><p>Spring Data JPA 框架，主要针对的就是 Spring 唯一没有简化到的业务逻辑代码，至此，开发者连仅剩的实现持久层业务逻辑的工作都省了，唯一要做的，就只是声明持久层的接口，其他都交给 Spring Data JPA 来帮你完成！可以简单理解为，JPA就是用来简化dao层的，JPA对增删改查操作的方法都进行了封装，开发者只需继承JpaRespository接口便可调用内置的一些方法。<br><code>public interface MyRepository extends JpaRepository&lt;Girl,Integer&gt;</code><br>说明：<strong>JpaRepository<girl,integer></girl,integer></strong>，默认通过主键操作Girl类所映射的表，当然也可以自定义方法对其进行操作。<br>（1）使用JPA配置JavaBean映射表的字段：<br> 新建javabean,类上加注解@Entity，将数据库表的字段与javabean进行映射，注意，必须在类中声明一个无参的构造函数，否者系统会报错，如果有主键，在逐渐属性上通过注解进行定义，@Id和@GeneratedValue<br>（2）<strong>“常用方法”</strong></p>
-<ul>
-<li>查所有，findAll()返回List集合。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-c369fec2d21b23d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br><code>添加：girlRepository.save(girl)</code><br><code>查一个：girlRepository.findOne(id)</code><br><code>更新：girlRepository.save(girl)</code><br><code>删除：girlRepository.delete(Integer age)</code></li>
-<li>自定查询方法：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-0c1bbe8ec6093d83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br><img src="http://upload-images.jianshu.io/upload_images/9194313-c7efbda75074bdca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></li>
-</ul>
-<h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h3><ul>
-<li>@RequestMapping请求路径映射<br><code>映射多个：@RequestMapping（value={&quot;/hello&quot;,&quot;/hi&quot;}）</code></li>
-<li>@PathVariable（）路径参数映射(配合使用)<br><code>@RequestMapping(value=&quot;/say/{id}&quot;)</code><br><code>@PathVariable（“id”） Integer id</code></li>
-<li>@RequestParam（）路径参数映射<br><code>@RequestParam（value=“id”,required=false,defaultValue=&quot;0&quot;）Integer id</code></li>
-<li>@Get/@PostMapping:Get/post请求+RequestMapping</li>
-</ul>
+		<p>   最近一直在学习新技术，寻找比较好的开发资源。无意间发现了下面这三个东西，再开发中，不得不说，确实非常实用，确实无可挑剔。另外，推荐更多开发者可以从eclipse转往idea开发了，idea的智能提示和各方面的插件和性能，都能大幅度提高开发的效率。下面主要介绍下mybatis三剑客：mybatis-generator(逆向工程生成dao,xml,pojo)/mybatis-plugin插件(在Mapper接口方法上和Mapper.xml对应sql语句处切换)/mybatis-pagehelper(分页插件)<br><a id="more"></a></p>
+<h2 id="mybatis-generator"><a href="#mybatis-generator" class="headerlink" title="mybatis-generator"></a>mybatis-generator</h2><h3 id="mybatis-generator使用的准备工作"><a href="#mybatis-generator使用的准备工作" class="headerlink" title="mybatis-generator使用的准备工作"></a>mybatis-generator使用的准备工作</h3><p>（1）在pom文件中添加，插件；<br><img src="http://upload-images.jianshu.io/upload_images/9194313-cfeef82b983339a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"><br>（2）在resources目录下添加以下配置文件：generatorConfig.xml和datasource.properties。<br><strong>generatorConfig.xml：</strong>是mybatis-generator的核心配置文件，用来通过数据库表，逆向生成dao,xml,pojo内的文件，所以这个配置文件要配置的内容大致有以下几个板块：数据库连接、文件生成路径指定、指定数据库对应表名。<br><strong>datasource.properties：</strong>配置数据源连接的信息<br><img src="http://upload-images.jianshu.io/upload_images/9194313-db608e4553b3367f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p>
+<h3 id="mybatis-generator生成逆向工程"><a href="#mybatis-generator生成逆向工程" class="headerlink" title="mybatis-generator生成逆向工程"></a>mybatis-generator生成逆向工程</h3><p>按图步骤进行逆向工程的生成，等待一会就会发现，dao,xml,pojo这三个目录下已经有了文件。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-0962c4408c461c42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p>
+<h2 id="mybatis-plugin插件"><a href="#mybatis-plugin插件" class="headerlink" title="mybatis-plugin插件"></a>mybatis-plugin插件</h2><p>在Mapper接口方法上和Mapper.xml对应sql语句处切换。该插件的安装具体可参考如下链接：<a href="http://blog.csdn.net/pansanday/article/details/54892990。安装成功后破解的话，按照以下链接去提示去破解，替换一个jar包就可以了：https://www.awei.org/2017/11/08/idea-mybatis-plugin-3-21-po-jie-fang-fa/" target="_blank" rel="external">http://blog.csdn.net/pansanday/article/details/54892990。安装成功后破解的话，按照以下链接去提示去破解，替换一个jar包就可以了：https://www.awei.org/2017/11/08/idea-mybatis-plugin-3-21-po-jie-fang-fa/</a><br><strong>注意：</strong>直接下载破解所需要的Jar就可以了。<br>成功后的效果图：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-be1da525878dd2bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="04.png"></p>
+<h2 id="mybatis-pagehelper-分页插件"><a href="#mybatis-pagehelper-分页插件" class="headerlink" title="mybatis-pagehelper(分页插件)"></a>mybatis-pagehelper(分页插件)</h2><h3 id="添加jar"><a href="#添加jar" class="headerlink" title="添加jar"></a>添加jar</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-8583c84fd4f2c511.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="05.png"></p>
+<h3 id="配置bean"><a href="#配置bean" class="headerlink" title="配置bean"></a>配置bean</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-8a34eb4a3ba2786a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="06.png"></p>
+<h3 id="使用分页"><a href="#使用分页" class="headerlink" title="使用分页"></a>使用分页</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-697f3fe32058b442.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="07.png"></p>
 <p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   
 	</div>
@@ -192,7 +166,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/12/03/SpringBoot/" data-title="SpringBoot初级 | BiG哥|博客" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/12/04/MybatisThreeTools/" data-title="Mybais三剑客 | BiG哥|博客" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -201,19 +175,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/12/04/MybatisThreeTools/" title="Mybais三剑客">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Mybais三剑客</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/11/30/CreateTask/"  title="“返回值”线程">
+<a href="/2017/12/03/SpringBoot/"  title="SpringBoot初级">
  <strong>NEXT:</strong><br/> 
- <span>“返回值”线程
+ <span>SpringBoot初级
 </span>
 </a>
 </div>
@@ -226,7 +192,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot特点"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot环境配置"><span class="toc-number">2.</span> <span class="toc-text">SrpingBoot环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SrpingBoot开发项目"><span class="toc-number">3.</span> <span class="toc-text">SrpingBoot开发项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件application-yml解读"><span class="toc-number">3.1.</span> <span class="toc-text">配置文件application.yml解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot中使用JPA"><span class="toc-number">3.2.</span> <span class="toc-text">SpringBoot中使用JPA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用注解"><span class="toc-number">3.3.</span> <span class="toc-text">常用注解</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis-generator"><span class="toc-number">1.</span> <span class="toc-text">mybatis-generator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis-generator使用的准备工作"><span class="toc-number">1.1.</span> <span class="toc-text">mybatis-generator使用的准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mybatis-generator生成逆向工程"><span class="toc-number">1.2.</span> <span class="toc-text">mybatis-generator生成逆向工程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis-plugin插件"><span class="toc-number">2.</span> <span class="toc-text">mybatis-plugin插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis-pagehelper-分页插件"><span class="toc-number">3.</span> <span class="toc-text">mybatis-pagehelper(分页插件)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加jar"><span class="toc-number">3.1.</span> <span class="toc-text">添加jar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置bean"><span class="toc-number">3.2.</span> <span class="toc-text">配置bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用分页"><span class="toc-number">3.3.</span> <span class="toc-text">使用分页</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

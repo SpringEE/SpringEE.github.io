@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/SpringEE/SpringEE.github.io/"/>
-  <updated>2017-12-14T08:12:27.409Z</updated>
+  <updated>2018-04-06T12:11:59.798Z</updated>
   <id>https://github.com/SpringEE/SpringEE.github.io/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java之设计模式</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/12/05/DesignPatterns/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/12/05/DesignPatterns/</id>
+    <published>2017-12-05T02:18:58.000Z</published>
+    <updated>2018-04-06T12:11:59.798Z</updated>
+    
+    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/java/85979?fr=aladdin&amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;fromid=4148931" target="_blank" rel="external">Java</a>中的设计模式有很多种，初级接触的到的有以下几种：单例模式、工厂模式、适配器模式和装饰模式等。下面主要对以上四种模式进行简单讲解：</p><a id="more"></a><h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><p>作用：保证在整个程序的声明周期中，一个类在内存中只有一个对象。单例模式分为两种：饿汉式单例和懒汉式单例。单例模式：将构造私有化，防止自身被实例化。</p><blockquote><h3 id="饿汉式单例"><a href="#饿汉式单例" class="headerlink" title="饿汉式单例"></a>饿汉式单例</h3><p>解读：在类加载时，不管用不用到这个类的对象，程序在加载该类时都会为之创建一个对象。标准模型：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-92200e0d6276f5d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p><h3 id="懒汉式单例"><a href="#懒汉式单例" class="headerlink" title="懒汉式单例"></a>懒汉式单例</h3><p>解读：在类加载时，先声明类的静态成员，并赋予空值。在程序运行过程中，创建此类的对象前先判断此类的对象是否为空，如果为空就New,否者就不创建新的对象。标准模型：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-8d820f35fb39a96e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p></blockquote><p>注意事项：（1）构造方法和成员变量都是private，只有一个public方法；（2）成员和方法都是static类型，在内存中只维护一份。</p><h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>作用：为创建对象提供过渡接口，以便将创建对象的具体过程屏蔽隔离起来，替代“new操作”，达到提高灵活性的目的。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-81fa7feb77250313.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p><h2 id="建造（Builder）模式"><a href="#建造（Builder）模式" class="headerlink" title="建造（Builder）模式"></a>建造（Builder）模式</h2><p>作用：是一种对象构建的设计模式，它可以将复杂对象的建造过程抽象出来（抽象类别），使这个抽象过程的不同实现方法可以构造出不同表现（属性）的对象。举例：组装一辆车，需要车轮、方向盘、底座等等，写一个公共的接口（并附上实现类），提供这些散件的具体组装方式，以及整车最终完成的组装方法，通过对不同方法的调用来实现不同的组装步骤。<br><img src="https://upload-images.jianshu.io/upload_images/9194313-c02f40ae408372ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="TIM图片20180404104510.png"></p><h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>作用：观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一主题对象。这个主题对象在状态发生变化时，会通知所有观察者对象，使它们能够自动更新自己。观察者模式又叫发布-订阅(Publish/Subscribe)模式。例如：老师有电话号码，学生需要知道老师的电话号码以便于在合适的时候拨打，在这样的组合中，老师就是一个被观察者（Subject），学生就是需要知道信息的观察者，当老师的电话号码发生改变时，学生得到通知，并更新相应的电话记录。<br><strong>被观察者：</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-096b28828a92b75d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><strong>观察者</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-0641550b6ae7503f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><strong>测试</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-39a81ba6c2e3cdd3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>作用：把一个类的接口转换成客户端所期望的另一种接口，从而使原本因为接口不匹配而无法一起工作的两个类能够一起工作。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-73ed414772751403.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="04.png"><br>简单说明：我们都知道，实现一个接口就需要实现接口里面的所有方法，否则只实现部分方法那就不叫“实现”了。那么如果想达到实现接口中部分方法的目的，就需要用到这种适配器模式。具体操作：抽象类实现接口中所有方法，目标类继承此抽象类，重写部分所需方法。</p><h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>作用：动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更加有弹性的替代方案。关于装饰者模式的解读，有篇文章确实写的非常不错，看了很多文章，就这篇还可以，很简明。装饰者模式，有点类似于aop编程。<br>装饰者模式博客链接：<a href="http://www.cnblogs.com/chenssy/archive/2013/05/23/3094138.html" target="_blank" rel="external">http://www.cnblogs.com/chenssy/archive/2013/05/23/3094138.html</a></p><p>More info: <a href="http://www.javait.club/2017/07/23/FunctionChange/" target="_blank" rel="external">方法“重载”和“重写”</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/java/85979?fr=aladdin&amp;amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;amp;fromid=4148931&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java&lt;/a&gt;中的设计模式有很多种，初级接触的到的有以下几种：单例模式、工厂模式、适配器模式和装饰模式等。下面主要对以上四种模式进行简单讲解：&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Mybais三剑客</title>
@@ -168,24 +186,6 @@
   </entry>
   
   <entry>
-    <title>volatile和synchronized</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/18/volatile_synchronized/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/18/volatile_synchronized/</id>
-    <published>2017-11-18T15:52:20.000Z</published>
-    <updated>2017-12-02T07:43:02.364Z</updated>
-    
-    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin" target="_blank" rel="external">多线程</a>中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。<br><a id="more"></a><br>  一般情况下，两个线程虽然共享了同一个对象，在new Thread（obj）的时候，obj对象的属性i就会从主内存中拷贝到线程的工作内存中，两个线程拷贝同样的初始值i；启动两线程，当有线程1对i进行了修改，线程2是不知道的，依旧使用自身工作内存中的i，而此时主内存中的值已经是修改后的值。这就涉及到JMM内存模型：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-b59fb934a80f06c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p><h3 id="原子性和可见性"><a href="#原子性和可见性" class="headerlink" title="原子性和可见性"></a>原子性和可见性</h3><ul><li><strong>可见性：</strong>一个线程对共享变量进行修改，修改后能及时的被其他线程看到。</li><li><strong>原子性：</strong>即不可再分了，不能分为多步操作。比如赋值或者return。比如”a = 1;”和 “return a;”这样的操作都具有原子性。类似”a += b”这样的操作不具有原子性，在某些JVM中”a += b”可能要经过这样三个步骤：①　取出a和b；②　计算a+b；③　将计算结果写入内存。</li></ul><h3 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-81d6a3f9e82f317c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p><blockquote><p>volatile关键字，保证了可见性，即线程1对变量进行了修改，他能保证线程2在读取这个变量时，读取到的都是最新值。但volatile不具备原子性，对i++此类不具备原子性的运算操作，如果线程2先读取了i值，但是还未进行计算，此时由于i++不具备原子性，线程2被线程1打断，线程1修改了i值，此时虽然内存中都更新到了最新值，但是线程2由于已经读取过了，不会回头再去检查读取的是否为最新的，而是继续执行下面代码，于是线程2的结果只是覆盖了缓存中的值。</p></blockquote><h3 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h3><p>synchronized保证代码具有原子性和可见性，可见性保证每次读取到的是最新值，原子性保证在整个操作过程中确保代码执行的原子性，不可分割。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-5a3c1a82d860b68a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br>以上代码synchronized部分，保证每次读取i时，读的都是最新值，且在i++问题上不会被打断，执行完之后若又存在修改，再次读取时将又是最新的i值。synchronized保证了，修改i值操作要么在读取i之前，要么在i写回内存后。</p><h3 id="volatile和synchronized的区别"><a href="#volatile和synchronized的区别" class="headerlink" title="volatile和synchronized的区别"></a>volatile和synchronized的区别</h3><ul><li>1）volatile本质是在告诉jvm当前变量在寄存器中的值是不确定的,需要从主存中读取,synchronized则是锁定当前变量,只有当前线程可以访问该变量,其他线程被阻塞住.</li><li>2）volatile仅能使用在变量级别,synchronized则可以使用在变量,方法.</li><li>3）volatile仅能实现变量的修改可见性,而synchronized则可以保证变量的修改可见性和原子性.</li><li>4）volatile不会造成线程的阻塞,而synchronized可能会造成线程的阻塞.</li></ul><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多线程&lt;/a&gt;中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>ReentrantLock</title>
     <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/18/ReentrantLock/"/>
     <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/18/ReentrantLock/</id>
@@ -197,6 +197,24 @@
     <summary type="html">
     
       &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ReentrantLock&lt;/a&gt;是一个可重入的互斥锁，又被称为“独占锁”。顾名思义，ReentrantLock锁在同一个时间点只能被一个线程锁持有；而可重入的意思是，ReentrantLock锁，可以被单个线程多次获取。ReentrantLock分为“公平锁”和“非公平锁”。它们的区别体现在获取锁的机制上是否公平。“锁”是为了保护竞争资源，防止多个线程同时操作线程而出错，ReentrantLock在同一个时间点只能被一个线程获取(当某线程获取到“锁”时，其它线程就必须等待)；ReentraantLock是通过一个FIFO的等待队列来管理获取该锁所有线程的。在“公平锁”的机制下，线程依次排队获取锁；而“非公平锁”在锁是可获取状态时，不管自己是不是在队列的开头都会获取锁。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>volatile和synchronized</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/18/volatile_synchronized/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/18/volatile_synchronized/</id>
+    <published>2017-11-18T15:52:20.000Z</published>
+    <updated>2017-12-02T07:43:02.364Z</updated>
+    
+    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin" target="_blank" rel="external">多线程</a>中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。<br><a id="more"></a><br>  一般情况下，两个线程虽然共享了同一个对象，在new Thread（obj）的时候，obj对象的属性i就会从主内存中拷贝到线程的工作内存中，两个线程拷贝同样的初始值i；启动两线程，当有线程1对i进行了修改，线程2是不知道的，依旧使用自身工作内存中的i，而此时主内存中的值已经是修改后的值。这就涉及到JMM内存模型：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-b59fb934a80f06c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p><h3 id="原子性和可见性"><a href="#原子性和可见性" class="headerlink" title="原子性和可见性"></a>原子性和可见性</h3><ul><li><strong>可见性：</strong>一个线程对共享变量进行修改，修改后能及时的被其他线程看到。</li><li><strong>原子性：</strong>即不可再分了，不能分为多步操作。比如赋值或者return。比如”a = 1;”和 “return a;”这样的操作都具有原子性。类似”a += b”这样的操作不具有原子性，在某些JVM中”a += b”可能要经过这样三个步骤：①　取出a和b；②　计算a+b；③　将计算结果写入内存。</li></ul><h3 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-81d6a3f9e82f317c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p><blockquote><p>volatile关键字，保证了可见性，即线程1对变量进行了修改，他能保证线程2在读取这个变量时，读取到的都是最新值。但volatile不具备原子性，对i++此类不具备原子性的运算操作，如果线程2先读取了i值，但是还未进行计算，此时由于i++不具备原子性，线程2被线程1打断，线程1修改了i值，此时虽然内存中都更新到了最新值，但是线程2由于已经读取过了，不会回头再去检查读取的是否为最新的，而是继续执行下面代码，于是线程2的结果只是覆盖了缓存中的值。</p></blockquote><h3 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h3><p>synchronized保证代码具有原子性和可见性，可见性保证每次读取到的是最新值，原子性保证在整个操作过程中确保代码执行的原子性，不可分割。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-5a3c1a82d860b68a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br>以上代码synchronized部分，保证每次读取i时，读的都是最新值，且在i++问题上不会被打断，执行完之后若又存在修改，再次读取时将又是最新的i值。synchronized保证了，修改i值操作要么在读取i之前，要么在i写回内存后。</p><h3 id="volatile和synchronized的区别"><a href="#volatile和synchronized的区别" class="headerlink" title="volatile和synchronized的区别"></a>volatile和synchronized的区别</h3><ul><li>1）volatile本质是在告诉jvm当前变量在寄存器中的值是不确定的,需要从主存中读取,synchronized则是锁定当前变量,只有当前线程可以访问该变量,其他线程被阻塞住.</li><li>2）volatile仅能使用在变量级别,synchronized则可以使用在变量,方法.</li><li>3）volatile仅能实现变量的修改可见性,而synchronized则可以保证变量的修改可见性和原子性.</li><li>4）volatile不会造成线程的阻塞,而synchronized可能会造成线程的阻塞.</li></ul><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多线程&lt;/a&gt;中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。&lt;br&gt;
     
     </summary>
     
@@ -359,24 +377,6 @@
     <summary type="html">
     
       &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/JSON/2462549?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JSON&lt;/a&gt;(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。Json数据是跨平台的，在网络数据传输流程中，json是以文本，即字符串的形式传递的，各种语言对字符串的处理比较统一。而在JS是对象的形式。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>continue/break/return</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/07/22/EndLoop/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/07/22/EndLoop/</id>
-    <published>2017-07-22T10:55:47.000Z</published>
-    <updated>2017-11-24T06:04:12.330Z</updated>
-    
-    <content type="html"><![CDATA[<p>   <a href="https://baike.baidu.com/item/java/85979?fr=aladdin&amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;fromid=4148931" target="_blank" rel="external">Java</a>中，这三个关键字都具备着特殊的含义，都拥有着能结束或停止循环的作用，下面对这三个关键字的作用范围以及使用方式做明确讲解，总的来说范围大小是return&gt;break&gt;continue。这三者的考量在某些笔试题目中也经常出现，所以需要引起重视，下面开始对三者进行讲解。</p><a id="more"></a><h2 id="return语句"><a href="#return语句" class="headerlink" title="return语句"></a>return语句</h2><p><strong>return语句的作用：</strong></p><ul><li>return 从当前的方法中退出,返回到该调用的方法的语句处,继续执行；</li><li>return 返回一个值给调用该方法的语句，返回值的数据类型必须与方法的声明中的返回值的类型一致，可以使用强制类型转换来是数据类型一致；</li><li>return 当方法说明中用void声明返回类型为空时，应使用这种格式，不返回任何值。（在js中，函数不声明返回值也可以使用return）</li></ul><p><strong>代码案例：</strong><br><img src="http://upload-images.jianshu.io/upload_images/9194313-545f02248dd7197d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"><br><strong>总结：</strong>“return”关键字作用范围是其所在的方法，作用是结束方法体，要么返回“值”，要没不返回“值”，如案例所示。</p><h2 id="break语句"><a href="#break语句" class="headerlink" title="break语句"></a>break语句</h2><p><strong>break语句的作用</strong></p><ul><li>只能在循环体内和switch语句体内使用break语句；</li><li>当break出现在循环体中的switch语句体内时，其作用只是跳出该switch语句体；</li><li>当break出现在循环体中，但并不在switch语句体内时，则在执行break后，跳出本层循环体；</li><li>在循环结构中，应用break语句使流程跳出本层循环体，从而提前结束本层循环。</li></ul><p><strong>代码案例：</strong><br><img src="http://upload-images.jianshu.io/upload_images/9194313-1d3fa75f9fff4a5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br><strong>总结：</strong>“break”关键字用于switch语句，用来结束switch语句；用于for循环，作用就是终止循环体。</p><h2 id="continue语句"><a href="#continue语句" class="headerlink" title="continue语句"></a>continue语句</h2><p><strong>continue语句的作用：</strong></p><ul><li>结束本次循环，即跳过本次循环体中余下尚未执行的语句，接着再一次进行循环的条件判定；</li><li>执行continue语句并没有使整个循环终止。在while和do-while循环中，continue语句使得流程直接跳到循环控制条件的测试部分 ，然后决定循环是否继续进行；</li><li>在for 循环中，遇到continue后，跳过循环体中余下的语句，而去对for语句中的“表达式3”求值，然后进行“表达式2”的条件测试。</li></ul><p><strong>代码案例：</strong><br><img src="http://upload-images.jianshu.io/upload_images/9194313-aa572e30c6990d79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br><strong>总结：</strong>“continue”关键字作用范围是本次循环，作用就是结束本次循环，开始下次循环，即开始“i+1”的循环。</p><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   &lt;a href=&quot;https://baike.baidu.com/item/java/85979?fr=aladdin&amp;amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;amp;fromid=4148931&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Java&lt;/a&gt;中，这三个关键字都具备着特殊的含义，都拥有着能结束或停止循环的作用，下面对这三个关键字的作用范围以及使用方式做明确讲解，总的来说范围大小是return&amp;gt;break&amp;gt;continue。这三者的考量在某些笔试题目中也经常出现，所以需要引起重视，下面开始对三者进行讲解。&lt;/p&gt;
     
     </summary>
     

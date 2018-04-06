@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>volatile和synchronized | BiG哥|博客</title>
+    <title>Java之设计模式 | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="多线程中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。">
+    <meta name="description" content="Java中的设计模式有很多种，初级接触的到的有以下几种：单例模式、工厂模式、适配器模式和装饰模式等。下面主要对以上四种模式进行简单讲解：">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="volatile和synchronized | BiG哥|博客" />
+    <meta name="twitter:title" content="Java之设计模式 | BiG哥|博客" />
       
     
     
@@ -129,15 +129,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/11/18/volatile_synchronized/" title="volatile和synchronized" itemprop="url">volatile和synchronized</a>
+      <a href="/2018/04/06/DesignPatterns/" title="Java之设计模式" itemprop="url">Java之设计模式</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-11-18T15:52:20.000Z" itemprop="datePublished">2017-11-18</time>
-    更新日期:<time datetime="2017-12-02T07:43:02.364Z" itemprop="dateModified">2017-12-02</time>
+    <time datetime="2018-04-06T12:15:00.000Z" itemprop="datePublished">2018-04-06</time>
+    更新日期:<time datetime="2018-04-06T12:15:01.699Z" itemprop="dateModified">2018-04-06</time>
     
   </p>
 </header>
@@ -146,26 +146,23 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#原子性和可见性"><span class="toc-number">1.</span> <span class="toc-text">原子性和可见性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile关键字"><span class="toc-number">2.</span> <span class="toc-text">volatile关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized关键字"><span class="toc-number">3.</span> <span class="toc-text">synchronized关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile和synchronized的区别"><span class="toc-number">4.</span> <span class="toc-text">volatile和synchronized的区别</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单例设计模式"><span class="toc-number">1.</span> <span class="toc-text">单例设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#饿汉式单例"><span class="toc-number">1.1.</span> <span class="toc-text">饿汉式单例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#懒汉式单例"><span class="toc-number">1.2.</span> <span class="toc-text">懒汉式单例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式"><span class="toc-number">2.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建造（Builder）模式"><span class="toc-number">3.</span> <span class="toc-text">建造（Builder）模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式"><span class="toc-number">4.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器模式"><span class="toc-number">5.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰模式"><span class="toc-number">6.</span> <span class="toc-text">装饰模式</span></a></li></ol>
 		</div>
 		
-		<p>   <a href="https://baike.baidu.com/item/%E5%A4%9A%E7%BA%BF%E7%A8%8B/1190404?fr=aladdin" target="_blank" rel="external">多线程</a>中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。<br><a id="more"></a><br>  一般情况下，两个线程虽然共享了同一个对象，在new Thread（obj）的时候，obj对象的属性i就会从主内存中拷贝到线程的工作内存中，两个线程拷贝同样的初始值i；启动两线程，当有线程1对i进行了修改，线程2是不知道的，依旧使用自身工作内存中的i，而此时主内存中的值已经是修改后的值。这就涉及到JMM内存模型：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-b59fb934a80f06c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p>
-<h3 id="原子性和可见性"><a href="#原子性和可见性" class="headerlink" title="原子性和可见性"></a>原子性和可见性</h3><ul>
-<li><strong>可见性：</strong>一个线程对共享变量进行修改，修改后能及时的被其他线程看到。</li>
-<li><strong>原子性：</strong>即不可再分了，不能分为多步操作。比如赋值或者return。比如”a = 1;”和 “return a;”这样的操作都具有原子性。类似”a += b”这样的操作不具有原子性，在某些JVM中”a += b”可能要经过这样三个步骤：①　取出a和b；②　计算a+b；③　将计算结果写入内存。</li>
-</ul>
-<h3 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h3><p><img src="http://upload-images.jianshu.io/upload_images/9194313-81d6a3f9e82f317c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p>
+		<p>   <a href="https://baike.baidu.com/item/java/85979?fr=aladdin&amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;fromid=4148931" target="_blank" rel="external">Java</a>中的设计模式有很多种，初级接触的到的有以下几种：单例模式、工厂模式、适配器模式和装饰模式等。下面主要对以上四种模式进行简单讲解：</p>
+<a id="more"></a>
+<h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><p>作用：保证在整个程序的声明周期中，一个类在内存中只有一个对象。单例模式分为两种：饿汉式单例和懒汉式单例。单例模式：将构造私有化，防止自身被实例化。</p>
 <blockquote>
-<p>volatile关键字，保证了可见性，即线程1对变量进行了修改，他能保证线程2在读取这个变量时，读取到的都是最新值。但volatile不具备原子性，对i++此类不具备原子性的运算操作，如果线程2先读取了i值，但是还未进行计算，此时由于i++不具备原子性，线程2被线程1打断，线程1修改了i值，此时虽然内存中都更新到了最新值，但是线程2由于已经读取过了，不会回头再去检查读取的是否为最新的，而是继续执行下面代码，于是线程2的结果只是覆盖了缓存中的值。</p>
+<h3 id="饿汉式单例"><a href="#饿汉式单例" class="headerlink" title="饿汉式单例"></a>饿汉式单例</h3><p>解读：在类加载时，不管用不用到这个类的对象，程序在加载该类时都会为之创建一个对象。标准模型：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-92200e0d6276f5d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p>
+<h3 id="懒汉式单例"><a href="#懒汉式单例" class="headerlink" title="懒汉式单例"></a>懒汉式单例</h3><p>解读：在类加载时，先声明类的静态成员，并赋予空值。在程序运行过程中，创建此类的对象前先判断此类的对象是否为空，如果为空就New,否者就不创建新的对象。标准模型：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-8d820f35fb39a96e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p>
 </blockquote>
-<h3 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h3><p>synchronized保证代码具有原子性和可见性，可见性保证每次读取到的是最新值，原子性保证在整个操作过程中确保代码执行的原子性，不可分割。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-5a3c1a82d860b68a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br>以上代码synchronized部分，保证每次读取i时，读的都是最新值，且在i++问题上不会被打断，执行完之后若又存在修改，再次读取时将又是最新的i值。synchronized保证了，修改i值操作要么在读取i之前，要么在i写回内存后。</p>
-<h3 id="volatile和synchronized的区别"><a href="#volatile和synchronized的区别" class="headerlink" title="volatile和synchronized的区别"></a>volatile和synchronized的区别</h3><ul>
-<li>1）volatile本质是在告诉jvm当前变量在寄存器中的值是不确定的,需要从主存中读取,synchronized则是锁定当前变量,只有当前线程可以访问该变量,其他线程被阻塞住.</li>
-<li>2）volatile仅能使用在变量级别,synchronized则可以使用在变量,方法.</li>
-<li>3）volatile仅能实现变量的修改可见性,而synchronized则可以保证变量的修改可见性和原子性.</li>
-<li>4）volatile不会造成线程的阻塞,而synchronized可能会造成线程的阻塞.</li>
-</ul>
-<p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
+<p>注意事项：（1）构造方法和成员变量都是private，只有一个public方法；（2）成员和方法都是static类型，在内存中只维护一份。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>作用：为创建对象提供过渡接口，以便将创建对象的具体过程屏蔽隔离起来，替代“new操作”，达到提高灵活性的目的。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-81fa7feb77250313.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p>
+<h2 id="建造（Builder）模式"><a href="#建造（Builder）模式" class="headerlink" title="建造（Builder）模式"></a>建造（Builder）模式</h2><p>作用：是一种对象构建的设计模式，它可以将复杂对象的建造过程抽象出来（抽象类别），使这个抽象过程的不同实现方法可以构造出不同表现（属性）的对象。举例：组装一辆车，需要车轮、方向盘、底座等等，写一个公共的接口（并附上实现类），提供这些散件的具体组装方式，以及整车最终完成的组装方法，通过对不同方法的调用来实现不同的组装步骤。<br><img src="https://upload-images.jianshu.io/upload_images/9194313-c02f40ae408372ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="TIM图片20180404104510.png"></p>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>作用：观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一主题对象。这个主题对象在状态发生变化时，会通知所有观察者对象，使它们能够自动更新自己。观察者模式又叫发布-订阅(Publish/Subscribe)模式。例如：老师有电话号码，学生需要知道老师的电话号码以便于在合适的时候拨打，在这样的组合中，老师就是一个被观察者（Subject），学生就是需要知道信息的观察者，当老师的电话号码发生改变时，学生得到通知，并更新相应的电话记录。<br><strong>被观察者：</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-096b28828a92b75d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><strong>观察者</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-0641550b6ae7503f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><strong>测试</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-39a81ba6c2e3cdd3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>作用：把一个类的接口转换成客户端所期望的另一种接口，从而使原本因为接口不匹配而无法一起工作的两个类能够一起工作。<br><img src="http://upload-images.jianshu.io/upload_images/9194313-73ed414772751403.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="04.png"><br>简单说明：我们都知道，实现一个接口就需要实现接口里面的所有方法，否则只实现部分方法那就不叫“实现”了。那么如果想达到实现接口中部分方法的目的，就需要用到这种适配器模式。具体操作：抽象类实现接口中所有方法，目标类继承此抽象类，重写部分所需方法。</p>
+<h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>作用：动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更加有弹性的替代方案。关于装饰者模式的解读，有篇文章确实写的非常不错，看了很多文章，就这篇还可以，很简明。装饰者模式，有点类似于aop编程。<br>装饰者模式博客链接：<a href="http://www.cnblogs.com/chenssy/archive/2013/05/23/3094138.html" target="_blank" rel="external">http://www.cnblogs.com/chenssy/archive/2013/05/23/3094138.html</a></p>
+<p>More info: <a href="http://www.javait.club/2017/07/23/FunctionChange/" target="_blank" rel="external">方法“重载”和“重写”</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -175,7 +172,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/11/18/volatile_synchronized/" data-title="volatile和synchronized | BiG哥|博客" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2018/04/06/DesignPatterns/" data-title="Java之设计模式 | BiG哥|博客" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -184,19 +181,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/11/19/Daemon/" title="守护线程（Daemon）">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  守护线程（Daemon）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/11/18/ReentrantLock/"  title="ReentrantLock">
+<a href="/2017/12/04/MybatisThreeTools/"  title="Mybais三剑客">
  <strong>NEXT:</strong><br/> 
- <span>ReentrantLock
+ <span>Mybais三剑客
 </span>
 </a>
 </div>
@@ -209,7 +198,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#原子性和可见性"><span class="toc-number">1.</span> <span class="toc-text">原子性和可见性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile关键字"><span class="toc-number">2.</span> <span class="toc-text">volatile关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized关键字"><span class="toc-number">3.</span> <span class="toc-text">synchronized关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile和synchronized的区别"><span class="toc-number">4.</span> <span class="toc-text">volatile和synchronized的区别</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单例设计模式"><span class="toc-number">1.</span> <span class="toc-text">单例设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#饿汉式单例"><span class="toc-number">1.1.</span> <span class="toc-text">饿汉式单例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#懒汉式单例"><span class="toc-number">1.2.</span> <span class="toc-text">懒汉式单例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式"><span class="toc-number">2.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建造（Builder）模式"><span class="toc-number">3.</span> <span class="toc-text">建造（Builder）模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式"><span class="toc-number">4.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器模式"><span class="toc-number">5.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰模式"><span class="toc-number">6.</span> <span class="toc-text">装饰模式</span></a></li></ol>
   </div>
 
 <div id="asidepart">

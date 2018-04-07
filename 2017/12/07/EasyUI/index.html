@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Quartz定时任务 | BiG哥|博客</title>
+    <title>创建线程的两种方式 | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="Quartz是OpenSymphony开源组织在Job scheduling领域又一个开源项目，是完全由java开发的一个开源的任务日程管理系统，“任务进度管理器”就是一个在预先确定（被纳入日程）的时间到达时，负责执行（或者通知）其他软件组件的系统。Quartz定时主要分为三个基本要素：Scheduler（调度器）、Trigger（触发器）以及JobDetail &amp;amp; Job（任务）">
+    <meta name="description" content="EasyUI是封装好的前端框架，使用EasyUI组件，能够轻松为开发者打造丰富而美观的UI界面，大大减少了前端页面展示的复杂性，使开发者不必为CSS样式及排版而苦恼，只需考虑数据的加载即可。">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="Quartz定时任务 | BiG哥|博客" />
+    <meta name="twitter:title" content="创建线程的两种方式 | BiG哥|博客" />
       
     
     
@@ -129,15 +129,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/12/06/Quartz/" title="Quartz定时任务" itemprop="url">Quartz定时任务</a>
+      <a href="/2017/12/07/EasyUI/" title="创建线程的两种方式" itemprop="url">创建线程的两种方式</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-12-06T15:52:20.000Z" itemprop="datePublished">2017-12-06</time>
-    更新日期:<time datetime="2018-04-06T13:49:47.333Z" itemprop="dateModified">2018-04-06</time>
+    <time datetime="2017-12-07T15:52:20.000Z" itemprop="datePublished">2017-12-07</time>
+    更新日期:<time datetime="2018-04-07T13:45:55.495Z" itemprop="dateModified">2018-04-07</time>
     
   </p>
 </header>
@@ -146,20 +146,30 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quartz三大基本要素解读"><span class="toc-number">1.</span> <span class="toc-text">Quartz三大基本要素解读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注解定时"><span class="toc-number">1.1.</span> <span class="toc-text">注解定时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动定时"><span class="toc-number">1.2.</span> <span class="toc-text">手动定时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduler（调度器）"><span class="toc-number">1.3.</span> <span class="toc-text">Scheduler（调度器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trigger（触发器"><span class="toc-number">1.4.</span> <span class="toc-text">Trigger（触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JobDetail-amp-Job（任务）"><span class="toc-number">1.5.</span> <span class="toc-text">JobDetail & Job（任务）</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#EasyUI常用组件"><span class="toc-number">1.</span> <span class="toc-text">EasyUI常用组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Datagrid组件举例"><span class="toc-number">1.1.</span> <span class="toc-text">Datagrid组件举例</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>   <a href="https://baike.baidu.com/item/quartz/3643055?fr=aladdin" target="_blank" rel="external">Quartz</a>是OpenSymphony开源组织在Job scheduling领域又一个开源项目，是完全由java开发的一个开源的任务日程管理系统，“任务进度管理器”就是一个在预先确定（被纳入日程）的时间到达时，负责执行（或者通知）其他软件组件的系统。Quartz定时主要分为三个基本要素：Scheduler（调度器）、Trigger（触发器）以及JobDetail &amp; Job（任务）<br><a id="more"></a></p>
-<h2 id="Quartz三大基本要素解读"><a href="#Quartz三大基本要素解读" class="headerlink" title="Quartz三大基本要素解读"></a>Quartz三大基本要素解读</h2><p>关于Quartz的使用大致有两种：</p>
+		<p>   <a href="https://baike.baidu.com/item/QueryEasyUI/1733327?fr=aladdin" target="_blank" rel="external">EasyUI</a>是封装好的前端框架，使用EasyUI组件，能够轻松为开发者打造丰富而美观的UI界面，大大减少了前端页面展示的复杂性，使开发者不必为CSS样式及排版而苦恼，只需考虑数据的加载即可。<br><a id="more"></a></p>
+<h2 id="EasyUI常用组件"><a href="#EasyUI常用组件" class="headerlink" title="EasyUI常用组件"></a>EasyUI常用组件</h2><p>   EasyUI的常用组件：Datagrid（数据网格）、Treegrid（树形网格）、Tabs（标签页/选项卡）、Layout（布局）、Messager（消息框）、Linkbutton（链接按钮）等，使用最多的还是Datagrid（数据网格），为大量数据的加载和分页做了非常大的贡献。下面主要抽取几点典型的组件进行讲解，新人上手都很快。</p>
+<h3 id="Datagrid组件举例"><a href="#Datagrid组件举例" class="headerlink" title="Datagrid组件举例"></a>Datagrid组件举例</h3><p><strong>方式一</strong>：将属性直接写在data-options里面，url就是所要加载数据的路径（接口地址），field是返回的json数据变量与表格列对应的变量名。<br><img src="https://upload-images.jianshu.io/upload_images/9194313-44bd02e9e2f02ca1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"><br><strong>方式二</strong>：将属性与table分开，单独对属性进行操作。<br><img src="https://upload-images.jianshu.io/upload_images/9194313-b554252283efbdd1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br><strong>每个组件都伴随着以下三大内容：属性、方法和事件</strong></p>
 <ul>
-<li>一种是通过注解的方式使用，但是这种方式的局限性很明显，只能通过的注解的方式写死<strong>Cron表达式</strong>，运行过程中去修改会相当麻烦；</li>
-<li>另一种就是使用最传统的方式，Scheduler+Trigger+JobDetail &amp; Job按步骤一步步实现，这种方式可以通过获取bean的方式去操作dao层，实现<strong>前台手动设置时间并随意更改时间</strong>的目的。</li>
+<li><p><strong>常用属性</strong></p>
+<blockquote>
+<p><code>fitColumns</code>:单元格宽度随文字自适应；<br><code>url</code>：数据加载路径；<br><code>data</code>：可以写死也可以通过url去加载；<br><code>pagination</code>：是否开启分页；<br><code>rownumbers</code>：是否显示行号；<br><code>singleSelect</code>：是否只允许选中单条；<br><code>checkOnSelect</code>：是否选中行前的复选框，就选中整条数据；<br><code>selectOnCheck</code>：是否选中整条数据，复选框自动打勾；<br><code>rowStyler</code>：给哪些行设置样式；</p>
+</blockquote>
+</li>
+<li><p><strong>常用方法</strong></p>
+<blockquote>
+<p><code>options</code>:返回（options）对象，就是data-options这个属性对象；<br><code>getData</code>：获取从后台接口所加载的数据；<br><code>getRowIndex</code>：获取指定选中行的索引；<br><code>getSelected</code>：获取选中行对象；</p>
+</blockquote>
+</li>
+<li><p><strong>常用事件</strong></p>
+<blockquote>
+<p><code>onClickRow</code>:用户单机时触发；<br><code>onDblClickRow</code>：用户双击时触发；<br><code>onSelect</code>：选中一行时触发；<br><code>onUnselect</code>：取消一行选中时触发；</p>
+</blockquote>
+</li>
 </ul>
-<h3 id="注解定时"><a href="#注解定时" class="headerlink" title="注解定时"></a>注解定时</h3><p><strong>实体类</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-a0a3a85048380aa2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><strong>applicationContext.xml配置</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-7a12c5acac6256e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h3 id="手动定时"><a href="#手动定时" class="headerlink" title="手动定时"></a>手动定时</h3><p><strong>定义Job类</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-ea72ef93b0b138f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><strong>定义JobDetail和Trigger</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-fd3b5c59383de055.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><strong>绑定JobDetail和Trigger并开启定时任务</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-3812f9fd0d76847b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h3 id="Scheduler（调度器）"><a href="#Scheduler（调度器）" class="headerlink" title="Scheduler（调度器）"></a>Scheduler（调度器）</h3><p>作用：调度器，所有的任务调度都是有他控制（包括任务的开始和结束）；</p>
-<h3 id="Trigger（触发器"><a href="#Trigger（触发器" class="headerlink" title="Trigger（触发器"></a>Trigger（触发器</h3><p>作用：触发器，定义任务被触发的时间，是哪个时间点被触发，触发的频次是多少，这些都是通过调度器进行设置的；</p>
-<h3 id="JobDetail-amp-Job（任务）"><a href="#JobDetail-amp-Job（任务）" class="headerlink" title="JobDetail &amp; Job（任务）"></a>JobDetail &amp; Job（任务）</h3><p>作用：JobDetail定义任务的数据（外部需要传入job中的一些参数），而<br>Job（任务）是个接口，所有定时任务的业务逻辑都写在实现了这个接口的类里面。sheduler每次执行，都会根据JobDetail创建一个新的Job实例，这样就可以规避并发访问的问题。</p>
+<p>对以上属性、方法以及事件的操作方式基本都是：<code>$(&#39;#table的id&#39;).datagrid(属性/方法/事件)</code>可以参照下面的案例：<br><img src="https://upload-images.jianshu.io/upload_images/9194313-a49769a39e966f4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br>基本都是这个流程，熟悉了EasyUI的书写格式之后，使用API进行开发就相当容易了，对于英文的API由于有很多单词的意思无法正确理解，下面主要推荐是使用中文的API，想使用什么组件只需要进行搜索即可，基本都是直接套格式，一通百通。下面是中文API的链接，个人感觉还比较好用，分享给大家：<a href="http://www.jeasyui.net/plugins/183.html" target="_blank" rel="external">EasyUI中文API</a></p>
 <p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   
 	</div>
@@ -170,7 +180,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/12/06/Quartz/" data-title="Quartz定时任务 | BiG哥|博客" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/12/07/EasyUI/" data-title="创建线程的两种方式 | BiG哥|博客" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -180,18 +190,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/12/07/EasyUI/" title="创建线程的两种方式">
+ <a href="/2018/12/05/DesignPatterns/" title="Java之设计模式">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  创建线程的两种方式</span>
+  Java之设计模式</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/12/04/MybatisThreeTools/"  title="Mybais三剑客">
+<a href="/2017/12/06/Quartz/"  title="Quartz定时任务">
  <strong>NEXT:</strong><br/> 
- <span>Mybais三剑客
+ <span>Quartz定时任务
 </span>
 </a>
 </div>
@@ -204,7 +214,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quartz三大基本要素解读"><span class="toc-number">1.</span> <span class="toc-text">Quartz三大基本要素解读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注解定时"><span class="toc-number">1.1.</span> <span class="toc-text">注解定时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动定时"><span class="toc-number">1.2.</span> <span class="toc-text">手动定时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduler（调度器）"><span class="toc-number">1.3.</span> <span class="toc-text">Scheduler（调度器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trigger（触发器"><span class="toc-number">1.4.</span> <span class="toc-text">Trigger（触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JobDetail-amp-Job（任务）"><span class="toc-number">1.5.</span> <span class="toc-text">JobDetail & Job（任务）</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#EasyUI常用组件"><span class="toc-number">1.</span> <span class="toc-text">EasyUI常用组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Datagrid组件举例"><span class="toc-number">1.1.</span> <span class="toc-text">Datagrid组件举例</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

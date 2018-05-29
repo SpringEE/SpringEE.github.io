@@ -1,0 +1,467 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>贯穿JS、java、mysql的所有日期操作 | BiG哥|博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="BiG哥|博客">
+    
+    <meta name="description" content="目前，因为公司开发使用的ssm框架，从前端js到后台java，以及mysql数据库，只要涉及到时间处理的问题，都难免会遇到日期获取、格式化、比较大小等操作，而且目前的博客都只针对单方面做了讲解，此文将决定做统一归纳汇总，以方便读者保存和分享。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
+    <meta name="twitter:title" content="贯穿JS、java、mysql的所有日期操作 | BiG哥|博客" />
+      
+    
+    
+    <link rel="alternate" href="/atom.xml" title="BiG哥|博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/myPhoto.png" alt="BiG哥|博客" title="BiG哥|博客"/></a>
+			</div>
+			
+			
+			<div id="textlogo">
+				
+				<h1 class="site-name"><a href="/" title="BiG哥|博客">BiG哥|博客 			
+				</a>
+				</h1>
+				<div style="text-align:right;position:absolute;right:10px;width:76%;top:20px">
+					<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=2&id=414118616&auto=0&height=66"></iframe>
+				</div>
+				<div class="blog-motto">
+					<span id="busuanzi_container_site_pv">
+						<font color="#EEAEEE" face="楷体" size="2">访问:</font>
+						<font color="#FFA07A" size="1" face="宋体"><span id="busuanzi_value_site_pv"></span></font>	<font color="#66CDAA" face="楷体" size="2">次</font>
+						<font color="#ffffff" face="楷体" size="2">|</font>
+					</span>
+					<span id="busuanzi_container_site_pv">
+						<font color="#EEAEEE" face="楷体" size="2">您是第</font>
+						<font color="#FFA07A" size="1" face="宋体"><span id="busuanzi_value_site_uv"></span></font>	<font color="#66CDAA" face="楷体" size="2">位访客</font>
+					</span>	
+				</div>
+				
+				<h2 class="blog-motto"></h2>
+			</div>
+			
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			
+			
+			
+			<div id="footer" >
+	<!--
+	<div class="line"></div>
+	
+	<div class="social-font clearfix" >
+		
+		<a href="https://weibo.com/2654414631/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" title="weibo"></a>
+		
+		
+		<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/SpringEE" target="_blank" title="github"></a>
+		
+		
+		<a href="https://user.qzone.qq.com/892308342/infocenter" target="_blank" title="facebook"></a>
+		
+		
+        <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=i7Oyubi7s7i-ucv6_qXo5OY" target="_blank" title="linkedin"></a>
+        
+	</div>-->
+	<nav class="animated" id="mylink">
+				<ul>
+					
+						<li><a href="/">主页</a>
+						</li>
+					
+						<li><a href="/files">目录</a>
+						</li>
+					
+						<li><a href="/archives">归档</a>
+						</li>
+					
+						<li><a href="/tools">工具</a>
+						</li>
+					
+						<li><a href="/about">关于</a>
+						</li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:github.com/SpringEE/SpringEE.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>		
+</div>
+				
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/29/TimeCompare/" title="贯穿JS、java、mysql的所有日期操作" itemprop="url">贯穿JS、java、mysql的所有日期操作</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2017-12-29T15:52:20.000Z" itemprop="datePublished">2017-12-29</time>
+    更新日期:<time datetime="2018-05-29T01:06:37.499Z" itemprop="dateModified">2018-05-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS-时间日期操作"><span class="toc-number">1.</span> <span class="toc-text">JS-时间日期操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#日期获取"><span class="toc-number">1.1.</span> <span class="toc-text">日期获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期转字符串："><span class="toc-number">1.2.</span> <span class="toc-text">日期转字符串：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期格式化："><span class="toc-number">1.3.</span> <span class="toc-text">日期格式化：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA-时间日期操作"><span class="toc-number">2.</span> <span class="toc-text">JAVA-时间日期操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#日期获取-1"><span class="toc-number">2.1.</span> <span class="toc-text">日期获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Calendar之now-get-参数-获取年月日参数"><span class="toc-number">2.2.</span> <span class="toc-text">Calendar之now.get(参数):获取年月日参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期格式化"><span class="toc-number">2.3.</span> <span class="toc-text">日期格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期比较"><span class="toc-number">2.4.</span> <span class="toc-text">日期比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-时间日期操作"><span class="toc-number">3.</span> <span class="toc-text">MySQL-时间日期操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取日期和时间戳："><span class="toc-number">3.1.</span> <span class="toc-text">获取日期和时间戳：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期格式化：-1"><span class="toc-number">3.2.</span> <span class="toc-text">日期格式化：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间计算："><span class="toc-number">3.3.</span> <span class="toc-text">时间计算：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间加减："><span class="toc-number">3.4.</span> <span class="toc-text">时间加减：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比较时间大小：常规的-gt-、-lt-、-、-lt-gt-（不等于）、-gt-、-lt-等等！"><span class="toc-number">3.5.</span> <span class="toc-text">比较时间大小：常规的>、<、=、<>（不等于）、>=、<=等等！</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>   目前，因为公司开发使用的ssm框架，从前端js到后台java，以及mysql数据库，只要涉及到时间处理的问题，都难免会遇到日期获取、格式化、比较大小等操作，而且目前的博客都只针对单方面做了讲解，此文将决定做统一归纳汇总，以方便读者保存和分享。</p>
+<a id="more"></a>
+<h2 id="JS-时间日期操作"><a href="#JS-时间日期操作" class="headerlink" title="JS-时间日期操作"></a>JS-时间日期操作</h2><h3 id="日期获取"><a href="#日期获取" class="headerlink" title="日期获取"></a>日期获取</h3><p>获取时间：<br><code>var myDate = new Date();//获取系统当前时间</code><br><code>var d2=new Date(1320336000000);//这个参数就是时间戳，被视为毫秒</code><br><code>var d3=new Date(&quot;2013-8-20 18:20:30&quot;);//字符串，并能够使用Date.parse()转换</code><br><code>var d4=new Date(2013,7,26);//参数含义参照d5参数描述</code><br><code>var d5=new Date(year, month, day, hours, minutes, seconds, microseconds)</code><br>获取指定时间数据：<br><code>var myDate = new Date();</code><br><code>myDate.getYear(); //获取当前年份(2位)</code><br><code>myDate.getFullYear(); //获取完整的年份(4位,1970-????)</code><br><code>myDate.getMonth(); //获取当前月份(0-11,0代表1月)</code><br><code>myDate.getDate(); //获取当前日(1-31)</code><br><code>myDate.getDay(); //获取当前星期X(0-6,0代表星期天)</code><br><code>myDate.getTime(); //获取当前时间(从1970.1.1开始的毫秒数)</code><br><code>myDate.getHours(); //获取当前小时数(0-23)</code><br><code>myDate.getMinutes(); //获取当前分钟数(0-59)</code><br><code>myDate.getSeconds(); //获取当前秒数(0-59)</code><br><code>myDate.getMilliseconds(); //获取当前毫秒数(0-999)</code><br><code>myDate.toLocaleDateString(); //获取当前日期</code><br><code>var mytime=myDate.toLocaleTimeString(); //获取当前时间</code><br><code>myDate.toLocaleString( ); //获取日期与时间</code><br>获取时间戳：<br><code>var myDate = new Date(&quot;2013-8-20 18:20:30&quot;).getTime();//获取系统当前时间</code><br><code>var myDate = new Date().getTime();//获取系统当前时间</code><br><code>var myDate = new Date(&quot;2013/5/12 20:10:20&quot;).getTime();//获取系统当前时间</code><br><code>--“/”和“-”的区别在于时区的问题，使用“/”所获取的时间戳更为准确</code><br><code>Date.parse(&quot;2013/5/12 20:10:20&quot;);//用于分析一个包含日期的字符串,返回一个时间戳</code>  </p>
+<h3 id="日期转字符串："><a href="#日期转字符串：" class="headerlink" title="日期转字符串："></a>日期转字符串：</h3><p><code>var testDate = new Date();</code><br><code>var dateobj_toString = testDate.toString();//toString() 把Date对象转换为字符串。</code><br><code>var dataobj_toTimeString = testDate.toTimeString();//toTimeString()把Date对象的时间部分转换为字符串。</code><br><code>var dateobj_toDateString = testDate.toDateString();//toDateString()把Date对象的日期部分转换为字符串。</code><br><code>var dateobj_toUTCString = testDate.toUTCString();//toUTCString()根据世界时，Date对象转换为字符串。</code><br><code>var dateobj_toLocalString = testDate.toLocaleString();//toLocaleString()根据本地时间格式，把Date对象转换为字符串。</code><br><code>var dateobj_toLocalTimeString = testDate.toLocaleTimeString(); // toLocaleTimeString()根据本地时间格式，把Date对象的时间部分转换为字符串。</code><br><code>var dateobj_toLocaleDateString = testDate.toLocaleDateString();//toLocaleDateString()根据本地时间格式，把Date对象的日期部分转换为字符串。</code><br><img src="https://upload-images.jianshu.io/upload_images/9194313-55d9d88c875bc455.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.pgn"></p>
+<h3 id="日期格式化："><a href="#日期格式化：" class="headerlink" title="日期格式化："></a>日期格式化：</h3><p><img src="https://upload-images.jianshu.io/upload_images/9194313-858fb1683f40ba29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br>使用案例：<br><code>(new Date()).Format(&quot;yyyy-MM-dd hh:mm:ss&quot;) //输出结果： 2017-01-23 09:36:10</code><br><code>(new Date()).Format(&quot;yyyy-MM-dd&quot;) //输出结果： 2017-01-23</code><br>可参考链接，拷贝代码：<a href="https://www.cnblogs.com/linJie1930906722/p/6343337.html" target="_blank" rel="external">链接地址</a></p>
+<h2 id="JAVA-时间日期操作"><a href="#JAVA-时间日期操作" class="headerlink" title="JAVA-时间日期操作"></a>JAVA-时间日期操作</h2><h3 id="日期获取-1"><a href="#日期获取-1" class="headerlink" title="日期获取"></a>日期获取</h3><p>获取时间：<br><code>Date myDate = new Date();//获取系统当前时间</code><br><code>Date myDate = new Date(long Date)://根据给定的毫秒值创建日期对象</code><br><code>Date myDate = new Date(int year,int month,int date,int hour,int min,int sec)  //默认当前日期时间</code><br><code>Calendar now = Calendar.getInstance();//默认当前日历时间</code><br><code>now.set(date);//修改日历时间，传入一个date类型即可</code><br>获取时间戳：<br><code>long timestap=new Date().getTime();//日期类型获取时间戳</code><br><code>long timestap=Calendar.getInstance().getTime().getTime();//日期类型获取时间戳</code></p>
+<h3 id="Calendar之now-get-参数-获取年月日参数"><a href="#Calendar之now-get-参数-获取年月日参数" class="headerlink" title="Calendar之now.get(参数):获取年月日参数"></a>Calendar之now.get(参数):获取年月日参数</h3><p><code>Calendar now = Calendar.getInstance();</code><br><code>now.set(参数)//参数为指定日期或者年月日时分秒;</code><br><code>Calendar.DAY_OF_MONTH：日期，和 Calendar.DATE 相同</code><br><code>Calendar.HOUR：12 小时制的小时数</code><br><code>Calendar.HOUR_OF_DAY：24小时制的小时数</code><br><code>Calendar.MINUTE：分钟</code><br><code>Calendar.SECOND：秒</code><br><code>Calendar.DAY_OF_WEEK：周几</code><br>获取指定时间(calender时间)数据：<br><code>int year = now.get(Calendar.YEAR); //2018，当前年份</code><br><code>int month = now.get(Calendar.MONTH) + 1; //12，当前月，注意加 1</code><br><code>int day = now.get(Calendar.DATE); //23，当前日</code><br>设定指定日期时间(calender时间)数据案例：<br><code>now.set(Calendar.YEAR, 2016); //设置单个字段</code><br><code>now.set(2016, 1, 1[, 11, 1, 1]);//设定年月日或者年月日时分或年月日时分秒</code><br><code>now.set(int year, int month, int date[, int hourOfDay, int minute, int second])</code><br><code>now.set(date); //直接传入一个 Date 类型的日期</code> </p>
+<h3 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h3><p><img src="https://upload-images.jianshu.io/upload_images/9194313-ef1504ff2ace2b0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p>
+<h3 id="日期比较"><a href="#日期比较" class="headerlink" title="日期比较"></a>日期比较</h3><p>日期加减：<br><code>Calendar now = Calendar.getInstance();//获取当前时间</code><br><code>now.add(Calendar.YEAR, 1); //现在时间的1年后</code><br><code>now.add(Calendar.YEAR, -1); //现在时间的1年前</code><br>日期比较大小：<br><code>Date date1 = new Date();//获取时间date1</code><br><code>Date date2 = new Date();//获取时间date2</code><br><code>date1.before(date2);//true,当date1小于date2时，为true，否则为false</code><br><code>date2.after(date1);//true，当 date_02 大于 date_01 时，为 true，否则为 false</code><br><strong>date1.compareTo(date2);</strong><br><code>(1) 当 date1 小于 date2 时，为 -1;</code><br><code>(2) 当 date2 大于 date1 时，为 1;</code><br><code>(3) 当两个日期相等时，为 0;</code>   </p>
+<h2 id="MySQL-时间日期操作"><a href="#MySQL-时间日期操作" class="headerlink" title="MySQL-时间日期操作"></a>MySQL-时间日期操作</h2><h3 id="获取日期和时间戳："><a href="#获取日期和时间戳：" class="headerlink" title="获取日期和时间戳："></a>获取日期和时间戳：</h3><p><code>now()：获取数据库当前时间，例如2008-08-08 22:28:21；</code><br><code>current_timestamp()：获取当前时间戳，例如2008-08-09 23:22:24；</code><br><code>timestamp(date)：日期转时间戳，例如timestamp(&#39;2008-08-08&#39;)-- 2008-08-08 00:00:00；</code><br><code>timestamp(dt,time)：timestamp(&#39;2008-08-08 08:00:00&#39;, &#39;01:01:01&#39;) -- 2008-08-08 09:01:01；</code><br><code>makdedate(year,dayofyear)：日期拼凑，makedate(2001,31); -- &#39;2001-01-31&#39;；makedate(2001,32); -- &#39;2001-02-01&#39;；</code><br><code>maketime(hour,minute,second)：时间拼凑，maketime(12,15,30); -- &#39;12:15:30&#39;</code>  </p>
+<h3 id="日期格式化：-1"><a href="#日期格式化：-1" class="headerlink" title="日期格式化："></a>日期格式化：</h3><p><code>date_format(date,format)：date_format(&#39;2008-08-08 22:23:01&#39;, &#39;%Y%m%d%H%i%s&#39;)--20080808222301</code><br><code>str_to_date(str, format)：str_to_date(&#39;08/09/2008&#39;, &#39;%m/%d/%Y&#39;); -- 2008-08-09</code><br><code>str_to_date(&#39;08.09.2008 08:09:30&#39;, &#39;%m.%d.%Y %h:%i:%s&#39;); -- 2008-08-09 08:09:30</code><br><code>to_days(date)：日期转换为天，to_days(&#39;2008-08-08&#39;); -- 733627</code><br><code>time_to_sec(time)：时间转换为秒，time_to_sec(&#39;01:00:05&#39;); -- 3605</code><br><code>sec_to_time(seconds)：秒转换为时间，sec_to_time(3605); -- &#39;01:00:05&#39;</code>  </p>
+<h3 id="时间计算："><a href="#时间计算：" class="headerlink" title="时间计算："></a>时间计算：</h3><p><code>set @dt = now();</code><br><code>select date_add(@dt, interval 1 day); -- add 1 day</code><br><code>select date_add(@dt, interval 1 hour); -- add 1 hour</code><br><code>select date_add(@dt, interval 1 minute); -- ...</code><br><code>select date_add(@dt, interval 1 second);</code><br><code>select date_add(@dt, interval 1 microsecond);</code><br><code>select date_add(@dt, interval 1 week);</code><br><code>select date_add(@dt, interval 1 month);</code><br><code>select date_add(@dt, interval 1 quarter);</code><br><code>select date_add(@dt, interval 1 year);</code>  </p>
+<h3 id="时间加减："><a href="#时间加减：" class="headerlink" title="时间加减："></a>时间加减：</h3><p><code>datediff(date1,date2)：两个日期相减 date1 - date2，返回天数。datediff(&#39;2008-08-08&#39;, &#39;2008-08-01&#39;); -- 7</code><br><code>timediff(time1,time2)：两个日期相减 time1 - time2，返回 time 差值。timediff(&#39;2008-08-09 08:08:08&#39;, &#39;2008-08-08 00:00:00&#39;); -- 32:08:08</code>  </p>
+<h3 id="比较时间大小：常规的-gt-、-lt-、-、-lt-gt-（不等于）、-gt-、-lt-等等！"><a href="#比较时间大小：常规的-gt-、-lt-、-、-lt-gt-（不等于）、-gt-、-lt-等等！" class="headerlink" title="比较时间大小：常规的&gt;、&lt;、=、&lt;&gt;（不等于）、&gt;=、&lt;=等等！"></a>比较时间大小：常规的&gt;、&lt;、=、&lt;&gt;（不等于）、&gt;=、&lt;=等等！</h3><p><code>例如：select * from tbl_xxx where &#39;2018-01-01 01：01：01&#39; &lt;= &#39;2018-02-02 02：02：02&#39;</code>  </p>
+<p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/12/29/TimeCompare/" data-title="贯穿JS、java、mysql的所有日期操作 | BiG哥|博客" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/01/14/ssh_demo/" title="ssh全注解Demo（含源码下载链接）">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  ssh全注解Demo（含源码下载链接）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/12/09/StoredRoutine/"  title="存储过程和存储函数">
+ <strong>NEXT:</strong><br/> 
+ <span>存储过程和存储函数
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS-时间日期操作"><span class="toc-number">1.</span> <span class="toc-text">JS-时间日期操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#日期获取"><span class="toc-number">1.1.</span> <span class="toc-text">日期获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期转字符串："><span class="toc-number">1.2.</span> <span class="toc-text">日期转字符串：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期格式化："><span class="toc-number">1.3.</span> <span class="toc-text">日期格式化：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA-时间日期操作"><span class="toc-number">2.</span> <span class="toc-text">JAVA-时间日期操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#日期获取-1"><span class="toc-number">2.1.</span> <span class="toc-text">日期获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Calendar之now-get-参数-获取年月日参数"><span class="toc-number">2.2.</span> <span class="toc-text">Calendar之now.get(参数):获取年月日参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期格式化"><span class="toc-number">2.3.</span> <span class="toc-text">日期格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期比较"><span class="toc-number">2.4.</span> <span class="toc-text">日期比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-时间日期操作"><span class="toc-number">3.</span> <span class="toc-text">MySQL-时间日期操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取日期和时间戳："><span class="toc-number">3.1.</span> <span class="toc-text">获取日期和时间戳：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期格式化：-1"><span class="toc-number">3.2.</span> <span class="toc-text">日期格式化：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间计算："><span class="toc-number">3.3.</span> <span class="toc-text">时间计算：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间加减："><span class="toc-number">3.4.</span> <span class="toc-text">时间加减：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比较时间大小：常规的-gt-、-lt-、-、-lt-gt-（不等于）、-gt-、-lt-等等！"><span class="toc-number">3.5.</span> <span class="toc-text">比较时间大小：常规的>、<、=、<>（不等于）、>=、<=等等！</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="widget tag">
+   <!-- <h3 class="title">日历云</h3>  -->
+  <div id="calendar"></div>
+</div>
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2654414631&verifier=d9a2eba8&dpc=1"></iframe>
+
+<hr color="#8B814C" size="1px"/>
+<div class="table">
+<table>
+<tr>
+<a href="http://www.javait.club/archives/" target="_self" style="color:#A52A2A;"><font size="3">分类</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/archives/2017/07/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">>>Java基础篇</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/archives/2017/06/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">>>JavaWeb篇</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/archives/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font id="page3" size="2">>>Java框架篇</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/archives/2017/11/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">>>Hexo搭建个人博客</font></a>
+</tr><br/>
+<a href="http://www.javait.club/archives/2017/11/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">>>Java技能拓展</font></a>
+</tr><br/>
+<hr color="#8B814C" size="1px"/>
+
+
+
+<tr>
+<a href="http://www.javait.club/archives/" target="_self" style="color:#A52A2A;"><font size="3">精选</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/11/15/HexoGitHub/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Hexo博客搭建</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/20/DesignPatterns/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Java之设计模式</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/23/FunctionChange/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*方法的"重写"和"重载"</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/24/MarkerInterface/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Serializable序列化</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/06/21/Servlet/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Servlet之"单实例，多线程"</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/23/Json/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Json对象</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/11/18/volatile_synchronized/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*volatile和synchronized</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/11/18/ReentrantLock/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*ReentrantLock</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/11/20/ProducerAndConsumer/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*生产者和消费者</font></a>
+</tr><br/>
+
+
+
+<hr color="#8B814C" size="1px"/>
+<tr>
+<a href="http://www.javait.club/archives/" target="_self" style="color:#A52A2A;"><font size="3">框架</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/21/SpringMvcAnotation" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*SpringMvc常用注解</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/12/06/Quartz/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Quartz定时任务</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/12/07/EasyUI/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*EasyUI框架</font></a>
+</tr><br/>
+</table>
+</div>
+</aside>
+</div>
+
+
+
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/https://weibo.com/2654414631/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/https://github.com/SpringEE" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/https://user.qzone.qq.com/892308342/infocenter" target="_blank" title="facebook"></a>
+		
+		
+        <a href="https://www.linkedin.com/http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=i7Oyubi7s7i-ucv6_qXo5OY" target="_blank" title="linkedin"></a>
+        
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="https://github.com/SpringEE/SpringEE.github.io" target="_blank" title="BiG哥|博客">BiG哥|博客</a>
+		
+		</p>
+</div> 
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:false, root:'calendar/'});
+    
+    });
+  </script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  </body>
+</html>

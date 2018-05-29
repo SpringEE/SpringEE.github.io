@@ -128,6 +128,34 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2017/11/27/ConcurrencyClass/" title="并发集合类" itemprop="url">
+  
+    <h1 itemprop="name">并发集合类</h1>
+    
+     
+       <p itemprop="description" >本文主要针对并发的集合类进行一个简单的内容讲解，让读者能够一目了然，如果需要具体了解底层的原理，可以参看网上一些比较好的解读文章，从底层了解这些支持并发的集合类。在之前学习的集合类中，Vector和HashTable都是线程安全的，下面就开始支持并发的集合类。</p>
+      
+    
+    <time datetime="2017-11-27T15:52:20.000Z" itemprop="datePublished">2017-11-27</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2017/11/22/CountDownLatch/" title="CountDownLatch浅析" itemprop="url">
+  
+    <h1 itemprop="name">CountDownLatch浅析</h1>
+    
+     
+       <p itemprop="description" >一个案例，轻松掌握CountDownLatch（门闩）用法。CountDownLatch是一个同步辅助类，是通过“共享锁”实现的。在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。下面只需通过下面这个案例，就可以基本了解CountDownLatch的用途和用法</p>
+      
+    
+    <time datetime="2017-11-22T15:52:20.000Z" itemprop="datePublished">2017-11-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
     <a href="/2017/11/20/ProducerAndConsumer/" title="生产者和消费者" itemprop="url">
   
     <h1 itemprop="name">生产者和消费者</h1>
@@ -162,12 +190,12 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2017/11/18/volatile_synchronized/" title="volatile和synchronized" itemprop="url">
+    <a href="/2017/11/18/ReentrantLock/" title="ReentrantLock" itemprop="url">
   
-    <h1 itemprop="name">volatile和synchronized</h1>
+    <h1 itemprop="name">ReentrantLock</h1>
     
      
-       <p itemprop="description" >多线程中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。</p>
+       <p itemprop="description" >ReentrantLock是一个可重入的互斥锁，又被称为“独占锁”。顾名思义，ReentrantLock锁在同一个时间点只能被一个线程锁持有；而可重入的意思是，ReentrantLock锁，可以被单个线程多次获取。ReentrantLock分为“公平锁”和“非公平锁”。它们的区别</p>
       
     
     <time datetime="2017-11-18T15:52:20.000Z" itemprop="datePublished">2017-11-18</time>
@@ -176,12 +204,12 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2017/11/18/ReentrantLock/" title="ReentrantLock" itemprop="url">
+    <a href="/2017/11/18/volatile_synchronized/" title="volatile和synchronized" itemprop="url">
   
-    <h1 itemprop="name">ReentrantLock</h1>
+    <h1 itemprop="name">volatile和synchronized</h1>
     
      
-       <p itemprop="description" >ReentrantLock是一个可重入的互斥锁，又被称为“独占锁”。顾名思义，ReentrantLock锁在同一个时间点只能被一个线程锁持有；而可重入的意思是，ReentrantLock锁，可以被单个线程多次获取。ReentrantLock分为“公平锁”和“非公平锁”。它们的区别</p>
+       <p itemprop="description" >多线程中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。</p>
       
     
     <time datetime="2017-11-18T15:52:20.000Z" itemprop="datePublished">2017-11-18</time>
@@ -241,34 +269,6 @@
       
     
     <time datetime="2017-11-16T08:43:46.000Z" itemprop="datePublished">2017-11-16</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/15/HexoGitHub/" title="Hexo+GitHub+常用插件" itemprop="url">
-  
-    <h1 itemprop="name">Hexo+GitHub+常用插件</h1>
-    
-     
-       <p itemprop="description" >关于个人博客网站的搭建，从域名的购买到绑定和注册GitHub，好文章确实很多，在此就不再做单独的个人文章说明，只分享前辈们“搭建Hexo”的链接。本文的重点将落在各类Hexo插件的整合上，Hexo插件甚多，本文只介绍常见的几种。</p>
-      
-    
-    <time datetime="2017-11-15T02:20:31.000Z" itemprop="datePublished">2017-11-15</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/10/13/SpringBdevRestful/" title="SpringBoot开发RestfullAPI" itemprop="url">
-  
-    <h1 itemprop="name">SpringBoot开发RestfullAPI</h1>
-    
-     
-       <p itemprop="description" >Restfull一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。RESTful的关键是定义可表示流程元素/资源的对象。在REST中，每一个对象都是通过</p>
-      
-    
-    <time datetime="2017-10-13T14:18:51.000Z" itemprop="datePublished">2017-10-13</time>
   </a>
 </section>
 

@@ -4,23 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>守护线程（Daemon） | BiG哥|博客</title>
+    <title>ssh全注解Demo（含源码下载链接） | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="守护线程(又称后台线程，英文：Daemon)
-是指在程序运行的时候，在后台提供一种通用服务的线程，并且这种线程并不属于程序中不可或缺的部分。因此，当所有非后台线程执行结束后，程序也将终止。同时会杀死所有后台线程，反过来，只要有任何非后台线程还在运行，程序就不会终止。
-
-
-
-如果是后台线程，程序马上终">
+    <meta name="description" content="ssh全注解demo,前台通过request获取传递的参数，后台通过Utils4View将返回数据进行封装处理。涉及到的配置文件主要是以下几个：applicationContext.xml/struts.xml/jdbc.properties等，直接复制修改即可，主要是替换扫包路径和数据库连接。">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="守护线程（Daemon） | BiG哥|博客" />
+    <meta name="twitter:title" content="ssh全注解Demo（含源码下载链接） | BiG哥|博客" />
       
     
     
@@ -134,15 +129,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/11/19/Daemon/" title="守护线程（Daemon）" itemprop="url">守护线程（Daemon）</a>
+      <a href="/2018/01/14/ssh_demo/" title="ssh全注解Demo（含源码下载链接）" itemprop="url">ssh全注解Demo（含源码下载链接）</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-11-19T11:03:35.000Z" itemprop="datePublished">2017-11-19</time>
-    更新日期:<time datetime="2017-11-29T11:20:01.705Z" itemprop="dateModified">2017-11-29</time>
+    <time datetime="2018-01-14T15:52:20.000Z" itemprop="datePublished">2018-01-14</time>
+    更新日期:<time datetime="2018-05-28T08:42:34.844Z" itemprop="dateModified">2018-05-28</time>
     
   </p>
 </header>
@@ -151,18 +146,19 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#守护线程-又称后台线程，英文：Daemon"><span class="toc-number">1.</span> <span class="toc-text">守护线程(又称后台线程，英文：Daemon)</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目结构包"><span class="toc-number">1.</span> <span class="toc-text">项目结构包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Action层："><span class="toc-number">2.</span> <span class="toc-text">Action层：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dao层"><span class="toc-number">3.</span> <span class="toc-text">Dao层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POJO类"><span class="toc-number">4.</span> <span class="toc-text">POJO类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前台index-jsp"><span class="toc-number">5.</span> <span class="toc-text">前台index.jsp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库表"><span class="toc-number">6.</span> <span class="toc-text">数据库表</span></a></li></ol>
 		</div>
 		
-		<h3 id="守护线程-又称后台线程，英文：Daemon"><a href="#守护线程-又称后台线程，英文：Daemon" class="headerlink" title="守护线程(又称后台线程，英文：Daemon)"></a>守护线程(又称后台线程，英文：Daemon)</h3><blockquote>
-<p>是指在程序运行的时候，在后台提供一种通用服务的线程，并且这种线程并不属于程序中不可或缺的部分。<strong>因此，当所有非后台线程执行结束后，程序也将终止。</strong><br>同时会杀死所有后台线程，<strong>反过来，只要有任何非后台线程还在运行，程序就不会终止。</strong></p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/9194313-abe812f11db8570f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"><br><img src="http://upload-images.jianshu.io/upload_images/9194313-13e93d91743c3136.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p>
-<ul>
-<li>如果是后台线程，程序马上终止。</li>
-<li>如果不是后台线程，主线程main()将等待5s，即子线程结束时，结束。</li>
-<li>例如：t2是守护线程。在“主线程main”和“子线程t1”(它们都是用户线程)执行完毕，只剩t2这个守护线程的时候，JVM自动退出。</li>
-</ul>
+		<p>   ssh全注解demo,前台通过request获取传递的参数，后台通过Utils4View将返回数据进行封装处理。涉及到的配置文件主要是以下几个：applicationContext.xml/struts.xml/jdbc.properties等，直接复制修改即可，主要是替换扫包路径和数据库连接。</p>
+<a id="more"></a>
+<h3 id="项目结构包"><a href="#项目结构包" class="headerlink" title="项目结构包"></a>项目结构包</h3><p><img src="https://upload-images.jianshu.io/upload_images/9194313-d1729464eb2e0f72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"> </p>
+<h3 id="Action层："><a href="#Action层：" class="headerlink" title="Action层："></a>Action层：</h3><p><img src="https://upload-images.jianshu.io/upload_images/9194313-4413e0d9138dbc18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></p>
+<h3 id="Dao层"><a href="#Dao层" class="headerlink" title="Dao层"></a>Dao层</h3><p><img src="https://upload-images.jianshu.io/upload_images/9194313-c57a49c2dd6abc91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p>
+<h3 id="POJO类"><a href="#POJO类" class="headerlink" title="POJO类"></a>POJO类</h3><p><img src="https://upload-images.jianshu.io/upload_images/9194313-6ac85c13819f637d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="04.png"></p>
+<h3 id="前台index-jsp"><a href="#前台index-jsp" class="headerlink" title="前台index.jsp"></a>前台index.jsp</h3><p><img src="https://upload-images.jianshu.io/upload_images/9194313-98b30c25573d7a87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="05.png"></p>
+<h3 id="数据库表"><a href="#数据库表" class="headerlink" title="数据库表"></a>数据库表</h3><p><img src="https://upload-images.jianshu.io/upload_images/9194313-20dc8a1c5c92eae4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="06.png"></p>
+<p><a href="https://pan.baidu.com/s/1q6fHhlhUIh3uCjsszMrgzA" target="_blank" rel="external">项目源码下载</a>：<a href="https://pan.baidu.com/s/1q6fHhlhUIh3uCjsszMrgzA" target="_blank" rel="external">https://pan.baidu.com/s/1q6fHhlhUIh3uCjsszMrgzA</a></p>
+<p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -172,7 +168,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/11/19/Daemon/" data-title="守护线程（Daemon） | BiG哥|博客" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2018/01/14/ssh_demo/" data-title="ssh全注解Demo（含源码下载链接） | BiG哥|博客" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -181,19 +177,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/11/20/ProducerAndConsumer/" title="生产者和消费者">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  生产者和消费者</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/11/18/ReentrantLock/"  title="ReentrantLock">
+<a href="/2017/12/29/TimeCompare/"  title="贯穿JS、java、mysql的所有日期操作">
  <strong>NEXT:</strong><br/> 
- <span>ReentrantLock
+ <span>贯穿JS、java、mysql的所有日期操作
 </span>
 </a>
 </div>
@@ -206,7 +194,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#守护线程-又称后台线程，英文：Daemon"><span class="toc-number">1.</span> <span class="toc-text">守护线程(又称后台线程，英文：Daemon)</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目结构包"><span class="toc-number">1.</span> <span class="toc-text">项目结构包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Action层："><span class="toc-number">2.</span> <span class="toc-text">Action层：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dao层"><span class="toc-number">3.</span> <span class="toc-text">Dao层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POJO类"><span class="toc-number">4.</span> <span class="toc-text">POJO类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前台index-jsp"><span class="toc-number">5.</span> <span class="toc-text">前台index.jsp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库表"><span class="toc-number">6.</span> <span class="toc-text">数据库表</span></a></li></ol>
   </div>
 
 <div id="asidepart">

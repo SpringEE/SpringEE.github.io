@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/SpringEE/SpringEE.github.io/"/>
-  <updated>2018-05-28T08:42:34.844Z</updated>
+  <updated>2018-06-20T10:15:58.310Z</updated>
   <id>https://github.com/SpringEE/SpringEE.github.io/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WebSocket消息推送Demo</title>
+    <link href="https://github.com/SpringEE/SpringEE.github.io/2018/02/20/WebSocket/"/>
+    <id>https://github.com/SpringEE/SpringEE.github.io/2018/02/20/WebSocket/</id>
+    <published>2018-02-20T08:27:29.000Z</published>
+    <updated>2018-06-20T10:15:58.310Z</updated>
+    
+    <content type="html"><![CDATA[<p>  <a href="https://baike.baidu.com/item/WebSocket/1953845?fr=aladdin" target="_blank" rel="external">WebSocket</a>协议是基于TCP的一种新的网络协议。WebSocket的出现主要是针对于解决Http请求单向请求应答的问题，针对于传统的“长轮询”局限性，WebSocket让服务端具备了主动消息推送的功能，不必等待客户端的请求，便能实现实时的消息推送。</p><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>Websocket是html5提出的一个协议规范，为解决传统“长轮询”多次http请求问题而诞生，使得客户端与服务端建立连接后，服务端具备主动给客户端推送消息的功能，不必再让客户端走传统的请求应答模式。</p><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol><li>WebSocket解决客户端发起多个http请求到服务器资源浏览器必须要经过长时间的轮询问题。（有点类似于观察者模式）；  </li><li>websocket是一种双向通信协议，采用异步回调的方式接受消息，当建立通信连接，可以做到持久性的连接，并进行通信；  </li><li>WebSocket需要通过握手连接，类似于TCP它也需要客户端和服务器端进行握手连接，连接成功后才能相互通信。  </li><li>建立连接后，WebSocket服务器和Browser都能主动的向对方发送或接收数据，实质的推送方式是服务器主动推送，只要有数据就推送到请求方。（变被动为主动）  <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3></li></ol><ul><li>第一步： 浏览器、服务器建立TCP连接，三次握手。这是通信的基础，传输控制层，若失败后续都不执行；  </li><li>第二步： TCP连接成功后，浏览器通过HTTP协议向服务器传送WebSocket支持的版本号等信息。（开始前的HTTP握手）  </li><li>第三步： 服务器收到客户端的握手请求后，同样采用HTTP协议回馈数据。    </li><li>第四步： 当收到了连接成功的消息后，通过TCP通道进行传输通信,并将通讯协议升级为“WebSocket协议”，从此不再使用HTTP协议，仅第一次请求时使用已建立连接。  </li></ul><h2 id="Http和WebSocket异同"><a href="#Http和WebSocket异同" class="headerlink" title="Http和WebSocket异同"></a>Http和WebSocket异同</h2><h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><ol><li>都是基于TCP的应用层协议；    </li><li>都使用Request/Response模型进行连接的建立；   </li><li>都可以在网络中传输数据；  </li><li>在连接的建立过程中对错误的处理方式相同，在这个阶段WebSocket可能返回和HTTP相同的返回码；  <h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3></li></ol><ul><li>http协议基于请求应答，只能做单向传输，是半双工协议，而WebSocket是全双工协议，类似于socket通信，双方都可以在任何时刻向另一方发送数据；  </li><li>WebSocket的连接不能通过中间人来转发，它必须是一个直接连接。如果通过代理转发，一个代理要承受如此多的websocket连接不释放，就类似于一次DDOS攻击了；  </li><li>WebSocket在建立握手连接时，数据是通过http协议传输的，但在建立连接之后，真正的数据传输阶段是不需要http协议参与的；  </li><li>websocket传输的数据是二进制流，是以帧为单位的，http传输的是明文传输，是字符串传输，WebSocket的数据帧有序；</li></ul><h2 id="WebSocket实用Demo"><a href="#WebSocket实用Demo" class="headerlink" title="WebSocket实用Demo"></a>WebSocket实用Demo</h2><h3 id="01-注册WebSocket"><a href="#01-注册WebSocket" class="headerlink" title="01-注册WebSocket"></a>01-注册WebSocket</h3><p><img src="https://upload-images.jianshu.io/upload_images/9194313-576416360c0d0c71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png">  </p><h3 id="02-创建连接"><a href="#02-创建连接" class="headerlink" title="02-创建连接"></a>02-创建连接</h3><ul><li>客户端<br><img src="https://upload-images.jianshu.io/upload_images/9194313-fac06fdb6d98c7a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"><br><strong>websocket常用方法：</strong><br><code>websocket.onopen=function(){}  //连接成功建立的回调方法</code><br><code>websocket.send(message)        //客户端向服务端发送消息</code><br><code>websocket.onmessage=function(event){}  //接受服务端消息后的回调</code><br><code>websocket.close()        //客户端向服务端发送消息</code><br><code>websocket.onclose=function(){}  //连接关闭的回调方法</code><br><code>websocket.onerror=function(){}  //连接出错的回调方法</code>  </li><li>服务端<br><img src="https://upload-images.jianshu.io/upload_images/9194313-0065ffdfa8ec15bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"><br><strong>websocket常用注解：</strong><br><code>@OnOpen  //连接建立成功，接受客户端数据</code><br><code>@OnMessage  //收到客户端消息后的逻辑处理方法</code><br><code>@OnClose  //连接关闭，处理业务逻辑</code><br><code>@OnError  //服务端连接出错，调用逻辑</code><br><strong>服务端响应数据：</strong><br><img src="https://upload-images.jianshu.io/upload_images/9194313-e773a432b220d5f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="04.png"></li></ul><p><a href="https://pan.baidu.com/s/1KnfMn3_rxLP7hSGCQi9_qw" target="_blank" rel="external">源码链接:</a><a href="https://pan.baidu.com/s/1KnfMn3_rxLP7hSGCQi9_qw" target="_blank" rel="external">https://pan.baidu.com/s/1KnfMn3_rxLP7hSGCQi9_qw</a></p><p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  &lt;a href=&quot;https://baike.baidu.com/item/WebSocket/1953845?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebSocket&lt;/a&gt;协议是基于TCP的一种新的网络协议。WebSocket的出现主要是针对于解决Http请求单向请求应答的问题，针对于传统的“长轮询”局限性，WebSocket让服务端具备了主动消息推送的功能，不必等待客户端的请求，便能实现实时的消息推送。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>ssh全注解Demo（含源码下载链接）</title>
@@ -365,24 +383,6 @@
     <summary type="html">
     
       &lt;p&gt;   Hexo的Markdown语法学习完之后，下面将主要介绍关系到文章布局的文件信息，至于具体怎么修改，文件位置在哪里，这里也只能给大家提供参考，毕竟不同的主题，文件夹的布局方式是不一样的，但是大体的布局相似度还是很高的。上篇文章由于篇幅太长，关于MarkDown的一些注意事项和界面说明在此先做一下补充说明。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo写博客（一）</title>
-    <link href="https://github.com/SpringEE/SpringEE.github.io/2017/11/16/HexoArticle/"/>
-    <id>https://github.com/SpringEE/SpringEE.github.io/2017/11/16/HexoArticle/</id>
-    <published>2017-11-16T08:43:46.000Z</published>
-    <updated>2017-11-24T07:06:47.442Z</updated>
-    
-    <content type="html"><![CDATA[<p>   Hexo个人博客网站搭建完成后，剩下的就是写博客！但是，写博客也并非写普通文档一样简单，Hexo的博客文件在<strong>hexo－＞source－＞_posts</strong>这个目录下，文件后缀名为.md，使用的是一套Markdown语法，所以，写博客之前，就必须要了解此语法。本文将从开始到结尾，以新手的角度来打造这篇博客。<br><a id="more"></a></p><h2 id="Hexo写博客之准备工作："><a href="#Hexo写博客之准备工作：" class="headerlink" title="Hexo写博客之准备工作："></a>Hexo写博客之准备工作：</h2><ul><li>注册<a href="https://www.jianshu.com/sign_up" target="_blank" rel="external">简书</a>，前段时间用的“贴图库”的图片服务器，后来发现图片超过7天会自动删除，否者就要付费，于是立马转战<a href="https://www.jianshu.com/sign_up" target="_blank" rel="external">简书</a>。将<a href="https://www.jianshu.com/sign_up" target="_blank" rel="external">简书</a>的文档格式改成Markdown格式，将图片拖入文本内容中，会自动生成markdown语法语句，复制即可。<blockquote><p>那么有人可能会问，<strong>为什么要使用图片服务器</strong>？  　　<br>　　将图片上传至github仓库之后，使用github仓库中的链接并不能达到预期的效果，直接使用百度图片的链接也达不到预期的效果，那么最好的方式就是注册一个图片服务器，有好友说“简书”也可以。当然方式很多，但我个人是推荐使用“简书”。建议图片在本地最好有备份，以免出现不可抗力因素导致图片服务器出现异常。“简书”使用效果图：<br>　　<img src="http://upload-images.jianshu.io/upload_images/9194313-76b01d219d4e622c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.png"></p></blockquote></li></ul><p>　　注册链接：<a href="http://www.tietuku.com/login" target="_blank" rel="external">http://www.tietuku.com/login</a></p><ul><li>安装<a href="http://markdownpad.com/download.html" target="_blank" rel="external">MarkdownPad2</a>，MarkdownPad2是.md文件的编辑器，有很多语法快捷按钮，学习起来也很容易上手，另外还有预览效果图，如下：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-268e285eb10d276d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02.png"></li></ul><h2 id="Hexo写博客之Markdown语法："><a href="#Hexo写博客之Markdown语法：" class="headerlink" title="Hexo写博客之Markdown语法："></a>Hexo写博客之Markdown语法：</h2><p>关于“Markdown语法”的文章也很多，但讲解的内容有的非常详细但是特别难懂，一时间抓不到重点，废话太多，有的是写的简明，但写不出重点，不过本人的观点还是先分享链接再做个人分析解读。前辈们的链接有很多：</p><ol><li><p><a href="http://www.jianshu.com/p/f7305002a30f" target="_blank" rel="external">http://www.jianshu.com/p/f7305002a30f</a></p></li><li><p><a href="http://wowubuntu.com/markdown/#blockquote" target="_blank" rel="external">http://wowubuntu.com/markdown/#blockquote</a></p></li></ol><p><strong>下面以新手的角度来解读常用的几个Markdown语法：</strong></p><h3 id="标题语法"><a href="#标题语法" class="headerlink" title="标题语法"></a>标题语法</h3><blockquote><p>标题的语法很简单，标题的层次感也比较鲜明，主要是看什么样的字体大小你觉得合适，就使用几级标题，Markdown中最常用的6个档次：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-0b7fd13ed8caef6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="03.png"></p></blockquote><ul><li>语法：<code>### 你好 或者 ### 你好 ###</code>  </li><li>注意：有些“主题”可能有由于样式原因，使得标题的各档次的使用功能不能全备，像我这个主题最多只能使用3级，但是右侧预览字体的大小确实会根据标题的层次而发生变化，这就需要对主题的样式及配置文件进行设置了，但是一动可能就要改很多地方，所以暂时不建议有所修改，先将就着用吧。</li><li>忌讳：一定要在文字和“#”之间加上空格，否则标题不生效。同时可以在标题前后各空一行，以免影响文章的排版。</li></ul><h3 id="列表语法："><a href="#列表语法：" class="headerlink" title="列表语法："></a>列表语法：</h3><blockquote><p>列表语法也分为两种：有序和无序。不过规则都比较单一，有序是以阿拉伯数字“1”开始，自动递增；无序是以“-”开始，代表的是个实心圆圈“·”。这两种语法在排版中用到的较多，具体语法如下：<br>    <code>- 文本              1.文本</code><br>    <code>- 文本              2.文本</code><br>    <code>- 文本              3.文本</code><br>这种语法其实在Markdown编辑器里面都有快捷按钮，使用起来相当方便。</p></blockquote><ul><li>实战案例：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-186c6bcf7a76aac1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="04.png"></li><li>忌讳：“-”、“1.”和“文本”之间要保留一个字符的空格。</li></ul><h3 id="链接语法："><a href="#链接语法：" class="headerlink" title="链接语法："></a>链接语法：</h3><blockquote><p>链接的情况分两种，一种是图片链接，一种是文字链接。<br>1.文字链接：<strong>[文字]（网址）</strong>。点击文字，即可跳转括号内的链接地址。<br>2.图片链接：<strong>![文字]（图片地址）</strong>。在文章中显示静态图片内容。</p></blockquote><ul><li>实战案例<br>  <code>文字链接：[图片服务器](http://www.tietuku.com/login)</code><br>  <code>图片链接：![List](http://i4.bvimg.com/618561/e4475ed1688e1ff1.png)</code></li><li>注意：图片链接，一定要填写网址，由Markdown编辑器快捷生成的语法，可能有些用不了，但只要记住上面的使用格式，是绝对没问题的。图片网址，即为你图片服务器中上传图片所生成的网址，复制过来，直接就是可以用的。</li></ul><h3 id="引用语法："><a href="#引用语法：" class="headerlink" title="引用语法："></a>引用语法：</h3><blockquote><p>这种语法，我个人理解为是一种排版语法，用来进行页面排版的。使用引用语法可以使页面变得更加有层次感，布局让人耳目一新。但是，这种语法的使用可能会夹杂着一些样式，需要将网页再度优化的可以去样式中进行修改，老方法，用F12去定位。我的“主题”配置文件已经改过很多次了，再此时不太想再此方面花功夫了，直接上图：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-237213fde4443782.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="05.png"></p></blockquote><ul><li>语法：&gt;文字 或  &gt;&gt;文字（二级引用）</li></ul><h3 id="字体语法："><a href="#字体语法：" class="headerlink" title="字体语法："></a>字体语法：</h3><blockquote><p>字体语法，一个是斜体，一个是粗体<br><code>斜体语法格式：*文字*</code><br><code>粗体语法格式：**文字**</code><br>效果：<em>效果</em>、<strong>效果</strong></p></blockquote><h3 id="代码语法："><a href="#代码语法：" class="headerlink" title="代码语法："></a>代码语法：</h3><blockquote><p>代码语法也分为两种，一种是单行代码，一种是多行代码。但有一点值得提醒，不管是单行代码还是多行代码，各大类主题都为之设置了样式，都需要自己去样式文件中进行调整，才能达到指定的效果，不管是配色、字体、背景等等这些东西，都是有可能要修改的，想让页面美观，就要多下功夫，代码语法很简单，语法格式：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-743b4314c326e198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="06.png"></p></blockquote><h3 id="表格语法："><a href="#表格语法：" class="headerlink" title="表格语法："></a>表格语法：</h3><blockquote><p>此语法运用场景较为罕见，基本不怎么用，但是还是需要提一下，万一用到了呢，以免各位又到处寻找，干脆在此做个简单的普及。当然，都是从学者过来，好东西当然要借鉴，下面就是关于表格语法的一点介绍：<br><img src="http://upload-images.jianshu.io/upload_images/9194313-2ce9865ced3d8f9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="07.png"></p></blockquote><hr><p>总结：大部分语法，在MarkDown编辑器中都有快捷键，但有些快捷键和预览效果与实际效果存在着些许差异，建议还是使用localhost:4000本地端口进行调试查看文章效果，以免部署后出现排版问题，麻烦。当然，若出现疑问可参照本文标准格式修改你的文章内容即可，均为作者亲测，下篇文章将对MarkdownPad2编辑工具以及文章样式做详细解读。</p><p>More info: <a href="http://www.javait.club/2017/11/16/HexoArticleStyle/" target="_blank" rel="external">Hexo写博客（二）</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   Hexo个人博客网站搭建完成后，剩下的就是写博客！但是，写博客也并非写普通文档一样简单，Hexo的博客文件在&lt;strong&gt;hexo－＞source－＞_posts&lt;/strong&gt;这个目录下，文件后缀名为.md，使用的是一套Markdown语法，所以，写博客之前，就必须要了解此语法。本文将从开始到结尾，以新手的角度来打造这篇博客。&lt;br&gt;
     
     </summary>
     

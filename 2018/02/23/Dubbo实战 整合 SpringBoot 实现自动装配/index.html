@@ -1,0 +1,492 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>方法“重写”和“重载” | BiG哥|博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="BiG哥|博客">
+    
+    <meta name="description" content="如今 Spring Boot 在微服务领域已十分风靡，开箱即用的特性，简化了很多开发工作。而 Dubbo 在 2017 年重新得到维护以后，社区逐渐活跃，Dubbo RPC 十分优秀，本文我们将通过一个例子来构建一个基于 Spring Boot 的Dubbo 微服务工程。
+
+Dubbo Spring">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
+    <meta name="twitter:title" content="方法“重写”和“重载” | BiG哥|博客" />
+      
+    
+    
+    <link rel="alternate" href="/atom.xml" title="BiG哥|博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/myPhoto.png" alt="BiG哥|博客" title="BiG哥|博客"/></a>
+			</div>
+			
+			
+			<div id="textlogo">
+				
+				<h1 class="site-name"><a href="/" title="BiG哥|博客">BiG哥|博客 			
+				</a>
+				</h1>
+				<div style="text-align:right;position:absolute;right:10px;width:76%;top:20px">
+					<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=2&id=414118616&auto=0&height=66"></iframe>
+				</div>
+				<div class="blog-motto">
+					<span id="busuanzi_container_site_pv">
+						<font color="#EEAEEE" face="楷体" size="2">访问:</font>
+						<font color="#FFA07A" size="1" face="宋体"><span id="busuanzi_value_site_pv"></span></font>	<font color="#66CDAA" face="楷体" size="2">次</font>
+						<font color="#ffffff" face="楷体" size="2">|</font>
+					</span>
+					<span id="busuanzi_container_site_pv">
+						<font color="#EEAEEE" face="楷体" size="2">您是第</font>
+						<font color="#FFA07A" size="1" face="宋体"><span id="busuanzi_value_site_uv"></span></font>	<font color="#66CDAA" face="楷体" size="2">位访客</font>
+					</span>	
+				</div>
+				
+				<h2 class="blog-motto"></h2>
+			</div>
+			
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			
+			
+			
+			<div id="footer" >
+	<!--
+	<div class="line"></div>
+	
+	<div class="social-font clearfix" >
+		
+		<a href="https://weibo.com/2654414631/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" title="weibo"></a>
+		
+		
+		<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/SpringEE" target="_blank" title="github"></a>
+		
+		
+		<a href="https://user.qzone.qq.com/892308342/infocenter" target="_blank" title="facebook"></a>
+		
+		
+        <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=i7Oyubi7s7i-ucv6_qXo5OY" target="_blank" title="linkedin"></a>
+        
+	</div>-->
+	<nav class="animated" id="mylink">
+				<ul>
+					
+						<li><a href="/">主页</a>
+						</li>
+					
+						<li><a href="/files">目录</a>
+						</li>
+					
+						<li><a href="/archives">归档</a>
+						</li>
+					
+						<li><a href="/tools">工具</a>
+						</li>
+					
+						<li><a href="/about">关于</a>
+						</li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:github.com/SpringEE/SpringEE.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>		
+</div>
+				
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/02/23/Dubbo实战 整合 SpringBoot 实现自动装配/" title="方法“重写”和“重载”" itemprop="url">方法“重写”和“重载”</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2018-02-23T11:08:20.000Z" itemprop="datePublished">2018-02-23</time>
+    更新日期:<time datetime="2018-12-16T03:18:40.865Z" itemprop="dateModified">2018-12-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dubbo-Spring-Boot-Starter-项目"><span class="toc-number">1.</span> <span class="toc-text">Dubbo Spring Boot Starter 项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot-Dubbo-项目实战"><span class="toc-number">2.</span> <span class="toc-text">SpringBoot Dubbo 项目实战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POM-依赖"><span class="toc-number">3.</span> <span class="toc-text">POM 依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-工程-dubbo-boot-api"><span class="toc-number">4.</span> <span class="toc-text">API 工程 dubbo-boot-api</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Provider-服务提供工程-dubbo-boot-provider"><span class="toc-number">5.</span> <span class="toc-text">Provider 服务提供工程 dubbo-boot-provider</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#application-properties"><span class="toc-number">5.1.</span> <span class="toc-text">application.properties</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Consumer-消费者工程-dubbo-boot-provider"><span class="toc-number">6.</span> <span class="toc-text">Consumer 消费者工程 dubbo-boot-provider</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#启动类"><span class="toc-number">6.1.</span> <span class="toc-text">启动类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#application-properties-1"><span class="toc-number">6.2.</span> <span class="toc-text">application.properties</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">7.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐"><span class="toc-number">9.</span> <span class="toc-text">推荐</span></a></li></ol>
+		</div>
+		
+		<blockquote>
+<p>如今 <code>Spring Boot</code> 在微服务领域已十分风靡，开箱即用的特性，简化了很多开发工作。而 <code>Dubbo</code> 在 <code>2017</code> 年重新得到维护以后，社区逐渐活跃，<code>Dubbo RPC</code> 十分优秀，本文我们将通过一个例子来构建一个基于 <code>Spring Boot</code> 的<code>Dubbo</code> 微服务工程。</p>
+</blockquote>
+<h3 id="Dubbo-Spring-Boot-Starter-项目"><a href="#Dubbo-Spring-Boot-Starter-项目" class="headerlink" title="Dubbo Spring Boot Starter 项目"></a>Dubbo Spring Boot Starter 项目</h3><blockquote>
+<p>我们在采用 <code>Dubbo</code> 作为 微服务框架时，可以通过依赖这个项目来轻松整合 <code>SpringBoot</code></p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/6393906-5a4c995a12ed2093.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000" alt="dubbo-spring-boot.png"></p>
+<p>上面是 Dubbo Spring Boot 工程地址 。<a href="https://github.com/alibaba/dubbo">Dubbo</a> Spring Boot 工程致力于简化 Dubbo RPC 框架在 <a href="https://github.com/spring-projects/spring-boot/">Spring Boot</a> 应用场景的开发。同时也整合了 Spring Boot 特性：</p>
+<h3 id="SpringBoot-Dubbo-项目实战"><a href="#SpringBoot-Dubbo-项目实战" class="headerlink" title="SpringBoot Dubbo 项目实战"></a>SpringBoot Dubbo 项目实战</h3><blockquote>
+<p>我们将实现一个简单的基于SpringBoot 和 Dubbo 的微服务例子来进行讲解。<br>项目采用多模块的形式打包。分为如下三个工程：</p>
+<ul>
+<li>dubbo-boot-api<br>统一使用的API工程，提供给生产者和消费者，包括服务接口等，实体模型等。</li>
+<li>dubbo-boot-consumer<br>服务消费端，该工程将会提供web服务，并调用 Dubbo 提供的微服务。</li>
+<li>dubbo-boot-provider<br>服务提供方，提供服务供消费者进行调用</li>
+</ul>
+</blockquote>
+<h3 id="POM-依赖"><a href="#POM-依赖" class="headerlink" title="POM 依赖"></a>POM 依赖</h3><blockquote>
+<p>项目根 <code>POM</code> 文件 需要依赖 SpringBoot 的 Parent 工程 作为 父工程以方便管理Spring的版本，我们采用的版本号为 <code>Spring Boot 2.0.0.RELEASE</code><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>服务提供者 (<code>dubbo-boot-provider</code>) 、服务消费者 (<code>dubbo-boot-consumer</code>)  都需要依赖 <code>dubbo</code> 整合 <code>Spring</code> 的<code>dubbo-spring-boot-starter</code>工程，以及 <code>spring-boot-starter-web</code>，通过 <code>web</code> 作为服务启动运行载体。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Dubbo 整合 Boot Dubbo 依赖 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dubbo-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- Spring Boot Web 依赖 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="API-工程-dubbo-boot-api"><a href="#API-工程-dubbo-boot-api" class="headerlink" title="API 工程 dubbo-boot-api"></a>API 工程 <code>dubbo-boot-api</code></h3><blockquote>
+<p>api工程主要提供实体类和公用服务接口， <code>provider</code>、<code>consumer</code> 都会依赖它</p>
+</blockquote>
+<p>实体类 <code>City</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">City</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String name;</div><div class="line">  <span class="keyword">private</span> String from;</div></pre></td></tr></table></figure></p>
+<p>服务接口 <code>CityService</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CityService</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 根据城市名称，查询城市信息</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> cityName</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function">City <span class="title">findCityByName</span><span class="params">(String cityName)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Provider-服务提供工程-dubbo-boot-provider"><a href="#Provider-服务提供工程-dubbo-boot-provider" class="headerlink" title="Provider 服务提供工程 dubbo-boot-provider"></a>Provider 服务提供工程 <code>dubbo-boot-provider</code></h3><p>服务提供实现 <code>CityServiceImpl</code><br> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span>(</div><div class="line">        version = <span class="string">"$&#123;demo.service.version&#125;"</span>,</div><div class="line">        application = <span class="string">"$&#123;dubbo.application.id&#125;"</span>,</div><div class="line">        protocol = <span class="string">"$&#123;dubbo.protocol.id&#125;"</span>,</div><div class="line">        registry = <span class="string">"$&#123;dubbo.registry.id&#125;"</span></div><div class="line">)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CityServiceImpl</span> <span class="keyword">implements</span> <span class="title">CityService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> City <span class="title">findCityByName</span><span class="params">(String cityName)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"request cityName: "</span> + cityName);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> City(<span class="string">"武汉"</span>, <span class="string">"湖北"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>启动类 <code>AppProvider</code></p>
+<blockquote>
+<p>使用非 <code>web</code> 的形式启动 <code>SpringBoot</code> 容器，提供 <code>Dubbo Rpc</code> 服务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="meta">@EnableDubboConfiguration</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">          <span class="comment">//使用非 Web 环境启动 Spring容器，提供dubbo rpc 服务</span></div><div class="line">           <span class="keyword">new</span> SpringApplicationBuilder().sources(AppProvider.class)</div><div class="line">                .web(WebApplicationType.NONE)</div><div class="line">                .run(args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># Spring boot application</div><div class="line">spring.application.name = dubbo-provider-demo</div><div class="line"></div><div class="line">## Provider类配置</div><div class="line">demo.service.version=1.0.0</div><div class="line">dubbo.application.id = dubbo-boot-provider</div><div class="line">dubbo.application.name = dubbo-boot-provider</div><div class="line"></div><div class="line">## 使用通讯协议、暴露端口</div><div class="line">dubbo.protocol.id = dubbo</div><div class="line">dubbo.protocol.name = dubbo</div><div class="line">dubbo.protocol.port = 20880</div><div class="line"></div><div class="line">## 注册中心 （不使用，直接本地互连）</div><div class="line">dubbo.registry.id = my-registry</div><div class="line">dubbo.registry.address = N/A</div></pre></td></tr></table></figure>
+<h3 id="Consumer-消费者工程-dubbo-boot-provider"><a href="#Consumer-消费者工程-dubbo-boot-provider" class="headerlink" title="Consumer 消费者工程 dubbo-boot-provider"></a>Consumer 消费者工程 <code>dubbo-boot-provider</code></h3><blockquote>
+<p><code>Spring Boot</code> <code>Controller</code> 类，提供 <code>Rest</code> 接口。引用 <code>Dubbo</code> 服务接口 <code>CityService</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Reference</span>(version = <span class="string">"$&#123;demo.service.version&#125;"</span>,</div><div class="line">            application = <span class="string">"$&#123;dubbo.application.id&#125;"</span>,</div><div class="line">            url = <span class="string">"$&#123;dubbo.service.url&#125;"</span>)</div><div class="line">    <span class="keyword">private</span> CityService cityService;</div><div class="line"></div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> cityService.findCityByName(<span class="string">"武汉"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h4><blockquote>
+<p>提供 <code>web</code> 服务供前端调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppConsumerServer</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SpringApplication.run(AppConsumerServer.class, args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="application-properties-1"><a href="#application-properties-1" class="headerlink" title="application.properties"></a>application.properties</h4><blockquote>
+<p>本例子没有采用注册中心，而是通过本地 <code>url</code> 互相直连服务端进行调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">spring.application.name=dubbo-boot-consumer</div><div class="line"></div><div class="line">demo.service.version=1.0.0</div><div class="line"></div><div class="line">dubbo.application.id=dubbo-boot-consumer</div><div class="line">dubbo.application.name=dubbo-boot-consumer</div><div class="line"></div><div class="line"># 通过直连方式</div><div class="line">dubbo.service.url=dubbo://127.0.0.1:20880</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>分别运行启动服务端(<code>AppServer</code>) 和消费端(<code>AppConsumerServer</code>) 类。然后打开浏览器访问 <code>localhost:8080/hello</code><br><img src="https://upload-images.jianshu.io/upload_images/6393906-c9fecdee1b122e3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000" alt="调用结果.png"></p>
+<p>结果显示已经调用成功。整个执行链为，前端访问 <code>url</code> 调用消费端 <code>Spring Rest</code>接口，<code>Controller</code> 里通过 <code>Dubbo Rpc</code> 调用 服务端提供的服务，然后返回。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>采用 <code>Spring Boot</code> 工程，引入 <code>Dubbo</code> 整合 <code>Spring Boot</code> 的 依赖，将会使我们非常简单轻松的使用 <code>Dubbo</code> 来提供微服务。我们可以充分利用 <code>Spring Boot</code> 的 注解驱动、自动装配、外部化配置、<code>Actuator</code> 监控等特性，来轻松管理基于<code>Dubbo</code> 的微服务。</p>
+<p>社区提供的 <code>dubbo-spring-boot-starter</code> 工程 整合了与 <code>Spring Boot</code> 这些自动配置、依赖等。所以下一步我们将会研究 它是如何实现与 <code>Spring Boot</code> 无缝整合的。</p>
+<h3 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h3><p>最后推荐一下本人微信公众号，欢迎大家关注。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6393906-47e180d949563b81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2018/02/23/Dubbo实战 整合 SpringBoot 实现自动装配/" data-title="方法“重写”和“重载” | BiG哥|博客" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/02/20/WebSocket/"  title="WebSocket消息推送Demo">
+ <strong>NEXT:</strong><br/> 
+ <span>WebSocket消息推送Demo
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dubbo-Spring-Boot-Starter-项目"><span class="toc-number">1.</span> <span class="toc-text">Dubbo Spring Boot Starter 项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot-Dubbo-项目实战"><span class="toc-number">2.</span> <span class="toc-text">SpringBoot Dubbo 项目实战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POM-依赖"><span class="toc-number">3.</span> <span class="toc-text">POM 依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-工程-dubbo-boot-api"><span class="toc-number">4.</span> <span class="toc-text">API 工程 dubbo-boot-api</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Provider-服务提供工程-dubbo-boot-provider"><span class="toc-number">5.</span> <span class="toc-text">Provider 服务提供工程 dubbo-boot-provider</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#application-properties"><span class="toc-number">5.1.</span> <span class="toc-text">application.properties</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Consumer-消费者工程-dubbo-boot-provider"><span class="toc-number">6.</span> <span class="toc-text">Consumer 消费者工程 dubbo-boot-provider</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#启动类"><span class="toc-number">6.1.</span> <span class="toc-text">启动类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#application-properties-1"><span class="toc-number">6.2.</span> <span class="toc-text">application.properties</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">7.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐"><span class="toc-number">9.</span> <span class="toc-text">推荐</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="widget tag">
+   <!-- <h3 class="title">日历云</h3>  -->
+  <div id="calendar"></div>
+</div>
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2654414631&verifier=d9a2eba8&dpc=1"></iframe>
+
+<hr color="#8B814C" size="1px"/>
+<div class="table">
+<table>
+<tr>
+<a href="http://www.javait.club/archives/" target="_self" style="color:#A52A2A;"><font size="3">分类</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/archives/2017/07/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">>>Java基础篇</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/archives/2017/06/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">>>JavaWeb篇</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/archives/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font id="page3" size="2">>>Java框架篇</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/archives/2017/11/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">>>Hexo搭建个人博客</font></a>
+</tr><br/>
+<a href="http://www.javait.club/archives/2017/11/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">>>Java技能拓展</font></a>
+</tr><br/>
+<hr color="#8B814C" size="1px"/>
+
+
+
+<tr>
+<a href="http://www.javait.club/archives/" target="_self" style="color:#A52A2A;"><font size="3">精选</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/11/15/HexoGitHub/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Hexo博客搭建</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/20/DesignPatterns/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Java之设计模式</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/23/FunctionChange/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*方法的"重写"和"重载"</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/24/MarkerInterface/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Serializable序列化</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/06/21/Servlet/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Servlet之"单实例，多线程"</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/23/Json/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Json对象</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/11/18/volatile_synchronized/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*volatile和synchronized</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/11/18/ReentrantLock/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*ReentrantLock</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/11/20/ProducerAndConsumer/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*生产者和消费者</font></a>
+</tr><br/>
+
+
+
+<hr color="#8B814C" size="1px"/>
+<tr>
+<a href="http://www.javait.club/archives/" target="_self" style="color:#A52A2A;"><font size="3">框架</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/07/21/SpringMvcAnotation" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*SpringMvc常用注解</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/12/06/Quartz/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*Quartz定时任务</font></a>
+</tr><br/>
+<tr>
+<a href="http://www.javait.club/2017/12/07/EasyUI/" target="_self" style="color:#483D8B;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">*EasyUI框架</font></a>
+</tr><br/>
+</table>
+</div>
+</aside>
+</div>
+
+
+
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/https://weibo.com/2654414631/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/https://github.com/SpringEE" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/https://user.qzone.qq.com/892308342/infocenter" target="_blank" title="facebook"></a>
+		
+		
+        <a href="https://www.linkedin.com/http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=i7Oyubi7s7i-ucv6_qXo5OY" target="_blank" title="linkedin"></a>
+        
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="https://github.com/SpringEE/SpringEE.github.io" target="_blank" title="BiG哥|博客">BiG哥|博客</a>
+		
+		</p>
+</div> 
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:false, root:'calendar/'});
+    
+    });
+  </script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  </body>
+</html>

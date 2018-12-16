@@ -128,6 +128,20 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2017/11/30/CreateTask/" title="“返回值”线程" itemprop="url">
+  
+    <h1 itemprop="name">“返回值”线程</h1>
+    
+     
+       <p itemprop="description" >线程任务有以下几种情况，一种是可以是实现了Runnable接口，重写了run方法的“无返回值”的任务；一种是可以使实现了Callable接口，可以“有返回值”的任务。下面主要针对有返回值的这种情况做案例说明。</p>
+      
+    
+    <time datetime="2017-11-30T09:43:11.000Z" itemprop="datePublished">2017-11-30</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
     <a href="/2017/11/29/ThreadPool/" title="浅谈常用“线程池”" itemprop="url">
   
     <h1 itemprop="name">浅谈常用“线程池”</h1>
@@ -204,12 +218,12 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2017/11/18/ReentrantLock/" title="ReentrantLock" itemprop="url">
+    <a href="/2017/11/18/volatile_synchronized/" title="volatile和synchronized" itemprop="url">
   
-    <h1 itemprop="name">ReentrantLock</h1>
+    <h1 itemprop="name">volatile和synchronized</h1>
     
      
-       <p itemprop="description" >ReentrantLock是一个可重入的互斥锁，又被称为“独占锁”。顾名思义，ReentrantLock锁在同一个时间点只能被一个线程锁持有；而可重入的意思是，ReentrantLock锁，可以被单个线程多次获取。ReentrantLock分为“公平锁”和“非公平锁”。它们的区别</p>
+       <p itemprop="description" >多线程中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。</p>
       
     
     <time datetime="2017-11-18T15:52:20.000Z" itemprop="datePublished">2017-11-18</time>
@@ -218,12 +232,12 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2017/11/18/volatile_synchronized/" title="volatile和synchronized" itemprop="url">
+    <a href="/2017/11/18/ReentrantLock/" title="ReentrantLock" itemprop="url">
   
-    <h1 itemprop="name">volatile和synchronized</h1>
+    <h1 itemprop="name">ReentrantLock</h1>
     
      
-       <p itemprop="description" >多线程中最容易混淆和最值得考究的一个问题，就是研究volatile和synchronized的区别，这两个关键字主要用在两个线程共享同一个对象的情况，当对象的属性值更改后，对线程内用到该属性参数的影响。</p>
+       <p itemprop="description" >ReentrantLock是一个可重入的互斥锁，又被称为“独占锁”。顾名思义，ReentrantLock锁在同一个时间点只能被一个线程锁持有；而可重入的意思是，ReentrantLock锁，可以被单个线程多次获取。ReentrantLock分为“公平锁”和“非公平锁”。它们的区别</p>
       
     
     <time datetime="2017-11-18T15:52:20.000Z" itemprop="datePublished">2017-11-18</time>
@@ -258,23 +272,9 @@
   </a>
 </section>
 
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2017/11/16/HexoArticleStyle/" title="Hexo写博客（二）" itemprop="url">
-  
-    <h1 itemprop="name">Hexo写博客（二）</h1>
-    
-     
-       <p itemprop="description" >Hexo的Markdown语法学习完之后，下面将主要介绍关系到文章布局的文件信息，至于具体怎么修改，文件位置在哪里，这里也只能给大家提供参考，毕竟不同的主题，文件夹的布局方式是不一样的，但是大体的布局相似度还是很高的。上篇文章由于篇幅太长，关于MarkDown的一些注意事项和界面</p>
-      
-    
-    <time datetime="2017-11-16T12:02:00.000Z" itemprop="datePublished">2017-11-16</time>
-  </a>
-</section>
-
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </div>

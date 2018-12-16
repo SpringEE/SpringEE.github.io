@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Java基本语法 | BiG哥|博客</title>
+    <title>CSS | BiG哥|博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="BiG哥|博客">
     
-    <meta name="description" content="Java语法和C++语法相同之处很多，所以学习一门语言再跳另一门，还是会有很大帮助的。本章主要介绍java的基本语法和数据类型，章节重点主要是数据类型和运算符的掌握。面试和笔试的主要考察点一个是运算符的优先级别表，一个是基本数据类型的强转两个方面，所以请读者面试前重点做准备。">
+    <meta name="description" content="CSS层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="http://wpa.qq.com/msgrd?v=3&amp;uin=892308342&amp;site=qq&amp;menu=yes" />
-    <meta name="twitter:title" content="Java基本语法 | BiG哥|博客" />
+    <meta name="twitter:title" content="CSS | BiG哥|博客" />
       
     
     
@@ -129,15 +129,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/07/20/JavaDay02/" title="Java基本语法" itemprop="url">Java基本语法</a>
+      <a href="/2017/06/20/CSS/" title="CSS" itemprop="url">CSS</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/SpringEE/SpringEE.github.io" title="BiG哥|博客">BiG哥|博客</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-07-20T08:04:36.000Z" itemprop="datePublished">2017-07-20</time>
-    更新日期:<time datetime="2017-11-24T05:25:44.598Z" itemprop="dateModified">2017-11-24</time>
+    <time datetime="2017-06-20T08:06:06.000Z" itemprop="datePublished">2017-06-20</time>
+    更新日期:<time datetime="2017-11-20T08:44:18.622Z" itemprop="dateModified">2017-11-20</time>
     
   </p>
 </header>
@@ -146,56 +146,73 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#标识符"><span class="toc-number">1.</span> <span class="toc-text">标识符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-number">2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型（基本-引用）"><span class="toc-number">3.</span> <span class="toc-text">数据类型（基本+引用）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据类型："><span class="toc-number">3.1.</span> <span class="toc-text">基本数据类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用数据类型（String）"><span class="toc-number">3.2.</span> <span class="toc-text">引用数据类型（String）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型转换"><span class="toc-number">3.3.</span> <span class="toc-text">数据类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符及优先级"><span class="toc-number">4.</span> <span class="toc-text">运算符及优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试、笔试点总结"><span class="toc-number">5.</span> <span class="toc-text">面试、笔试点总结</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS选择器"><span class="toc-number">1.</span> <span class="toc-text">CSS选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本选择器"><span class="toc-number">1.1.</span> <span class="toc-text">基本选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性选择器"><span class="toc-number">1.2.</span> <span class="toc-text">属性选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪元素选择器"><span class="toc-number">1.3.</span> <span class="toc-text">伪元素选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#层次选择器"><span class="toc-number">1.4.</span> <span class="toc-text">层次选择器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS属性"><span class="toc-number">2.</span> <span class="toc-text">CSS属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文字属性"><span class="toc-number">2.1.</span> <span class="toc-text">文字属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本属性"><span class="toc-number">2.2.</span> <span class="toc-text">文本属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#背景属性"><span class="toc-number">2.3.</span> <span class="toc-text">背景属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尺寸属性"><span class="toc-number">2.4.</span> <span class="toc-text">尺寸属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示属性"><span class="toc-number">2.5.</span> <span class="toc-text">显示属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮动属性"><span class="toc-number">2.6.</span> <span class="toc-text">浮动属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS文件引入"><span class="toc-number">3.</span> <span class="toc-text">CSS文件引入</span></a></li></ol>
 		</div>
 		
-		<p>   <a href="https://baike.baidu.com/item/java/85979?fr=aladdin&amp;fromtitle=Java%E8%AF%AD%E8%A8%80&amp;fromid=4148931" target="_blank" rel="external">Java</a>语法和C++语法相同之处很多，所以学习一门语言再跳另一门，还是会有很大帮助的。本章主要介绍java的基本语法和数据类型，章节重点主要是数据类型和运算符的掌握。面试和笔试的主要考察点一个是运算符的优先级别表，一个是基本数据类型的强转两个方面，所以请读者面试前重点做准备。</p>
-<a id="more"></a>
-<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a><a href="https://baike.baidu.com/item/%E6%A0%87%E8%AF%86%E7%AC%A6/7105638?fr=aladdin" target="_blank" rel="external">标识符</a></h2><p>在日常生活中，标示符是用来指定某个东西、人，要用到它，他或她的名字；在数学中解方程时，我们也常常用到这样或那样的变量名或函数名；在编程语言中，标识符是用户编程时使用的名字，对于变量、常量、函数、语句块也有名字；我们统统称之为标识符。</p>
+		<p>   <a href="https://baike.baidu.com/item/CSS/5457?fr=aladdin" target="_blank" rel="external">CSS</a>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现<a href="https://baike.baidu.com/item/HTML" target="_blank" rel="external">HTML</a>（标准通用标记语言的一个应用）或<a href="https://baike.baidu.com/item/%E5%8F%AF%E6%89%A9%E5%B1%95%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80/2885849?fromtitle=xml&amp;fromid=86251" target="_blank" rel="external">XML</a>（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。<br><a id="more"></a></p>
+<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><ul>
+<li><p>元素选择器：html标签名{css属性}</p>
 <blockquote>
-<p>命名规范：(1)标识符由字母（A-Z,a-z）、数字（0-9）、下划线“_”和美元符号($)组成，并且首字符不能是数字，其他均可；(2)严格区分大小写，但是长度可以任意；(3)关键字(java中具有特殊含义的单词)、保留字不能用于自定义的标识符。</p>
+<p><code>案例：a{color:red;text-decoration:none}给a标签设置样式</code></p>
 </blockquote>
-<p><strong>自定义标识符的规范：</strong></p>
-<ul>
-<li>类名和接口的单词首字母大写，其他字母小写；</li>
-<li>变量名与方法名首单词全部小写，其他单词首字母大写；</li>
-<li>包名全部小写；</li>
-<li>常量名全部大写，单词之间用_下划线隔开。<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2></li>
-<li><code>单行注释：//注释内容</code></li>
-<li><code>多行注释：/*注释内容*/</code></li>
-<li><code>文档注释：/**注释内容*/，生成开发者文档</code></li>
-<li><code>生成文档注释的方式：控制台输入,javadoc -d 存放文档的路径 java源文件</code></li>
-</ul>
-<h2 id="数据类型（基本-引用）"><a href="#数据类型（基本-引用）" class="headerlink" title="数据类型（基本+引用）"></a>数据类型（基本+引用）</h2><h3 id="基本数据类型："><a href="#基本数据类型：" class="headerlink" title="基本数据类型："></a>基本数据类型：</h3><blockquote>
-<p><code>整型（byte/short/int/long,分别占8bit/16bit/32bit/64bit）</code><br><code>浮点型float/double，分别占32bit/64bit</code><br><code>布尔型boolean，描述基本类型变量32bit,数组元素8bit</code><br><code>字符型char,占16Bit</code></p>
+</li>
+<li><p>id选择器：#id值{css属性}</p>
+<blockquote>
+<p><code>案例：#div{color:red;text-decoration:none}给id值为div的标签设置样式</code></p>
 </blockquote>
-<p><strong>注意：</strong></p>
-<ul>
-<li>一个整数没有任何标示，默认是int类型；</li>
-<li>一个浮点型没加任何标示，默认是double型；</li>
-<li>一个汉字或者标点占2byte，一个英文或标点占1byte；</li>
-<li>字符char，’0~9’对应48~57，a对应97，A对应65.</li>
-</ul>
-<h3 id="引用数据类型（String）"><a href="#引用数据类型（String）" class="headerlink" title="引用数据类型（String）"></a>引用数据类型（String）</h3><blockquote>
-<p>C++、java、VB等编程语言中的字符串。 在java、C#中，String类是不可变的，对String类的任何改变，都是返回一个新的String类对象。 String 对象是 System.Char 对象的有序集合，用于表示字符串。String 对象的值是该有序集合的内容，并且该值是不可变的。</p>
-</blockquote>
-<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><ul>
-<li>小数据类型—&gt;大数据类型：自动类型转换；</li>
-<li>大数据累心—&gt;小数据类型：强制转换；</li>
-<li>转换细则：<blockquote>
-<p>（1）凡是byte/short/char类型数据，在运算时都会自动转换为int类型；<br>（2）两个不同数据类型的数据运算的时候，结果取决于大的数据类型；<br>（3）java编译器在编译的过程中，只会检测数据是否超过变量类型的范围，并允许赋值或报错，赋值是在运算过程中进行的；<br>（4）使用“+=”运算会自动进行类型转换。</p>
+</li>
+<li><p>class选择器：.class值{css属性}</p>
+<blockquote>
+<p><code>案例：.style{color:red;text-decoration:none}给class值为style的标签设置样式</code></p>
 </blockquote>
 </li>
 </ul>
-<h2 id="运算符及优先级"><a href="#运算符及优先级" class="headerlink" title="运算符及优先级"></a>运算符及优先级</h2><p><img src="http://upload-images.jianshu.io/upload_images/9194313-fb2bedebf0756a0c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="01.jpg"></p>
-<hr>
-<h2 id="面试、笔试点总结"><a href="#面试、笔试点总结" class="headerlink" title="面试、笔试点总结"></a>面试、笔试点总结</h2><ul>
-<li>运算符优先级别考察；</li>
-<li>强制类型转换</li>
-<li>正负数的二进制存储形式（正数，源码；负数，补码）</li>
-<li>boolean型数据占几个字节（汉字、字母占字节）</li>
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><p>语法：html标签名[属性名=’属性值’]{css属性}</p>
+<blockquote>
+<p><code>案例：input[type=&#39;text&#39;]{color:red;text-decoration:none}给input标签中type=&quot;text&quot;的元素设置样式</code></p>
+</blockquote>
+<h3 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h3><blockquote>
+<p>案例：<br><code>a:link{css属性}---设置a标签静止状态属性</code><br><code>a:hover{css属性}---设置a标签悬浮状态属性</code><br><code>a:active{css属性}---设置a标签触发状态属性</code><br><code>a:visited{css属性}---设置a标签完成状态属性</code></p>
+</blockquote>
+<h3 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h3><blockquote>
+<p><code>案例：#div1 .style span{color:red}。从上往下，从外往内，从大往小</code></p>
+</blockquote>
+<h2 id="CSS属性"><a href="#CSS属性" class="headerlink" title="CSS属性"></a>CSS属性</h2><h3 id="文字属性"><a href="#文字属性" class="headerlink" title="文字属性"></a>文字属性</h3><blockquote>
+<p><code>font-size:文字大小</code><br><code>font-family：文字类型</code></p>
+</blockquote>
+<h3 id="文本属性"><a href="#文本属性" class="headerlink" title="文本属性"></a>文本属性</h3><blockquote>
+<p><code>color:颜色</code><br><code>text-decoration：下划线</code><br><code>text-align：对齐方式</code></p>
+</blockquote>
+<h3 id="背景属性"><a href="#背景属性" class="headerlink" title="背景属性"></a>背景属性</h3><blockquote>
+<p><code>background-color:背景颜色</code><br><code>background-image:背景图片</code></p>
+</blockquote>
+<h3 id="尺寸属性"><a href="#尺寸属性" class="headerlink" title="尺寸属性"></a>尺寸属性</h3><blockquote>
+<p><code>width：宽度；height:高度</code></p>
+</blockquote>
+<h3 id="显示属性"><a href="#显示属性" class="headerlink" title="显示属性"></a>显示属性</h3><blockquote>
+<p><code>diaplay:none,隐藏;block,块级显示;inline,行级显示</code></p>
+</blockquote>
+<h3 id="浮动属性"><a href="#浮动属性" class="headerlink" title="浮动属性"></a>浮动属性</h3><blockquote>
+<p><code>float：left，左浮；rigth，右浮</code></p>
+</blockquote>
+<h2 id="CSS文件引入"><a href="#CSS文件引入" class="headerlink" title="CSS文件引入"></a>CSS文件引入</h2><ul>
+<li><p>内部嵌套</p>
+<blockquote>
+<p><code>&lt;div style=&quot;color:red;text-align:left&quot;&gt;&lt;/div&gt;</code></p>
+</blockquote>
+</li>
+<li><p>内部样式</p>
+<blockquote>
+<p>在head标签中使用style标签进行css引入<br><code>案例：&lt;style type=&quot;text/css&quot;&gt;样式代码&lt;/style&gt;</code></p>
+</blockquote>
+</li>
+<li><p>外部样式</p>
+<blockquote>
+<p>在head标签中使用link标签进行css文件引入<br><code>案例：&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;文件路径&quot;&gt;&lt;/link&gt;</code></p>
+</blockquote>
+</li>
 </ul>
-<p>More info: <a href="http://www.javait.club/2017/07/21/SortOrder/" target="_blank" rel="external">Java之排序方法</a></p>
+<p>More info: <a href="http://www.javait.club/" target="_blank" rel="external">首页</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -205,7 +222,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/07/20/JavaDay02/" data-title="Java基本语法 | BiG哥|博客" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/SpringEE/SpringEE.github.io/2017/06/20/CSS/" data-title="CSS | BiG哥|博客" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -215,21 +232,13 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/07/21/SortOrder/" title="Java之排序方法">
+ <a href="/2017/06/21/Servlet/" title="Servlet">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Java之排序方法</span>
+  Servlet</span>
 </a>
 </div>
 
-
-<div class="next">
-<a href="/2017/07/19/JavaDay01/"  title="Java简介">
- <strong>NEXT:</strong><br/> 
- <span>Java简介
-</span>
-</a>
-</div>
 
 </nav>
 
@@ -239,7 +248,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#标识符"><span class="toc-number">1.</span> <span class="toc-text">标识符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-number">2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型（基本-引用）"><span class="toc-number">3.</span> <span class="toc-text">数据类型（基本+引用）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据类型："><span class="toc-number">3.1.</span> <span class="toc-text">基本数据类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用数据类型（String）"><span class="toc-number">3.2.</span> <span class="toc-text">引用数据类型（String）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型转换"><span class="toc-number">3.3.</span> <span class="toc-text">数据类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符及优先级"><span class="toc-number">4.</span> <span class="toc-text">运算符及优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试、笔试点总结"><span class="toc-number">5.</span> <span class="toc-text">面试、笔试点总结</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS选择器"><span class="toc-number">1.</span> <span class="toc-text">CSS选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本选择器"><span class="toc-number">1.1.</span> <span class="toc-text">基本选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性选择器"><span class="toc-number">1.2.</span> <span class="toc-text">属性选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪元素选择器"><span class="toc-number">1.3.</span> <span class="toc-text">伪元素选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#层次选择器"><span class="toc-number">1.4.</span> <span class="toc-text">层次选择器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS属性"><span class="toc-number">2.</span> <span class="toc-text">CSS属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文字属性"><span class="toc-number">2.1.</span> <span class="toc-text">文字属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本属性"><span class="toc-number">2.2.</span> <span class="toc-text">文本属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#背景属性"><span class="toc-number">2.3.</span> <span class="toc-text">背景属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尺寸属性"><span class="toc-number">2.4.</span> <span class="toc-text">尺寸属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示属性"><span class="toc-number">2.5.</span> <span class="toc-text">显示属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮动属性"><span class="toc-number">2.6.</span> <span class="toc-text">浮动属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS文件引入"><span class="toc-number">3.</span> <span class="toc-text">CSS文件引入</span></a></li></ol>
   </div>
 
 <div id="asidepart">
